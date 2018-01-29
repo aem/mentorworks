@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Wordpress theme for MentorWorks",
   "main": "gulpconfig.js",
-  "author": "Brittany Chiang, Adam Markon",
+  "author": "Brian Roth, Kincaid O'Neil, Adam Markon",
   "license": "ISC",
   "homepage": "https://github.com/Scout-NU/mentorworks#readme",
   "repository": {
