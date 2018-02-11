@@ -5,7 +5,7 @@
 1. Install [Docker](https://docs.docker.com/docker-for-mac/install/). Once you open it for the first time it should automatically start up. Docker is super lightweight so you can just always leave it running
 2. In a Terminal inside of the `mentorworks` directory, run `docker-compose up -d`
 3. The first time you do this it'll take a bit because it has to download the MySQL and Wordpress files for the first time
-4. This starts Docker in detached mode (`-d`), to kill the process run `docker-compose down`.
+4. This starts Docker in detached mode (`-d`), to kill the process run `docker-compose stop`.
 5. That's it!! Go to `localhost:3000` and things will be there.
 
 ### How It Works
