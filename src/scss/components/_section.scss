@@ -1,0 +1,14 @@
+.section {
+  padding: $spacing-large 0;
+  background: $light-gray;
+  text-align: center;
+
+  p {
+    width: 480px;
+    margin: 0 auto $spacing-medium auto;
+  }
+
+  h2 {
+    margin: 0 0 $spacing-medium 0;
+  }
+}
