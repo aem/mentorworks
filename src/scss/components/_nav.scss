@@ -1,0 +1,8 @@
+.global-navigation-link {
+  color: $digital-black;
+  text-decoration: none;
+
+  & + .global-navigation-link {
+    margin-left: $spacing-medium;
+  }
+}

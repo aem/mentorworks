@@ -8,11 +8,19 @@ Version: 1.0.0
 */
 
 // Normalize: make browsers render things more consistently
-@import "normalize";
+@import 'normalize';
+
+// Variables: consistent values like colors and spacing to use across the site
+@import 'variables';
+
+// Typography: boilerplate CSS for styles related to type
+@import 'typography';
 
 // Components: Modular elements styles
-@import "components/footer";
-@import "components/nav";
+@import 'components/header';
+@import 'components/footer';
+@import 'components/nav';
+@import 'components/button';
 
 // Pages: Import every page that has its own specific styles
 // @import "pages/home";

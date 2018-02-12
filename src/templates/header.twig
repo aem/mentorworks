@@ -1,0 +1,9 @@
+<div class="global-header-logo">
+  {# <img src="http://placehold.it/150x50"> #}
+</div>
+
+<nav class="global-navigation">
+  {% for item in menu.items %}
+    <a class="global-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a>
+  {% endfor %}
+</nav>
