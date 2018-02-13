@@ -13,7 +13,9 @@
   "scripts": {
     "lint": "eslint src/**/*.js",
     "precommit": "lint-staged",
-    "deploy": "./bin/deploy.sh"
+    "deploy": "./bin/deploy.sh",
+    "start": "docker-compose start && gulp build && gulp watch",
+    "stop": "docker-compose stop"
   },
   "devDependencies": {
     "@nuscout/eslint-config": "0.2.1",
@@ -45,10 +47,7 @@
     "wp-ajax-page-loader": "0.2.1"
   },
   "lint-staged": {
-    "*.{js,json,css,scss,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,json,css,scss,md}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@nuscout/prettier-config": "^0.1.2"
