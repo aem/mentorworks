@@ -1,0 +1,14 @@
+.image-grid {
+  width: 100%;
+  margin: 0 auto (-$spacing-medium) auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .image {
+    width: 160px;
+    height: 41px;
+    margin: 0 $spacing-medium $spacing-medium $spacing-medium;
+    background-color: $dark-gray;
+  }
+}
