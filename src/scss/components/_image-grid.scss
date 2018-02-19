@@ -1,5 +1,5 @@
 .image-grid {
-  width: 100%;
+  width: $container-width-medium;
   margin: 0 auto (-$spacing-medium) auto;
   display: flex;
   flex-flow: row wrap;
