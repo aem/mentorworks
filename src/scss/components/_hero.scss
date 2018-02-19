@@ -1,4 +1,9 @@
 .hero {
-  background-color: $gray;
+  background-color: $light-gray;
+  padding: $spacing-xl 0;
   text-align: center;
+
+  h1 {
+    margin: 0;
+  }
 }
