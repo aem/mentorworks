@@ -8,7 +8,7 @@
 </div>
 
 <div class="footer-section">
-  {% for item in secondary_menu.items %}
+  {% for item in footer_menu.items %}
     <a class="secondary-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a>
   {% endfor %}
 

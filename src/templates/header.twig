@@ -3,7 +3,7 @@
 </div>
 
 <nav class="global-navigation">
-  {% for item in primary_menu.items %}
+  {% for item in header_menu.items %}
     <a class="global-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a>
   {% endfor %}
 </nav>
