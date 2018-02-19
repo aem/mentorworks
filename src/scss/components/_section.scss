@@ -1,14 +1,33 @@
 .section {
   padding: $spacing-large 0;
-  background: $light-gray;
   text-align: center;
 
-  p {
-    width: 480px;
-    margin: 0 auto $spacing-medium auto;
+  &:first-child {
+    padding: $spacing-xl 0;
+  }
+
+  &:nth-child(odd) {
+    background: $light-gray;
+  }
+
+  &:nth-child(even) {
+    background: $white;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  h1 {
+    margin: 0 0 $spacing-medium 0;
   }
 
   h2 {
     margin: 0 0 $spacing-medium 0;
+  }
+
+  p {
+    width: 480px;
+    margin: 0 auto $spacing-medium auto;
   }
 }
