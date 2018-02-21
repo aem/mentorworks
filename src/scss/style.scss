@@ -16,6 +16,9 @@ Version: 1.0.0
 // Typography: boilerplate CSS for styles related to type
 @import 'typography';
 
+// Form: boilerplate CSS for styles related to forms and input fields
+@import 'form';
+
 // Components: Modular elements styles
 @import 'components/header';
 @import 'components/footer';
@@ -23,6 +26,7 @@ Version: 1.0.0
 @import 'components/button';
 @import 'components/image-grid';
 @import 'components/section';
+@import 'components/hero';
 
 // Pages: Import every page that has its own specific styles
 // @import "pages/home";

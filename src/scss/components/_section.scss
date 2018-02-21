@@ -1,6 +1,5 @@
 .section {
   padding: $spacing-xl 0;
-  background: $light-gray;
   text-align: center;
 
   p {
@@ -10,5 +9,13 @@
 
   h2 {
     margin: 0 0 $spacing-medium 0;
+  }
+
+  &:nth-child(odd) {
+    background: $light-gray;
+  }
+
+  .section-cta {
+    margin-top: $spacing-medium;
   }
 }
