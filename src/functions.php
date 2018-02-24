@@ -23,17 +23,32 @@ class MentorWorksSite extends TimberSite {
 	}
 
 	function register_post_types() {
-		//this is where you can register custom post types
+	  register_post_type('faq',
+	    array(
+	      'labels' => array(
+	        'name' => __('FAQs'),
+	        'singular_name' => __('FAQ')
+	      ),
+	      'public' => false,
+	      'show_ui' => true
+	    )
+	  );
 	}
 
 	function register_taxonomies() {
-		//this is where you can register custom taxonomies
+		register_taxonomy('faq_categories', array('faq'), array(
+	    'labels'                => array(
+        'name'                       => __('FAQ Categories'),
+        'separate_items_with_commas' => __('Separate FAQ categories with commas'),
+        'choose_from_most_used'      => __('Choose from the most used FAQ categories'),
+	    ),
+	    'hierarchical' => false,
+	    'show_admin_column' => true
+		));
+		register_taxonomy_for_object_type('faq_categories', 'faq');
 	}
 
 	function add_to_context( $context ) {
-		$context['foo'] = 'bar';
-		$context['stuff'] = 'I am a value set in your functions.php file';
-		$context['notes'] = 'These values are available everytime you call Timber::get_context();';
 		$context['header_menu'] = new TimberMenu('Header Menu');
 		$context['footer_menu'] = new TimberMenu('Footer Menu');
 		$context['site'] = $this;
