@@ -1,7 +1,27 @@
 {% extends "base.twig" %}
 
 {% block content %}
-  <div class="hero">
+  <div class="hero inverted-hero">
     <h1>Frequently Asked Questions</h1>
   </div>
+
+  {% for term in faqs %}
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <div class="container">
+          <h2>{{term[0]}}</h2>
+          <img src="{{site.theme.link}}/svg/minus.svg">
+        </div>
+      </div>
+
+      {% for faq in term[1] %}
+        <div class="faq-entry container">
+          <p>{{faq.post_title}}</p>
+          <div class="faq-entry-content">
+            <p>{{faq.post_content}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
 {% endblock %}

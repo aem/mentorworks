@@ -44,7 +44,6 @@ class MentorWorksSite extends TimberSite {
 	    ),
 	    'hierarchical' => false,
 	    'show_admin_column' => true
-	    // 'update_count_callback' => '_update_post_term_count'
 		));
 		register_taxonomy_for_object_type('faq_categories', 'faq');
 	}
