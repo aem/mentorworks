@@ -1,9 +1,14 @@
 .section {
-  padding: $spacing-large 0;
+  padding: $spacing-large 0 $spacing-medium 0;
   text-align: center;
 
+  // Add special styling for first hero section
   &:first-child {
     padding: $spacing-xl 0;
+
+    > h1 {
+      margin-bottom: 0;
+    }
   }
 
   &:nth-child(odd) {
@@ -14,16 +19,13 @@
     background: $white;
   }
 
-  .content {
+  // TODO: am I supposed to do this, or not?
+  p {
     width: 480px;
-    margin: 0 auto $spacing-medium auto;
-
-    p:last-child {
-      margin-bottom: 0;
-    }
+    margin: 0 auto 1em auto;
   }
 
-  > :last-child {
-    margin-bottom: 0;
+  .margin-medium {
+    margin-bottom: $spacing-medium;
   }
 }
