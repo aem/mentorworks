@@ -1,25 +1,15 @@
-.image-grid-wrapper {
-  // - The section component removes the bottom margin from its last child
-  // - This multi-row flex layout necessitates a negative margin on the flex
-  //   container in order to "undo" the bottom margin of the bottom row
-  // Thus, in order for this to render correctly as the last child of a section,
-  // there needs to be a wrapper around the flex container
+.image-grid {
   width: 100%;
-  margin: 0 auto $spacing-medium auto;
+  margin: auto;
   padding-top: $spacing-small;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 
-  .image-grid {
-    width: 100%;
-    margin: 0 auto (-$spacing-medium) auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-
-    .image {
-      width: 160px;
-      height: 41px;
-      margin: 0 $spacing-medium $spacing-medium $spacing-medium;
-      background-color: $dark-gray;
-    }
+  .image {
+    width: 160px;
+    height: 41px;
+    margin: 0 $spacing-medium $spacing-medium $spacing-medium;
+    background-color: $dark-gray;
   }
 }
