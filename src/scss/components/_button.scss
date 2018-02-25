@@ -1,7 +1,9 @@
 .button {
+  appearance: none;
   background-color: $digital-black;
-  border-radius: $base-border-radius;
+  border-radius: $border-radius-base;
   color: $white;
+  display: inline-block;
   padding: $spacing-xs;
-  border: none;
+  text-decoration: none;
 }

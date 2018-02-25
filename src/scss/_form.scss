@@ -1,0 +1,37 @@
+.form-input-container {
+  display: flex;
+  max-width: $container-width-medium;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+
+  & + .form-input-container {
+    margin-top: $spacing-medium;
+  }
+
+  .form-input-small {
+    width: 33.333%;
+  }
+
+  small {
+    display: block;
+    margin-top: $spacing-xxs;
+  }
+}
+
+input,
+select {
+  appearance: none;
+  border: 1px solid $dark-gray;
+  border-radius: $border-radius-base;
+  padding: 5px;
+}
+
+select {
+  min-width: 320px;
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xxs;
+}

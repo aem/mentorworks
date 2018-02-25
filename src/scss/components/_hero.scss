@@ -1,0 +1,9 @@
+.hero {
+  background-color: $light-gray;
+  padding: $spacing-xl 0;
+  text-align: center;
+
+  &.inverted-hero {
+    background-color: transparent;
+  }
+}

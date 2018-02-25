@@ -6,3 +6,12 @@
     margin-left: $spacing-medium;
   }
 }
+
+.secondary-navigation-link {
+  color: $white;
+  text-decoration: none;
+
+  & + .secondary-navigation-link {
+    margin-left: $spacing-medium;
+  }
+}

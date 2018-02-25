@@ -1,1 +1,32 @@
-Copyright {{"now"|date('Y')}}
+<div class="footer-section">
+  <div class="global-footer-logo"></div>
+
+  <div class="global-footer-copyright">
+    <small>Copyright MentorWorks.io 2018</small><br>
+    <small>Designed by Scout. Powered by WordPress.</small>
+  </div>
+</div>
+
+<div class="footer-section">
+  {% for item in footer_menu.items %}
+    <a class="secondary-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a>
+  {% endfor %}
+
+  <div class="global-footer-contact">
+    <p>
+      Questions? Contact us at:<br>
+      help@mentorworks.io
+    </p>
+  </div>
+</div>
+
+<div class="footer-section">
+  <p>Find us on social media</p>
+
+  <div class="global-footer-social-media">
+    <div class="social-media-icon"></div>
+    <div class="social-media-icon"></div>
+    <div class="social-media-icon"></div>
+    <div class="social-media-icon"></div>
+  </div>
+</div>

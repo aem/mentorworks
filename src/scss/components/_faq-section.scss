@@ -1,0 +1,25 @@
+.faq-section {
+  .faq-section-header {
+    background-color: $light-gray;
+    margin-bottom: $spacing-xl;
+    padding-top: $spacing-base;
+    padding-bottom: $spacing-base;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .faq-entry {
+    .faq-entry-content {
+      p {
+        color: $dark-gray;
+      }
+    }
+
+    & + .faq-entry {
+      margin-top: $spacing-medium;
+    }
+  }
+}
