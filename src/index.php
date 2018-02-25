@@ -22,6 +22,8 @@ $context['posts'] = Timber::get_posts();
 $context['foo'] = 'bar';
 $templates = array( 'index.twig' );
 if ( is_home() ) {
-	array_unshift( $templates, 'home.twig' );
+	array_unshift( $templates, 'index.twig' );
+} else if( is_front_page() ) {
+  array_unshift( $templates, 'home.twig' );
 }
 Timber::render( $templates, $context );

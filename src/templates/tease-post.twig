@@ -1,9 +1,7 @@
-{% extends "tease.twig" %}
-
 {% block content %}
-	<h2 class="h2"><a href="{{post.link}}">{{post.title}}</a></h2>
-		<p>{{post.get_preview(25)}}</p>
-		{% if post.thumbnail.src %}
-			<img src="{{post.thumbnail.src}}" />
-		{% endif %}
+  <article class="tease">
+    <div class="tease-image"></div>
+    <h3 class="tease-title">Test Title</h3>
+    <p class="tease-date">1.17.18</p>
+  </article>
 {% endblock %}
