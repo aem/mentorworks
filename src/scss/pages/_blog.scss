@@ -38,8 +38,12 @@
   display: flex;
   justify-content: space-between;
 
+  .slick-list {
+    margin: 0 -$spacing-small;
+  }
+
   .tease {
-    width: calc(33.333% - 50px);
+    margin: 0 $spacing-small;
 
     .tease-image {
       width: 100%;

@@ -32,8 +32,7 @@ if( $query->have_posts() ):
 endif;
 
 $args = array(
-  'category_name' => 'Spotlights',
-  'posts_per_page' => 3
+  'category_name' => 'Spotlights'
 );
 $query = new WP_Query( $args );
 $posts = array();
@@ -45,7 +44,7 @@ endif;
 $context['spotlightPosts'] = $posts;
 
 $args = array(
-  'posts_per_page' => 3
+  'posts_per_page' => -1
 );
 $query = new WP_Query( $args );
 $posts = array();
@@ -57,8 +56,7 @@ endif;
 $context['ourArticles'] = $posts;
 
 $args = array(
-  'category_name' => 'Spotlights', // this needs to change when we have some posts to the real category
-  'posts_per_page' => 3
+  'category_name' => 'Spotlights' // this needs to change when we have some posts to the real category
 );
 $query = new WP_Query( $args );
 $posts = array();
