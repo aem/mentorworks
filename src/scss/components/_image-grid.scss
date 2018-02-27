@@ -1,6 +1,7 @@
 .image-grid {
   width: $container-width-medium;
-  margin: 0 auto (-$spacing-medium) auto;
+  margin: auto;
+  padding-top: $spacing-small;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
