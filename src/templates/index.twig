@@ -1,9 +1,51 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<h2>{{foo}}</h2>
-	<p>{{qux}}</p>
-	{% for post in posts %}
-		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
-	{% endfor %}
+  <div class="container container-large">
+    {% if featuredPost %}
+      <div class="blog-index-section">
+        <h2 class="blog-index-section-title">Featured</h2>
+        <div class="blog-index-featured-post">
+          <div class="blog-index-featured-post-image"></div>
+          <div class="blog-index-featured-post-content">
+            <h3 class="blog-index-featured-post-title">{{featuredPost.post_title}}</h3>
+            <p class="blog-index-featured-post-date">{{featuredPost.post_date}}</h4>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if spotlightPosts %}
+      <div class="blog-index-section">
+        <h2 class="blog-index-section-title">Spotlights</h2>
+        <div class="blog-posts-grid">
+          {% for post in spotlightPosts %}
+            {% include 'tease-post.twig' %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if ourArticles %}
+      <div class="blog-index-section">
+        <h2 class="blog-index-section-title">Our Articles</h2>
+        <div class="blog-posts-grid">
+          {% for post in ourArticles %}
+            {% include 'tease-post.twig' %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if inTheNewsPosts %}
+      <div class="blog-index-section">
+        <h2 class="blog-index-section-title">In The News</h2>
+        <div class="blog-posts-grid">
+          {% for post in inTheNewsPosts %}
+            {% include 'tease-post.twig' %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
 {% endblock %}

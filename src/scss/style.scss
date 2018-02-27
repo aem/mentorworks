@@ -30,7 +30,11 @@ Version: 1.0.0
 @import 'components/image-grid';
 @import 'components/section';
 @import 'components/hero';
-@import 'components/faq-section';
+@import 'components/slick';
 
 // Pages: Import every page that has its own specific styles
-// @import "pages/home";
+@import 'pages/blog';
+@import 'pages/faq';
+
+// Vendor: Third-party libraries
+@import 'vendor/slick';

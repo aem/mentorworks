@@ -2,4 +2,8 @@
   width: $container-width-medium;
   margin-left: auto;
   margin-right: auto;
+
+  &.container-large {
+    width: $container-width-large;
+  }
 }

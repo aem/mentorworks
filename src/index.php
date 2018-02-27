@@ -19,9 +19,58 @@ if ( ! class_exists( 'Timber' ) ) {
 }
 $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
-$context['foo'] = 'bar';
+
+$args = array(
+  'category_name' => 'Featured',
+  'posts_per_page' => 1
+);
+$query = new WP_Query( $args );
+if( $query->have_posts() ):
+  while( $query->have_posts() ) : $query->the_post();
+    $context['featuredPost'] = $post;
+  endwhile;
+endif;
+
+$args = array(
+  'category_name' => 'Spotlights'
+);
+$query = new WP_Query( $args );
+$posts = array();
+if( $query->have_posts() ):
+  while( $query->have_posts() ) : $query->the_post();
+    array_push($posts, $post);
+  endwhile;
+endif;
+$context['spotlightPosts'] = $posts;
+
+$args = array(
+  'posts_per_page' => -1
+);
+$query = new WP_Query( $args );
+$posts = array();
+if( $query->have_posts() ):
+  while( $query->have_posts() ) : $query->the_post();
+    array_push($posts, $post);
+  endwhile;
+endif;
+$context['ourArticles'] = $posts;
+
+$args = array(
+  'category_name' => 'Spotlights' // this needs to change when we have some posts to the real category
+);
+$query = new WP_Query( $args );
+$posts = array();
+if( $query->have_posts() ):
+  while( $query->have_posts() ) : $query->the_post();
+    array_push($posts, $post);
+  endwhile;
+endif;
+$context['inTheNewsPosts'] = $posts;
+
 $templates = array( 'index.twig' );
 if ( is_home() ) {
-	array_unshift( $templates, 'home.twig' );
+	array_unshift( $templates, 'index.twig' );
+} else if( is_front_page() ) {
+  array_unshift( $templates, 'home.twig' );
 }
 Timber::render( $templates, $context );

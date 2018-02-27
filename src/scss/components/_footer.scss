@@ -2,18 +2,16 @@
   background-color: $digital-black;
   display: flex;
   padding: $spacing-large $spacing-xl;
+  justify-content: space-between;
 
   p {
     color: $white;
+    font-size: $font-size-small;
+    margin-top: 0;
   }
 
   .footer-section {
     padding-left: $spacing-medium;
-
-    &:last-child {
-      align-self: flex-end;
-      margin-left: auto;
-    }
   }
 
   .global-footer-logo {
@@ -28,11 +26,8 @@
   }
 
   .global-footer-contact {
-    margin-top: $spacing-large;
-
     p {
       line-height: $line-height-medium;
-      margin-bottom: 0;
     }
   }
 
@@ -42,8 +37,8 @@
     .social-media-icon {
       background-color: $white;
       border-radius: $border-radius-base;
-      width: 32px;
-      height: 32px;
+      width: 20px;
+      height: 20px;
 
       & + .social-media-icon {
         margin-left: $spacing-base;

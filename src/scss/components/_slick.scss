@@ -1,0 +1,25 @@
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 40%;
+  display: block;
+  width: 15px;
+  height: 30px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.slick-prev {
+  left: -30px;
+  background-image: url('svg/left-arrow.svg');
+}
+
+.slick-next {
+  right: -30px;
+  background-image: url('svg/right-arrow.svg');
+}
