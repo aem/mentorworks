@@ -18,7 +18,10 @@
 }
 
 .global-navigation-menu-icon {
+  appearance: none;
   background-image: url('svg/menu.svg');
+  background-color: transparent;
+  border: 0;
   width: 32px;
   height: 20px;
 
