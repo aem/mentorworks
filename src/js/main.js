@@ -8,5 +8,10 @@
       slidesToShow: 3,
       accessibility: false,
     });
+
+    $('[mobile-menu-icon]').on('click', function(e) {
+      e.preventDefault();
+      $('body').toggleClass('mobile-menu--open');
+    });
   });
 })(jQuery);
