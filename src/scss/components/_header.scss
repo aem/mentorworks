@@ -5,6 +5,10 @@
   justify-content: space-between;
   padding: $spacing-base $spacing-xl;
 
+  @include tablet() {
+    padding: $spacing-base;
+  }
+
   .global-header-logo {
     background-color: $dark-gray;
     width: 150px;

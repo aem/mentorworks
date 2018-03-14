@@ -1,9 +1,65 @@
+.global-navigation {
+  @include tablet() {
+    display: none;
+
+    .mobile-menu--open & {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: $digital-black;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.global-navigation-menu-icon {
+  appearance: none;
+  background-image: url('svg/menu.svg');
+  background-color: transparent;
+  border: 0;
+  width: 32px;
+  height: 20px;
+
+  @include tablet() {
+    .mobile-menu--open & {
+      position: fixed;
+      right: $spacing-large;
+      background-image: url('svg/close.svg');
+      width: 26px;
+      height: 26px;
+      z-index: 11;
+    }
+  }
+
+  @include desktop() {
+    display: none;
+  }
+}
+
 .global-navigation-link {
   color: $digital-black;
   text-decoration: none;
 
   & + .global-navigation-link {
     margin-left: $spacing-medium;
+  }
+
+  @include tablet() {
+    .mobile-menu--open & {
+      color: $white;
+      margin-left: 0;
+      font-size: $font-size-large;
+      margin-bottom: $spacing-medium;
+    }
+
+    .mobile-menu--open &.button {
+      padding: 0;
+    }
   }
 }
 

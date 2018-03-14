@@ -13,6 +13,9 @@ Version: 1.0.0
 // Variables: consistent values like colors and spacing to use across the site
 @import 'variables';
 
+// Mixins: helpful functions we can use in Sass
+@import 'mixins/media-queries';
+
 // Typography: boilerplate CSS for styles related to type
 @import 'typography';
 
