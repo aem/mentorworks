@@ -31,6 +31,7 @@
 
 .email-signup {
   padding: $spacing-medium 0;
+  background: $light-gray !important;
 
   form {
     display: grid;
@@ -49,13 +50,15 @@
 
     input[type='text'] {
       width: 280px;
+      height: 45px;
+      box-sizing: border-box;
       border: none;
     }
 
     label {
       margin: 0;
       display: block;
-      font-size: 1.333 * $font-size-base;
+      font-size: 2.4rem;
     }
   }
 }

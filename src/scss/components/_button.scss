@@ -1,10 +1,12 @@
 .button {
+  // height: 45px; TODO
   appearance: none;
   background-color: $digital-black;
   border-radius: $border-radius-base;
   color: $white;
   display: inline-block;
-  padding: $spacing-xs;
+  // padding: $spacing-xs; TODO
   text-decoration: none;
   border: none;
+  font-size: $font-size-base;
 }

@@ -24,7 +24,8 @@ select {
   appearance: none;
   border: 1px solid $dark-gray;
   border-radius: $border-radius-base;
-  padding: 5px;
+  padding: 12px;
+  font-size: $font-size-base;
 }
 
 select {
