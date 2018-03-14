@@ -1,3 +1,11 @@
+html,
+body {
+  // Allows rem units to make more sense: 1.8rem = 18px
+  font-size: 62.5%;
+  -ms-text-size-adjust: 62.5%;
+  -webkit-text-size-adjust: 62.5%;
+}
+
 .container {
   width: $container-width-medium;
   margin-left: auto;
