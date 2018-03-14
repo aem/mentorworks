@@ -1,0 +1,97 @@
+.blog-article {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+
+  // TODO: how to hide the 3rd related?
+
+  .blog-byline {
+    margin: 0 0 $spacing-base 0;
+    font-size: $font-size-base;
+  }
+
+  p {
+    margin-left: 0;
+  }
+
+  .blog-byline,
+  .blog-content {
+    color: $dark-gray;
+    line-height: 30px;
+  }
+
+  .blog-article2 {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 40px 20px 20px 20px; // TODO
+  }
+
+  .related {
+    max-width: 100%;
+    padding: 0 0 20px 20px;
+    box-sizing: border-box;
+  }
+
+  .related-posts {
+    overflow-x: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+    // Hide scrollbar in IE 10+
+    // Scrollbar will still show in Firefox
+    -ms-overflow-style: none;
+
+    // Hide scrollbar in Chrome & Safari
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .related-post {
+      max-width: 320px;
+      min-width: 260px;
+      margin-right: $spacing-base;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    .related-thumbnail {
+      max-width: 320px;
+      max-height: 200px;
+      margin: 0 0 $spacing-base 0;
+    }
+
+    .related-title {
+      margin: 0;
+    }
+
+    .related-date {
+      color: $dark-gray;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: $spacing-large; // 60px
+
+    .blog-article2,
+    .related {
+      padding: 0;
+    }
+
+    .related-posts .related-post {
+      margin-right: $spacing-medium; // 40px
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding: 120px $spacing-xl $spacing-xl $spacing-xl; // 80px
+    // line-height: 36px; // TODO do I need this?
+
+    .related-posts .related-post {
+      margin-right: $spacing-xl; // 80px
+    }
+  }
+}
