@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
 body {
   color: $digital-black;
   font-family: $font-family-body;
@@ -9,48 +11,53 @@ p {
   max-width: $container-width-base;
   margin: 0 auto $spacing-medium auto;
   font-size: $font-size-base;
+  line-height: 2.8rem;
+  color: $color-text;
+
+  @include desktop() {
+    line-height: 3.6rem;
+  }
 }
 
 h1 {
   margin: 0 0 $spacing-base 0;
-  font-size: $font-size-medium;
-}
-
-h2 {
-  margin: 0 0 $spacing-base 0;
-  font-size: 2.8rem;
-}
-
-h3 {
-  margin: 0 0 $spacing-base 0;
-  font-size: 2.1rem;
+  font-family: $font-family-header;
   font-weight: normal;
-}
+  font-size: $font-size-large;
 
-small {
-  font-size: $font-size-xs;
-}
-
-@media (min-width: 1024px) {
-  p {
-    line-height: 3.6rem;
-  }
-
-  h1 {
+  @include desktop() {
     // margin: 0;
     margin: 0 0 32px 0;
     font-size: $font-size-large;
   }
+}
 
-  h2 {
+h2 {
+  margin: 0 0 $spacing-base 0;
+  font-family: $font-family-header;
+  font-weight: normal;
+  font-size: 2.8rem;
+
+  @include desktop() {
     // margin: 0 0 $spacing-medium 0;
-    margin: 0 0 $spacing-medium 0;
+    margin: 0 0 $spacing-xxs 0;
     font-size: $font-size-medium;
   }
+}
 
-  h3 {
+h3 {
+  margin: 0 0 $spacing-base 0;
+  font-family: $font-family-header;
+  font-weight: normal;
+  font-size: 2.1rem;
+
+  @include desktop() {
     // margin: ($spacing-base * 1.6) 0 0 0;
-    margin: 0 0 $spacing-medium 0;
+    // margin: 0 0 $spacing-medium 0;
     font-size: 2.4rem;
   }
+}
+
+small {
+  font-size: $font-size-xs;
 }
