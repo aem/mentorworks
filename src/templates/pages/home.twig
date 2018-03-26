@@ -1,0 +1,106 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <section class="section hero">
+    <h1>A mentor-based education financing solution</h1>
+    <h3>Finance your education and learn from industry leaders</h3>
+    <a href="/apply">
+      <button class="button">Apply</button>
+    </a>
+  </section>
+  <section class="section">
+    <h2>Our dual focus</h2>
+    <div class="dual-focus-wrapper">
+      <section>
+        <div class="icon-container icon-cash">
+          <img src="{{site.theme.link}}/svg/cash.svg" alt="Stack of cash" class="icon">
+        </div>
+        <h3>Income Share Agreements</h3>
+        <p>
+          MentorWorks provides education financing for students through Income Sharing Agreements (ISAs) and provide 
+          networking opportunities with valuable mentors and employers.
+        </p>
+      </section>
+      <section>
+        <div class="icon-container icon-handshake">
+          <img src="{{site.theme.link}}/svg/handshake.svg" alt="Handshake" class="icon">
+        </div>
+        <h3>Mentorship Program</h3>
+        <p>
+          Mentors will come from a pool of individuals who want to help students, corporate professionals that want greater access 
+          to a diverse talent pool. Investors could also be mentors, and so could students graduating from our program.
+        </p>
+      </section>
+    </div>
+  </section>
+  <section class="section">
+    <h2>Are you eligible?</h2>
+    <p>
+      If you’re an undergraduate student, graduate student, or just looking to make a career change, MentorWorks is here to help!
+      We provide funding for traditional college programs as well as professional development training.
+    </p>
+    <div class="section-cta">
+      <a href="for-students" class="button">For students</a>
+    </div>
+  </section>
+  <section class="section stats-wrapper">
+    <section class="stat">
+      <figure class="number">90+</figure>
+      <label>Mentors already part of our revolutionary program</label>
+    </section>
+    <section class="stat">
+      <figure class="number">$10,000</figure>
+      <label>Average amount each student received</label>
+    </section>
+    <section class="stat">
+      <figure class="number">2.5%</figure>
+      <label>Average percentage of future salary pledged</label>
+    </section>
+  </section>
+  <section class="section">
+    <h2>Become a mentor</h2>
+    <p>
+      If you’re a working professional or a representative of a company looking to get involved, we’d love to hear from you.
+      Join us to get students ready for their futures.
+    </p>
+    <div class="section-cta">
+      <a href="for-mentors" class="button">For mentors</a>
+    </div>
+  </section>
+  <section class="section">
+    <h2>hi!</h2>
+  </section>
+  <!-- <section class="testimonial-wrapper">
+    <img src="{{site.theme.link}}/svg/arrow-left.svg" alt="Show previous testimonial" class="nav-button">
+    <blockquote class="quote">
+      “MentorWorks is a program I believe in because it is honest and is a strong proponent for 
+      working hard to create your own luck. The best athletes have had multiple coaches and trainers.
+      It’s the same with professionals, the best business professionals
+      have multiple mentors and a strong network.”
+      <br><br>
+      <div class="attribution">- Student, Class of 2018</div>
+    </blockquote>
+    <img src="{{site.theme.link}}/svg/arrow-right.svg" alt="Show next testimonial" class="nav-button">
+    <div>
+      <div class="page-indicator selected-page"></div>
+      <div class="page-indicator"></div>
+      <div class="page-indicator"></div>
+      <div class="page-indicator"></div>
+      <div class="page-indicator"></div>
+      <div class="page-indicator"></div>
+    </div>
+    TODO: Add the bottom thing here
+  </section> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script type="text/javascript">
+    
+    var app = new Vue({
+      el: 'body',
+      data: [{
+        
+      }]
+    });
+    
+  </script> -->
+  {% include 'email-signup.twig' %}
+{% endblock %}

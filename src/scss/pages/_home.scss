@@ -1,0 +1,143 @@
+// TODO: How can I apply this only the homepage? Ask Adam
+.section.hero {
+  padding: ($spacing-base * 10) 0;
+}
+
+.dual-focus-wrapper {
+  padding: $spacing-base;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  section {
+    padding: $spacing-base;
+    box-sizing: border-box;
+    flex: 1 0 300px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .icon-container {
+      width: 160px;
+      height: 160px;
+      margin: 0 0 $spacing-small 0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+
+      &.icon-cash {
+        background: $color-green;
+      }
+
+      &.icon-handshake {
+        background: $color-orange;
+      }
+    }
+  }
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  .stat {
+    box-sizing: border-box;
+    padding: $spacing-base;
+    // max-width: 400px;
+    background: salmon; // TODO
+
+    .number {
+      margin: 0 0 $spacing-base 0;
+      font-weight: bold;
+      text-align: center; // TODO
+      color: $dark-gray;
+      font-size: 6rem;
+      color: $digital-black; // TODO
+    }
+
+    label {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .stat {
+      flex: 1 0;
+    }
+    // flex-flow: row nowrap;
+    // font-size: 8.0rem;
+
+    .stat .number {
+      font-size: 5.2vw;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .stat .number {
+      font-size: 8rem;
+    }
+  }
+}
+
+// .stats-wrapper {
+//   display: grid;
+//   grid-template-columns: auto;
+//   grid-template-areas: auto;
+//   justify-items: center;
+//   align-items: center;
+
+//   .stat {
+//     max-width: 300px;
+
+//     .number {
+//       margin: 0 0 $spacing-base 0;
+//       font-weight: bold;
+//       font-size: 5.2vw;
+//       color: $dark-gray;
+//     }
+//   }
+
+//   @media (min-width: 700px) {
+//     grid-template-columns: auto auto auto;
+//   }
+// }
+
+.testimonial-wrapper {
+  display: flex;
+  flex-flow: column no-wrap;
+  padding: $spacing-xl;
+
+  .nav-button {
+    // width: 16px;
+    flex: 0 1 16px;
+  }
+
+  .quote {
+    // flex: 1;
+    margin: $spacing-medium;
+    margin-top: 0;
+    padding: ($spacing-large) ($spacing-base * 6);
+    background: $light-gray;
+    text-align: left;
+    font-size: 1.333rem;
+
+    .attribution {
+      text-align: right;
+    }
+  }
+
+  .page-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    // background: rgba(51, 51, 51, 0.3);
+    background: $dark-gray;
+
+    .selected-page {
+      background: $digital-black;
+    }
+  }
+}
