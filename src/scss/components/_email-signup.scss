@@ -1,41 +1,8 @@
-// .email-signup {
-//   padding: 0;
-
-//   form {
-//     padding: $spacing-base;
-//     display: flex;
-//     flex-flow: column nowrap;
-//     align-items: center;
-
-//     @media (min-width: 720px) {
-//       padding: $spacing-medium;
-//       flex-flow: row wrap;
-//       justify-content: center;
-//       // background: red;
-//     }
-
-//     input[type=text] {
-//       width: 280px;
-//       border: none;
-//       margin: $spacing-base;
-//     }
-
-//     label {
-//       margin: 0 0 5px 0;
-//       display: block;
-//       align-self: center;
-//       font-size: 1.333 * $font-size-base;
-//     }
-//   }
-// }
-
 .email-signup {
   padding: $spacing-medium 0;
-  background: $light-gray !important;
 
   form {
     display: grid;
-    // TODO: MOBILE FIRST
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-gap: $spacing-base;
