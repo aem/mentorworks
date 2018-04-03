@@ -21,10 +21,17 @@
 
 input,
 select {
-  appearance: none;
+  padding: 12px;
   border: 1px solid $dark-gray;
   border-radius: $border-radius-base;
-  padding: 5px;
+  padding: 12px;
+  font-size: $font-size-base;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+input::placeholder {
+  color: #a5a5a5;
 }
 
 select {

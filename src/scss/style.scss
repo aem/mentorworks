@@ -16,28 +16,31 @@ Version: 1.0.0
 // Mixins: helpful functions we can use in Sass
 @import 'mixins/media-queries';
 
+// Layout: boilerplate CSS for styles related to containers, grids, etc.
+@import 'layout';
+
 // Typography: boilerplate CSS for styles related to type
 @import 'typography';
 
 // Form: boilerplate CSS for styles related to forms and input fields
 @import 'form';
 
-// Layout: boilerplate CSS for styles related to containers, grids, etc.
-@import 'layout';
-
 // Components: Modular elements styles
+@import 'components/button';
 @import 'components/header';
 @import 'components/footer';
 @import 'components/nav';
-@import 'components/button';
 @import 'components/image-grid';
 @import 'components/section';
 @import 'components/hero';
 @import 'components/slick';
+@import 'components/email-signup';
 
 // Pages: Import every page that has its own specific styles
 @import 'pages/blog';
 @import 'pages/faq';
+@import 'pages/single';
+@import 'pages/home';
 
 // Vendor: Third-party libraries
 @import 'vendor/slick';

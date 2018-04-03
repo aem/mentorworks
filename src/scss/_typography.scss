@@ -5,9 +5,10 @@ body {
 }
 
 p {
-  width: $container-width-base;
+  max-width: $container-width-base;
   margin: 0 auto $spacing-medium auto;
   color: $slate-gray;
+  font-size: $font-size-base;
 
   &.large-text {
     font-size: $font-size-medium;

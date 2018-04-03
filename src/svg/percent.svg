@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="246" height="200" viewBox="0 0 246 200">
+    <g fill="none" fill-rule="evenodd" font-family="AdellePE, Adelle PE" font-size="300">
+        <text fill="#71808B" fill-opacity=".1" transform="translate(-12 -151)">
+            <tspan x="12.25" y="345">%</tspan>
+        </text>
+        <text fill="#FFF" stroke="#419F8E" stroke-width=".3" opacity=".5" transform="translate(-12 -151)">
+            <tspan x=".25" y="339">%</tspan>
+        </text>
+    </g>
+</svg>

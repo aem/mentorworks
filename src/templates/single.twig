@@ -1,28 +1,34 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-			<section class="article-content">
-				<h1 class="article-h1">{{post.title}}</h1>
-				<p class="blog-author">
-					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
+	<article class="blog-article" id="post-{{post.ID}}">
+		<section class="blog-article2">
+			<header>
+				<h1>{{ post.title }}</h1>
+				<h3>There's supposed to be a subtitle here</h3>
+				<p class="blog-byline">
+					{{ post.author.name }} | {{ post.post_date | date }}
 				</p>
-				<div class="article-body">
-					{{post.content}}
-				</div>
+			</header>
+			<main class="blog-content">
+				{{ post.content }}
+			</main>
+		</section>
+		<footer class="related">
+			<h2>Related {{ post.category }}</h2>
+			<section class="related-posts">
+				{% for post in relatedPosts %}
+					<a href="{{ post.link }}">
+						<section class="related-post">
+							<img class="related-thumbnail" src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" />
+							<h3 class="related-title">{{ post.title }}</h3>
+							<!-- Example date: 3.11.18 -->
+							<p class="related-date">{{ post.post_date | date('n.j.y') }}</p>
+						</section>
+					</a>
+				{% endfor %}
 			</section>
-			<section class="comments">
-				<div class="respond">
-					<h3 class="h2">Comments</h3>
-					{{ comment_form }}
-				</div>
-				<div class="responses">
-					{% for cmt in post.get_comments() %}
-						{% include "comment.twig" with {comment:cmt} %}
-					{% endfor %}
-				</div>
-			</section>
-		</article>
-	</div><!-- /content-wrapper -->
+		</footer>
+	</article>
+	{% include 'email-signup.twig' %}
 {% endblock %}
