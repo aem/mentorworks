@@ -1,3 +1,366 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{site.theme.link}}/js/main.js"></script>
+
+<script type="text/x-template" id="apply_form">
+  <div class="apply_form">
+    <div class="apply_form__steps" v-if="!isSlot0">
+      <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
+    </div>
+    <form class="apply_form__body">
+      <div class="apply_form__body__step">
+        <slot :name="currentSlot"></slot>
+      </div>
+      <div class="apply_form__body__actions">
+        <button
+          v-if="backEnabled"
+          class="apply_form__back pull-left"
+          type="button"
+          @click="goBack()">
+          Previous
+        </button>
+        <button
+          v-if="currentStep != steps.length - 1"
+          class="apply_form__next"
+          type="button"
+          @click="goNext()">
+          <span v-html="nextButtonText"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</script>
+
+<script type="text/x-template" id="apply">
+  <div>
+    <apply_form
+      :steps="steps">
+      <div slot="page0">
+        t
+      </div>
+      <div slot="page1">
+        <h2>Overview</h2>
+
+        <label for="personal-fullName" class="input-label">Full name:</label>
+        <input id="personal-fullName" v-model="personal.name">
+
+        <label for="personal-phone" class="input-label">Phone number:</label>
+        <input id="personal-phone" v-model="personal.phone">
+
+        <label for="personal-linkedin" class="input-label">LinkedIn Profile (optional):</label>
+        <input id="personal-linkedin" v-model="personal.linkedinProfile">
+
+        <label for="personal-email" class="input-label">Email address:</label>
+        <input id="personal-email" v-model="personal.email">
+
+        <div>
+          <label for="personal-contactMethod" class="input-label">Preferred method of contact:</label>
+          <input type="radio" id="email" value="email" v-model="personal.methodOfContact">
+          <label for="email">Email</label>
+          <input type="radio" id="call" value="call" v-model="personal.methodOfContact">
+          <label for="call">Call</label>
+          <input type="radio" id="text" value="text" v-model="personal.methodOfContact">
+          <label for="text">Text</label>
+        </div>
+
+        <label for="personal-profSite" class="input-label">Other professional site (optional):</label>
+        <input id="personal-profSite" v-model="personal.otherProfSite">
+
+        <div>
+          <label for="personal-authorized" class="input-label input-label-question">Are you authorized to work in the US while in school or after graduation?</label>
+          <p>Do not answer yes for OPT (F1 visa), temporary, DACA, or on campus work authorization.</p>
+          <input type="radio" id="yes" value="true" v-model="personal.authorized">
+          <label for="yes">Yes</label>
+          <input type="radio" id="no" value="false" v-model="personal.authorized">
+          <label for="no">No</label>
+        </div>
+
+        <div>
+          <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
+          <input type="radio" id="facebook" value="true" v-model="personal.referral">
+          <label for="facebook">Facebook</label>
+          <input type="radio" id="on-campus-presentation" value="true" v-model="personal.referral">
+          <label for="on-campus-presentation">On-campus presentation</label>
+          <input type="radio" id="website-search" value="true" v-model="personal.referral">
+          <label for="website-search">Website or search</label>
+          <input type="radio" id="friend" value="true" v-model="personal.referral">
+          <label for="friend">Friend</label>
+          <input type="radio" id="campus-ambassador" value="true" v-model="personal.referral">
+          <label for="campus-ambassador">Campus ambassador</label>
+          <input type="radio" id="other" value="true" v-model="personal.referral">
+          <label for="other">Other</label>
+        </div>
+      </div>
+      <div slot="page2">
+        <h2>Your education</h2>
+
+        <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
+        <input id="fundingAmount" v-model="fundingAmount">
+
+        <div>
+          <label for="reasonForFunding" class="input-label input-label-question">What do you need funding for?</label>
+          <input type="radio" id="undergraduate" value="undergraduate" v-model="reasonForFunding">
+          <label for="undergraduate">Undergraduate education</label>
+          <input type="radio" id="graduate" value="graduate" v-model="reasonForFunding">
+          <label for="graduate">Graduate education</label>
+          <input type="radio" id="bootCamp" value="bootCamp" v-model="reasonForFunding">
+          <label for="bootCamp">Boot camp</label>
+        </div>
+
+        <div v-if="reasonForFunding === 'bootCamp'">
+          <h2>Boot camp details</h2>
+          <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
+          <input id="bootCamp-name" v-model="bootCamp.name">
+
+          <label for="bootCamp-course" class="input-label">Course name:</label>
+          <input id="bootCamp-course" v-model="bootCamp.course">
+
+          <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
+          <input id="bootCamp-date" v-model="bootCamp.date">
+
+          <label for="bootCamp-length" class="input-label">Course length:</label>
+          <input id="bootCamp-length" v-model="bootCamp.length">
+        </div>
+        <div v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+          <h2>Your graduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
+          <label for="graduate-name" class="input-label">University name:</label>
+          <input id="graduate-name" v-model="graduate.name">
+
+          <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
+          <input id="graduate-date" v-model="graduate.date">
+
+          <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
+          <input id="graduate-gpa" v-model="graduate.gpa">
+
+          <label for="graduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+          <input id="graduate-majorMinor" v-model="graduate.majorMinor">
+        </div>
+        <div v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+          <h2>Your undergraduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
+          <label for="undergraduate-name" class="input-label">University name:</label>
+          <input id="undergraduate-name" v-model="undergraduate.name">
+
+          <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
+          <input id="undergraduate-date" v-model="undergraduate.date">
+
+          <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
+          <input id="undergraduate-gpa" v-model="undergraduate.gpa">
+
+          <label for="undergraduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+          <input id="undergraduate-majorMinor" v-model="undergraduate.majorMinor">
+        </div>
+      </div>
+      <div slot="page3">
+        <h2>Your achievements</h2>
+        <label for="freeResponse-extracurriculars" class="input-label input-label-question">Highlight what you’ve done outside of classes. List any leadership positions here as well.</label>
+        <textarea id="freeResponse-extracurriculars" v-model="freeResponse.extracurriculars"></textarea>
+
+        <label for="freeResponse-workExperience" class="input-label input-label-question">Please list any significant work or military experience.</label>
+        <textarea id="freeResponse-workExperience" v-model="freeResponse.workExperience"></textarea>
+
+        <h2>Your experience</h2>
+        <label for="freeResponse-lifeDifficulty" class="input-label input-label-question">Briefy describe a significant difficulty in your life that you had to overcome (up to 100 words).</label>
+        <textarea id="freeResponse-lifeDifficulty" v-model="freeResponse.lifeDifficulty"></textarea>
+
+        <label for="freeResponse-careerInterests" class="input-label input-label-question">Please list up to three careers that you interested in pursuing and why you are interested in pursuing them (up to 100 words).</label>
+        <textarea id="freeResponse-careerInterests" v-model="freeResponse.careerInterests"></textarea>
+      </div>
+      <div slot="page4">
+        <h2>References</h2>
+        <p>List three professional references. These can be professors, coaches, or other adults who know your strengths, but should not be friends or family.</p>
+        <p>You must notify your references that you are listing them, but they do not need to write a letter. We will reach out to them shortly.</p>
+        <div v-for="(n, i) in 3">
+          <h3>Reference <span v-html="i + 1"></span></h3>
+
+          <label for="reference{{i}}-name" class="input-label">Full name:</label>
+          <input id="reference{{i}}-name" v-model="references[i].name">
+
+          <label for="reference{{i}}-email" class="input-label">Email address:</label>
+          <input id="reference{{i}}-email" v-model="references[i].email">
+
+          <label for="reference{{i}}-phone" class="input-label">Phone number:</label>
+          <input id="reference{{i}}-phone" v-model="references[i].phone">
+        </div>
+      </div>
+      <div slot="page5">
+        <h2>Attachments</h2>
+        <p>You’re almost done! Just add the finishing touches.</p>
+
+        <div>
+          <h3>Resume</h3>
+          <p>Your resume must be a PDF. If you have a word document, save as a PDF.</p>
+        </div>
+        <div>
+          <h3>Transcript</h3>
+          <p>This can be official or unofficial. If it’s unofficial, note that you will need to provide the official version if accepted into MentorWorks.</p>
+        </div>
+        <div>
+          <h3>Identification document</h3>
+          <p>We accept driver’s license, passport, state ID, or college/university-issued ID.</p>
+        </div>
+        <div>
+          <h3>Financial Aid document (optional)</h3>
+          <p>Demonstrate your financial need with your school or program’s financial aid package. If you choose not to attach a document at this time, note that you will eventually need to prove your financial need.</p>
+        </div>
+      </div>
+      <div slot="page6">
+
+      </div>
+    </apply_form>
+  </div>
+</script>
+
+<script type="text/javascript">
+  Vue.component('apply_form', {
+  template: "#apply_form",
+  props: {
+    steps: {}
+  },
+  data () {
+    return {
+      currentStep: 0
+    };
+  },
+  computed: {
+    progressBarWidth() {
+      var stepSize = 100 / this.steps.length;
+      var currentStepStart = stepSize * this.currentStep;
+      var currentStepMiddle = currentStepStart + (stepSize / 2);
+      if (this.currentStep == this.steps.length - 1) {
+        return '100%';
+      }
+      else {
+        return 'calc(' + currentStepMiddle + '%)';
+      }
+    },
+    currentSlot() {
+      return this.steps[this.currentStep].slot;
+    },
+    backEnabled() {
+      return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
+    },
+    isSlot0() {
+      return this.currentSlot == 'page0';
+    },
+    nextButtonText() {
+      if (this.currentStep == 0) {
+        return 'Get started';
+      } else if (this.currentStep == this.steps.length - 2) {
+        return 'Submit application';
+      } else {
+        return 'Next';
+      }
+    }
+  },
+  methods: {
+    goNext () {
+      if (this.currentStep < this.steps.length-1) {
+        this.currentStep++;
+      }
+    },
+    goBack () {
+      if (this.currentStep > 0) {
+        this.currentStep--;
+      }
+    },
+  },
+  });
+
+  Vue.component('apply', {
+    template: '#apply',
+    data() {
+      return {
+        personal: {
+          name: "",
+          phone: "",
+          linkedinProfile: "",
+          authorized: false,
+          email: "",
+          methodOfContact: "",
+          otherProfSite: ""
+        },
+        referral: "",
+        fundingAmount: "",
+        reasonForFunding: "",
+        undergraduate: {
+          name: "",
+          date: "",
+          gpa: "",
+          majorMinor: ""
+        },
+        graduate: {
+          name: "",
+          date: "",
+          gpa: "",
+          majorMinor: ""
+        },
+        bootCamp: {
+          name: "",
+          course: "",
+          date: "",
+          length: ""
+        },
+        freeResponse: {
+          extracurriculars: "",
+          workExperience: "",
+          lifeDifficulty: "",
+          careerInterests: ""
+        },
+        references: [
+          {
+            name: "",
+            email: "",
+            phone: ""
+          },
+          {
+            name: "",
+            email: "",
+            phone: ""
+          },
+          {
+            name: "",
+            email: "",
+            phone: ""
+          },
+        ],
+        attachments: {
+          resume: null,
+          transcript: null,
+          identificiation: null,
+          financialAid: null
+        },
+        steps: [
+          {
+            slot: 'page0',
+          },
+          {
+            slot: 'page1',
+          },
+          {
+            slot: 'page2',
+          },
+          {
+            slot: 'page3',
+          },
+          {
+            slot: 'page4',
+          },
+          {
+            slot: 'page5',
+          },
+          {
+            slot: 'page6',
+          }
+        ]
+      };
+    },
+    methods: {
+    },
+  });
+
+  var app = new Vue({
+    el: '#apply-form',
+    template: `<apply steps="${this.steps}"></apply>`,
+  });
+</script>

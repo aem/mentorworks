@@ -1,0 +1,20 @@
+.apply_form__steps {
+  list-style: none;
+  height: 20px;
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 $shadow-light;
+  padding: 0;
+  margin: 0;
+
+  .apply_form__steps__progress {
+    background-image: linear-gradient(to right, $ocean-green, $pastel-green);
+    height: inherit;
+  }
+}
+
+.apply_form {
+  .input-label {
+    font-size: $font-size-large;
+    font-family: $font-family-headers;
+  }
+}
