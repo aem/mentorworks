@@ -4,6 +4,9 @@ body {
   font-size: 62.5%;
   -ms-text-size-adjust: 62.5%;
   -webkit-text-size-adjust: 62.5%;
+  // Fixes bug with mix-blend-mode in Chrome 58+
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=711955
+  background: white;
 }
 
 .container {
