@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="20" viewBox="0 0 32 20">
-    <g fill="#999" fill-rule="evenodd">
-        <rect width="32" height="4" rx="2"/>
-        <rect width="32" height="4" y="8" rx="2"/>
-        <rect width="32" height="4" y="16" rx="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="21" viewBox="0 0 35 21">
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#71808B" fill-opacity=".1" transform="translate(3)">
+            <rect id="top-bar" width="32" height="4" rx="1"/>
+            <rect id="middle-bar" width="32" height="4" y="8" rx="1"/>
+            <rect id="bottom-bar" width="32" height="4" y="16" rx="1"/>
+        </g>
+        <g stroke="#419F8E" transform="translate(0 1)">
+            <rect width="31" height="3" x=".5" y=".5" rx="1"/>
+            <rect width="31" height="3" x=".5" y="8.5" rx="1"/>
+            <rect width="31" height="3" x=".5" y="16.5" rx="1"/>
+        </g>
     </g>
 </svg>

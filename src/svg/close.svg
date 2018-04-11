@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-    <g fill="#999" fill-rule="evenodd">
-        <rect width="32" height="4" x="-3.272" y="10.728" rx="2" transform="rotate(45 12.728 12.728)"/>
-        <rect width="32" height="4" x="-3.272" y="10.728" rx="2" transform="rotate(-45 12.728 12.728)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="27" viewBox="0 0 29 27" viewBox="0 0 100 100">
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#71808B" fill-opacity=".1" transform="translate(3 1)">
+            <rect width="32" height="4" x="-3" y="11" rx="1" transform="rotate(135 13 13)"/>
+            <rect width="32" height="4" x="-3" y="11" rx="1" transform="rotate(45 13 13)"/>
+        </g>
+        <g stroke="#419F8E">
+            <rect width="31" height="3" x="-2.5" y="11.5" rx="1" transform="rotate(135 13 13)"/>
+            <rect width="31" height="3" x="-2.5" y="11.5" rx="1" transform="rotate(45 13 13)"/>
+        </g>
     </g>
 </svg>
