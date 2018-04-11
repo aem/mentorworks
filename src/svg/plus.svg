@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="125" height="127" viewBox="0 0 125 127">
-    <g fill="none" fill-rule="evenodd" font-family="AdellePE, Adelle PE" font-size="300">
-        <text fill="#71808B" fill-opacity=".1" transform="translate(-27 -184)">
-            <tspan x="10" y="349">+</tspan>
+<svg xmlns="http://www.w3.org/2000/svg" width="156" height="167" viewBox="0 0 156 167">
+    <g class="stat-icon" fill="none" fill-rule="evenodd" font-size="300">
+        <text fill="#71808B" fill-opacity=".1" transform="translate(-10 -136)">
+            <tspan x="9.638" y="324">+</tspan>
         </text>
-        <text fill="#FFF" stroke="#419F8E" stroke-width=".3" opacity=".5" transform="translate(-27 -184)">
-            <tspan x="0" y="339">+</tspan>
+        <text fill="#FFF" stroke="#419F8E" stroke-width=".3" opacity=".5" transform="translate(-10 -136)">
+            <tspan x=".638" y="314">+</tspan>
         </text>
     </g>
 </svg>
