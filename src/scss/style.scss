@@ -15,6 +15,7 @@ Version: 1.0.0
 
 // Mixins: helpful functions we can use in Sass
 @import 'mixins/media-queries';
+@import 'mixins/text-scaling';
 
 // Layout: boilerplate CSS for styles related to containers, grids, etc.
 @import 'layout';
@@ -32,7 +33,6 @@ Version: 1.0.0
 @import 'components/nav';
 @import 'components/image-grid';
 @import 'components/section';
-@import 'components/hero';
 @import 'components/slick';
 @import 'components/email-signup';
 
