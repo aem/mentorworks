@@ -1,11 +1,39 @@
 .button {
-  padding: 8px 16px; // TODO
-  appearance: none;
-  border-radius: $border-radius-base;
-  display: inline-block;
-  text-decoration: none;
-  font-size: $font-size-base;
+  padding: 12px 32px;
   border: 2px solid $white;
+  border-radius: $border-radius-base;
+  appearance: none;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-size: $font-size-base;
+  text-decoration: none;
+  letter-spacing: 0.6px;
   color: $white;
-  background: transparent;
+
+  @media (min-width: 1280px) {
+    padding: ($spacing-base - 2px) ($spacing-medium - 2px);
+  }
+
+  &:hover {
+    box-shadow: 2px -2px 0 2px $white;
+  }
+
+  &.__hero {
+    background: $light-digital-black;
+    mix-blend-mode: multiply;
+  }
+
+  &.__filled {
+    background: $genoa;
+    border: none;
+
+    &:hover {
+      box-shadow: 2px -2px 0 2px $light-slate-gray;
+    }
+  }
 }
