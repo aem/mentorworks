@@ -1,13 +1,27 @@
-<a href="/">
-  <div class="global-header-logo">
-    {# <img src="http://placehold.it/150x50"> #}
-  </div>
-</a>
-
-<button class="global-navigation-menu-icon" mobile-menu-icon></button>
-
-<nav class="global-navigation">
-  {% for item in header_menu.items %}
-    <a class="global-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a>
-  {% endfor %}
-</nav>
+<header id="header" class="global-header" :class="{ 'mobile-menu--open': showMenu }">
+  <a class="global-header-logo" href="/">
+    <img src="{{site.theme.link}}/png/m-wlogo.png">
+    MentorWorks
+  </a>
+  <button class="global-navigation-menu-icon" mobile-menu-icon></button>
+  <svg class="global-navigation-menu-icon" xmlns="http://www.w3.org/2000/svg"
+    width="35" height="35" viewBox="0 0 35 35" @click="showMenu = !showMenu">
+    <g class="top-bar" :class="{ rotated: showMenu }">
+      <rect class="bar" width="32" height="4" rx="1" />
+      <rect class="bar-shadow" width="31" height="3" x=".5" rx="1" />
+    </g>
+    <g class="middle-bar" :class="{ rotated: showMenu }">
+      <rect class="bar" width="32" height="4" rx="1" />
+      <rect class="bar-shadow" width="31" height="3" x=".5" rx="1" />
+    </g>
+    <g class="bottom-bar" :class="{ rotated: showMenu }"> 
+      <rect class="bar" width="32" height="4" rx="1" />
+      <rect class="bar-shadow" width="31" height="3" x=".5" rx="1" />
+    </g>
+  </svg>
+  <nav class="global-navigation">
+    {% for item in header_menu.items %}
+      <a class="global-navigation-link {{ item.classes|join(' ') }}" href="{{ item.link }}" >{{ item.title }}</a>
+    {% endfor %}
+  </nav>
+</header>
