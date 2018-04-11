@@ -1,25 +1,26 @@
-// Low-Fi Wireframe Grays
+// Low-Fi wireframe grays
 $light-gray: #ededed;
 $medium-gray: #d8d8d8;
 $dark-gray: #999999;
 
-// Brand Colors (http://chir.ag/projects/name-that-color/)
+// Brand colors (http://chir.ag/projects/name-that-color/)
 $pastel-green: #6bd992;
 $froly: #f5907a;
 $ocean-green: #419f8e;
-$light-ocean-green: transparentize($ocean-green, 0.5);
+$light-ocean-green: rgba($ocean-green, 0.5);
 $genoa: #126d5c;
 $slate-gray: #71808b;
-$light-slate-gray: transparentize($slate-gray, 0.3);
-$lightest-slate-gray: transparentize($slate-gray, 0.1);
+$light-slate-gray: rgba($slate-gray, 0.3);
+$lightest-slate-gray: rgba($slate-gray, 0.1);
 
-// Global Colors
+// Global colors
 $black: #000000;
 $white: #ffffff;
+$transparent-white: rgba($white, 0.95);
 $digital-black: #333333;
-$light-digital-black: transparentize($digital-black, 0.2);
+$light-digital-black: rgba($digital-black, 0.2);
 
-// Font Sizes
+// Font sizes
 $font-size-xs: 1.2rem; // 12px
 $font-size-small: 1.6rem; // 16px
 $font-size-base: 1.8rem; // 18px
@@ -37,14 +38,14 @@ $font-family-quotes: 'Bitter', serif;
 
 // Spacing
 $spacing-base: 20px;
-$spacing-xxs: $spacing-base * 0.5;
-$spacing-xs: $spacing-base * 0.75;
-$spacing-small: $spacing-base * 1.5;
-$spacing-medium: $spacing-base * 2;
-$spacing-large: $spacing-base * 3;
-$spacing-xl: $spacing-base * 4;
+$spacing-xxs: $spacing-base * 0.5; // 10px
+$spacing-xs: $spacing-base * 0.75; // 15px
+$spacing-small: $spacing-base * 1.5; // 30px
+$spacing-medium: $spacing-base * 2; // 40px
+$spacing-large: $spacing-base * 3; // 60px
+$spacing-xl: $spacing-base * 4; // 80px
 
-// Line Heights
+// Line heights
 $line-height-single: 1;
 $line-height-medium: 1.5;
 
@@ -53,7 +54,7 @@ $container-width-base: 480px;
 $container-width-medium: $container-width-base * 2;
 $container-width-large: $container-width-base * 2.5;
 
-// Media Queries
+// Media queries
 $phone-width: 540px;
 $tablet-width: 768px;
 
