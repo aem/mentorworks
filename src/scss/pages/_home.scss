@@ -1,26 +1,39 @@
 .home {
-  .section.hero {
-    padding: ($spacing-base * 10) 0;
-  }
-
   .dual-focus-wrapper {
-    padding: $spacing-base;
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    h2,
+    h3 {
+      text-align: center;
+    }
 
-    section {
+    .dual-focus {
       padding: $spacing-base;
       box-sizing: border-box;
-      flex: 1 0 300px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+
+    section {
+      height: auto;
+      max-width: 480px;
+      padding: $spacing-base;
+      box-sizing: border-box;
+      flex: 1 0 324px;
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
 
+      @include tablet() {
+        width: 324px;
+      }
+
       .icon-container {
-        width: 160px;
-        height: 160px;
+        width: 15vw;
+        height: 15vw;
+        max-width: 160px;
+        max-height: 160px;
+        min-width: 80px;
+        min-height: 80px;
         margin: 0 0 $spacing-small 0;
         border-radius: 50%;
         display: flex;
@@ -33,54 +46,82 @@
         &.icon-handshake {
           background: $froly;
         }
+
+        .icon {
+          width: 60%;
+        }
       }
     }
   }
 
   .stats-wrapper {
+    padding: $spacing-medium;
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
+    flex-flow: row nowrap;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
 
-    .stat {
-      box-sizing: border-box;
-      padding: $spacing-base;
+    @media (max-width: 900px) {
+      flex-flow: column nowrap;
+
+      .stat {
+        max-width: 50%;
+        align-self: flex-start;
+      }
+
+      .stat:nth-child(even) {
+        align-self: flex-end;
+      }
+    }
+
+    @media (max-width: 600px) {
+      align-items: center;
+
+      .stat {
+        max-width: 100%;
+      }
+    }
+
+    .number-wrapper {
+      height: 250px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       .number {
         margin: 0 0 $spacing-base 0;
-        font-weight: bold;
-        text-align: center;
-        color: $dark-gray;
-        font-size: 6rem;
-        color: $digital-black;
+        position: absolute;
+        z-index: 5;
+        font-family: $font-family-headers;
+        font-size: 12rem;
+        color: $froly;
       }
 
-      label {
-        font-size: 1.8rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .stat {
-        flex: 1 0;
+      .stat-icon {
+        position: relative;
+        z-index: 4;
       }
 
-      .stat .number {
-        font-size: 5.2vw;
+      .plus-icon {
+        right: -48px;
+        top: -48px;
       }
-    }
 
-    @media (min-width: 1280px) {
-      .stat .number {
-        font-size: 8rem;
+      .dollar-icon {
+        font-family: 'Bitter', sans-serif;
+        left: 50px;
+        bottom: 25px;
       }
     }
-  }
 
-  .testimonial-wrapper {
-    display: flex;
-    flex-flow: column no-wrap;
-    padding: $spacing-xl;
+    label {
+      max-width: 300px;
+      font-size: 2.4rem;
+      font-family: $font-family-body;
+      line-height: $line-height-medium;
+      color: $slate-gray;
+    }
   }
 }
