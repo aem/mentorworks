@@ -24,4 +24,5 @@
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
+$context['acf'] = get_field(' mw_components' );
 Timber::render( array( 'page-' . $post->post_name . '.twig', 'page.twig' ), $context );

@@ -1,14 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="content-wrapper">
-		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-			<section class="article-content">
-				<h1 class="article-h1">{{post.title}}</h1>
-				<div class="article-body">
-					{{post.content}}
-				</div>
-			</section>
-		</article>
-	</div><!-- /content-wrapper -->
+  {% for component in post.get_field('mw_components') %}
+    {% include component.mw_component_type ~ '.twig' with {'component': component, 'bg_color': component.mw_component_bg_color} %}
+  {% endfor %}
 {% endblock %}
