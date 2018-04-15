@@ -1,48 +1,96 @@
+// TODO: replace with variables
+
 .footer {
-  background-color: $digital-black;
   display: flex;
-  padding: $spacing-large $spacing-xl;
-  justify-content: space-between;
+  flex-flow: column nowrap;
+  box-sizing: border-box;
+  padding: $spacing-medium $spacing-xl;
+  background: $slate-gray;
+  color: white;
 
-  p {
-    color: $white;
-    font-size: $font-size-xs;
-    margin-top: 0;
-  }
+  // TODO: 768
+  // padding-left & right : 40px
+  // padding-top & bottom : 32px
 
-  .footer-section {
-    padding-left: $spacing-medium;
-  }
-
-  .global-footer-logo {
-    background-color: $white;
-    width: 150px;
-    height: 50px;
-  }
-
-  .global-footer-copyright {
-    color: $medium-gray;
-    margin-top: $spacing-medium;
-  }
-
-  .global-footer-contact {
-    p {
-      line-height: $line-height-medium;
-    }
-  }
-
-  .global-footer-social-media {
+  .footer-main {
     display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 30px 0;
 
-    .social-media-icon {
-      background-color: $white;
-      border-radius: $border-radius-base;
-      width: 20px;
-      height: 20px;
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
 
-      & + .social-media-icon {
-        margin-left: $spacing-base;
+      .logo-icon {
+        height: 40px;
+        margin-right: 12px;
+
+        // 768
+        // font-size: 20.2px
       }
     }
+
+    .footer-nav {
+      display: flex;
+      flex-flow: row wrap;
+      font-size: 16px;
+
+      .nav-link {
+        margin: 20px; // TODO
+        flex: 1 0;
+        text-decoration: none;
+        color: $white;
+      }
+
+      // TODO: add responsive
+      // 768
+      // set max-width on container?
+    }
+
+    .footer-social-media {
+      display: flex;
+      flex-flow: row nowrap;
+
+      .social-media-icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .footer-divider {
+    width: 100%;
+    height: 2px;
+    margin: 0 0 20px 0;
+    background: white;
+  }
+
+  .footer-attributions {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 0 20px 0;
+    justify-content: space-between;
+    font-size: $font-size-xs;
+
+    .scout-byline {
+      text-decoration: none;
+      color: $white;
+
+      .heart {
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+
+  .footer-disclaimer {
+    align-self: stretch;
+    color: white !important;
+    font-size: $font-size-xs;
+    line-height: 1.5;
   }
 }
