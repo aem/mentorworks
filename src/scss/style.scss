@@ -28,19 +28,21 @@ Version: 1.0.0
 
 // Components: Modular elements styles
 @import 'components/button';
+@import 'components/columns';
+@import 'components/hero';
 @import 'components/header';
 @import 'components/footer';
 @import 'components/nav';
 @import 'components/image-grid';
 @import 'components/section';
 @import 'components/slick';
+@import 'components/statistics';
 @import 'components/email-signup';
 
 // Pages: Import every page that has its own specific styles
 @import 'pages/blog';
 @import 'pages/faq';
 @import 'pages/single';
-@import 'pages/home';
 
 // Vendor: Third-party libraries
 @import 'vendor/slick';

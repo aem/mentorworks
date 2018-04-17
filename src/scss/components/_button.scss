@@ -23,12 +23,12 @@
     box-shadow: 2px -2px 0 2px $white;
   }
 
-  &.__hero {
+  &.--hero {
     background: $light-digital-black;
     mix-blend-mode: multiply;
   }
 
-  &.__filled {
+  &.--filled {
     background: $genoa;
     border: none;
 

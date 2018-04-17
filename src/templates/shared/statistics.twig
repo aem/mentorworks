@@ -1,1 +1,13 @@
 {% set stats = component.mw_statistics %}
+
+<section class="section stats-wrapper">
+  {% for stat in stats %}
+    <section class="stat">
+      <div class="number-wrapper">
+          <figure class="number">{{ stat.mw_statistics_number }}</figure>
+          <img class="stat-icon" src="{{ stat.mw_statistics_icon.url }}">
+      </div>
+      <label>{{ stat.mw_statistics_copy }}</label>
+    </section>
+  {% endfor %}
+</section>

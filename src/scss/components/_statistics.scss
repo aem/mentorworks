@@ -1,0 +1,59 @@
+.section.stats-wrapper {
+  // TODO: fix this!
+  // padding: $spacing-medium;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+
+  .stat {
+    flex: 0 1 300px;
+  }
+
+  // @media (max-width: 900px) {
+  //   flex-flow: column nowrap;
+
+  //   .stat {
+  //     max-width: 50%;
+  //     align-self: flex-start;
+  //   }
+
+  //   .stat:nth-child(even) {
+  //     align-self: flex-end;
+  //   }
+  // }
+
+  // @media (max-width: 600px) {
+  //   align-items: center;
+
+  //   .stat {
+  //     max-width: 100%;
+  //   }
+  // }
+
+  .number-wrapper {
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .number {
+      margin: 0 0 $spacing-base 0;
+      position: absolute;
+      z-index: 5;
+      font-family: $font-family-headers;
+      font-size: 12rem;
+      color: $froly;
+    }
+  }
+
+  label {
+    max-width: 300px;
+    font-size: 2.4rem;
+    font-family: $font-family-body;
+    line-height: $line-height-medium;
+    color: $slate-gray;
+  }
+}

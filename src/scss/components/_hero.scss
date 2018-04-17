@@ -1,0 +1,116 @@
+.section.hero {
+  height: 500px; // TODO what should this be? use vw?
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+
+  .big-circle {
+    box-sizing: border-box;
+    padding: 0 $spacing-xl;
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    opacity: 0.8;
+    position: absolute;
+    top: -15vw;
+    overflow-x: hidden;
+    display: flex;
+
+    &.--froly {
+      background: $froly;
+    }
+
+    &.--pastel-green {
+      background: $pastel-green;
+    }
+
+    &.--ocean-green {
+      background: $ocean-green;
+    }
+
+    // Using the multiply effect per the design necessitates an opacity of 1.
+    // Since that looks bad on browsers that don't support it, check first.
+    @supports (mix-blend-mode: multiply) {
+      mix-blend-mode: multiply;
+      opacity: 1;
+    }
+
+    @include tablet() {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border-radius: 0;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .content {
+    width: 42vw;
+    height: 100%;
+    box-sizing: border-box;
+    align-self: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    z-index: 15;
+    color: $white;
+
+    @include tablet() {
+      width: 100%;
+      height: 100%;
+      justify-content: flex-end;
+      padding: 0 $spacing-medium $spacing-medium $spacing-medium;
+    }
+
+    .subtitle {
+      margin: 0 0 $spacing-small 0;
+      font-family: $font-family-body;
+      line-height: $line-height-medium;
+
+      @include poly-fluid-sizing(
+        'font-size',
+        (768px: $font-size-base, 1280px: $font-size-large)
+      );
+
+      @include tablet() {
+        display: none;
+      }
+    }
+  }
+
+  &:nth-of-type(even) {
+    @include desktop() {
+      .big-circle {
+        left: -18vw;
+      }
+    }
+
+    .content {
+      left: 0;
+      @include poly-fluid-sizing(
+        'padding-left',
+        (320px: $spacing-base, 768px: $spacing-medium, 1280px: $spacing-xl)
+      );
+    }
+  }
+
+  &:nth-of-type(odd) {
+    @include desktop() {
+      .big-circle {
+        right: -18vw;
+      }
+    }
+
+    .content {
+      right: 0;
+      @include poly-fluid-sizing(
+        'padding-right',
+        (320px: $spacing-base, 768px: $spacing-medium, 1280px: $spacing-xl)
+      );
+    }
+  }
+}
