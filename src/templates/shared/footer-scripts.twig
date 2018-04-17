@@ -8,21 +8,21 @@
     <div class="apply_form__steps" v-if="!isSlot0">
       <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
     </div>
-    <form class="apply_form__body">
+    <form class="apply_form__body container">
       <div class="apply_form__body__step">
         <slot :name="currentSlot"></slot>
       </div>
       <div class="apply_form__body__actions">
         <button
           v-if="backEnabled"
-          class="apply_form__back pull-left"
+          class="button --ghost --small"
           type="button"
           @click="goBack()">
           Previous
         </button>
         <button
           v-if="currentStep != steps.length - 1"
-          class="apply_form__next"
+          class="button --ghost --small"
           type="button"
           @click="goNext()">
           <span v-html="nextButtonText"></span>
@@ -42,70 +42,124 @@
       <div slot="page1">
         <h2>Overview</h2>
 
-        <label for="personal-fullName" class="input-label">Full name:</label>
-        <input id="personal-fullName" v-model="personal.name">
+        <div class="apply-form-column-container">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="personal-fullName" class="input-label">Full name:</label>
+              <input id="personal-fullName" v-model="personal.name">
+            </div>
 
-        <label for="personal-phone" class="input-label">Phone number:</label>
-        <input id="personal-phone" v-model="personal.phone">
+            <div class="input-container">
+              <label for="personal-phone" class="input-label">Phone number:</label>
+              <input id="personal-phone" v-model="personal.phone">
+            </div>
 
-        <label for="personal-linkedin" class="input-label">LinkedIn Profile (optional):</label>
-        <input id="personal-linkedin" v-model="personal.linkedinProfile">
+            <div class="input-container">
+              <label for="personal-linkedin" class="input-label">LinkedIn Profile (optional):</label>
+              <input id="personal-linkedin" v-model="personal.linkedinProfile">
+            </div>
 
-        <label for="personal-email" class="input-label">Email address:</label>
-        <input id="personal-email" v-model="personal.email">
+            <div class="input-container">
+              <label for="personal-authorized" class="input-label input-label-question">Are you authorized to work in the US while in school or after graduation?</label>
+              <p>Do not answer yes for OPT (F1 visa), temporary, DACA, or on campus work authorization.</p>
+              <div class="radio-button-row-container">
+                <label for="yes" class="radio-button-container">Yes
+                  <input type="radio" id="yes" value="true" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="no" class="radio-button-container">No
+                  <input type="radio" id="no" value="false" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+              </div>
+            </div>
+          </div>
 
-        <div>
-          <label for="personal-contactMethod" class="input-label">Preferred method of contact:</label>
-          <input type="radio" id="email" value="email" v-model="personal.methodOfContact">
-          <label for="email">Email</label>
-          <input type="radio" id="call" value="call" v-model="personal.methodOfContact">
-          <label for="call">Call</label>
-          <input type="radio" id="text" value="text" v-model="personal.methodOfContact">
-          <label for="text">Text</label>
-        </div>
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="personal-email" class="input-label">Email address:</label>
+              <input id="personal-email" v-model="personal.email">
+            </div>
 
-        <label for="personal-profSite" class="input-label">Other professional site (optional):</label>
-        <input id="personal-profSite" v-model="personal.otherProfSite">
+            <div class="input-container">
+              <label for="personal-contactMethod" class="input-label">Preferred method of contact:</label>
+              <div class="radio-button-row-container">
+                <label for="email" class="radio-button-container">Email
+                  <input type="radio" id="email" value="email" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="call" class="radio-button-container">Call
+                  <input type="radio" id="call" value="call" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="text" class="radio-button-container">Text
+                  <input type="radio" id="text" value="text" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+              </div>
+            </div>
 
-        <div>
-          <label for="personal-authorized" class="input-label input-label-question">Are you authorized to work in the US while in school or after graduation?</label>
-          <p>Do not answer yes for OPT (F1 visa), temporary, DACA, or on campus work authorization.</p>
-          <input type="radio" id="yes" value="true" v-model="personal.authorized">
-          <label for="yes">Yes</label>
-          <input type="radio" id="no" value="false" v-model="personal.authorized">
-          <label for="no">No</label>
-        </div>
+            <div class="input-container">
+              <label for="personal-profSite" class="input-label">Other professional site (optional):</label>
+              <input id="personal-profSite" v-model="personal.otherProfSite">
+            </div>
 
-        <div>
-          <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
-          <input type="radio" id="facebook" value="true" v-model="personal.referral">
-          <label for="facebook">Facebook</label>
-          <input type="radio" id="on-campus-presentation" value="true" v-model="personal.referral">
-          <label for="on-campus-presentation">On-campus presentation</label>
-          <input type="radio" id="website-search" value="true" v-model="personal.referral">
-          <label for="website-search">Website or search</label>
-          <input type="radio" id="friend" value="true" v-model="personal.referral">
-          <label for="friend">Friend</label>
-          <input type="radio" id="campus-ambassador" value="true" v-model="personal.referral">
-          <label for="campus-ambassador">Campus ambassador</label>
-          <input type="radio" id="other" value="true" v-model="personal.referral">
-          <label for="other">Other</label>
+            <div class="input-container">
+              <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
+
+              <label for="facebook" class="radio-button-container">Facebook
+                <input type="radio" id="facebook" value="facebook" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="on-campus-presentation" class="radio-button-container">On-campus presentation
+                <input type="radio" id="on-campus-presentation" value="on-campus-presentation" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="website-search" class="radio-button-container">Website or search
+                <input type="radio" id="website-search" value="website" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="friend" class="radio-button-container">Friend
+                <input type="radio" id="friend" value="friend" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="campus-abassador" class="radio-button-container">Campus abassador
+                <input type="radio" id="campus-abassador" value="campus-ambassador" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="other" class="radio-button-container">Other
+                <input type="radio" id="other" value="other" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
       <div slot="page2">
         <h2>Your education</h2>
 
-        <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
-        <input id="fundingAmount" v-model="fundingAmount">
+        <div class="input-container">
+          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
+          <input id="fundingAmount" v-model="fundingAmount">
+        </div>
 
-        <div>
+        <div class="input-container">
           <label for="reasonForFunding" class="input-label input-label-question">What do you need funding for?</label>
-          <input type="radio" id="undergraduate" value="undergraduate" v-model="reasonForFunding">
-          <label for="undergraduate">Undergraduate education</label>
-          <input type="radio" id="graduate" value="graduate" v-model="reasonForFunding">
-          <label for="graduate">Graduate education</label>
-          <input type="radio" id="bootCamp" value="bootCamp" v-model="reasonForFunding">
-          <label for="bootCamp">Boot camp</label>
+
+          <div class="radio-button-row-container">
+            <label for="undergraduate" class="radio-button-container">Undergraduate education
+              <input type="radio" id="undergraduate" value="undergraduate" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+            <label for="graduate" class="radio-button-container">Graduate education
+              <input type="radio" id="graduate" value="graduate" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+            <label for="bootCamp" class="radio-button-container">Boot camp
+              <input type="radio" id="bootCamp" value="bootCamp" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+          </div>
         </div>
 
         <div v-if="reasonForFunding === 'bootCamp'">
