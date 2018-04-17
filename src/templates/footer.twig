@@ -13,18 +13,11 @@
     {% endfor %}
   </div>
   <div class="footer-social-media">
-    <a href="#">
-      <img class="social-media-icon" src="{{site.theme.link}}/svg/facebook.svg">
-    </a>
-    <a href="#">
-      <img class="social-media-icon" src="{{site.theme.link}}/svg/linkedin.svg">
-    </a>
-    <a href="#">
-      <img class="social-media-icon" src="{{site.theme.link}}/svg/twitter.svg">
-    </a>
-    <a href="#">
-      <img class="social-media-icon" src="{{site.theme.link}}/svg/insta.svg">
-    </a>
+    {% for item in social_media_icons.items %}
+      <a href="{{ item.link }}">
+        <img class="social-media-icon" src="{{site.theme.link}}/svg/{{ item.classes[0] }}.svg">
+      </a>
+    {% endfor %}
   </div>
 </div>
 

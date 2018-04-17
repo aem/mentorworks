@@ -62,6 +62,8 @@ class MentorWorksSite extends TimberSite {
 	function add_to_context( $context ) {
 		$context['header_menu'] = new TimberMenu('Header Menu');
 		$context['footer_menu'] = new TimberMenu('Footer Menu');
+		$context['social_media_icons'] = new TimberMenu('Social Media');
+		$context['options'] = get_fields('option');
 		$context['site'] = $this;
 		return $context;
 	}
