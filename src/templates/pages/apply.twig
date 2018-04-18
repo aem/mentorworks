@@ -13,7 +13,7 @@
         <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
       </div>
       <form class="apply_form__body">
-        <div :key="currentSlot" v-bind:class="{ container: !isSlot0, apply_form__body__step: !isSlot0 }">
+        <div :key="currentSlot" v-bind:class="{ container: !isSlot0 && !isSlot6, apply_form__body__step: !isSlot0 && !isSlot6 }">
           <slot :name="currentSlot"></slot>
         </div>
         <div class="apply_form__body__actions container">
@@ -397,11 +397,15 @@
         </div>
       </div>
       <div slot="page6">
-        <h2>Congrats</h2>
-        <p>We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
-        {% for item in recent_blog_posts %}
-          {% include 'tease-post.twig' with { 'post': item } %}
-        {% endfor %}
+        <div class="container">
+          <img class="apply-form-balloons" src="{{site.theme.link}}/gif/balloons.gif">
+          <h2>Congrats</h2>
+          <p>We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
+          <h2>Stay connected while you wait</h2>
+          {% for item in recent_blog_posts %}
+            {% include 'tease-post.twig' with { 'post': item } %}
+          {% endfor %}
+        </div>
       </div>
     </apply_form>
   </div>

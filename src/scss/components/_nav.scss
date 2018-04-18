@@ -87,7 +87,7 @@
   font-size: 1.4rem;
 
   & + .global-navigation-link {
-    margin-left: $spacing-medium;
+    margin-left: $spacing-small;
   }
 
   @include tablet() {
