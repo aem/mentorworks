@@ -58,8 +58,11 @@ $container-width-large: $container-width-base * 2.5;
 $phone-width: 540px;
 $tablet-width: 768px;
 
-// Miscellaneous
+// Border Radii
 $border-radius-base: 2px;
+$border-radius-medium: $border-radius-base * 2;
+
+// Miscellaneous
 $stats-font-size: 6.666rem;
 $stats-font-size-tablet: 5rem;
 $percent-font-size: 16.666rem;

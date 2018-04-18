@@ -12,12 +12,9 @@
   }
 }
 
-.apply_form__body {
-  margin: $spacing-large auto;
-}
-
+.apply_form__body__step,
 .apply_form__body__actions {
-  margin-top: $spacing-large;
+  margin: $spacing-large auto;
 }
 
 .apply_form {

@@ -31,6 +31,9 @@
     backEnabled() {
       return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
     },
+    nextEnabled() {
+      return this.currentStep != this.steps.length - 1;
+    },
     isSlot0() {
       return this.currentSlot == 'page0';
     },
@@ -46,11 +49,13 @@
   },
   methods: {
     goNext () {
+      window.scrollTo(0, 0);
       if (this.currentStep < this.steps.length-1) {
         this.currentStep++;
       }
     },
     goBack () {
+      window.scrollTo(0, 0);
       if (this.currentStep > 0) {
         this.currentStep--;
       }

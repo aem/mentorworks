@@ -1,37 +1,31 @@
 {% extends "base.twig" %}
 
-{% block content %}
+{% set hero = post.get_field("mw_apply_hero") %}
+{% set our_promise = post.get_field("mw_apply_our_promise") %}
 
+{% block content %}
   <div id="apply-form"></div>
 
   <script type="text/x-template" id="apply_form">
-  <div class="apply_form">
-    <div class="apply_form__steps" v-if="!isSlot0">
-      <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
+    <div class="apply_form">
+      <div class="apply_form__steps" v-if="!isSlot0">
+        <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
+      </div>
+      <form class="apply_form__body">
+        <div :key="currentSlot" v-bind:class="{ container: !isSlot0, apply_form__body__step: !isSlot0 }">
+          <slot :name="currentSlot"></slot>
+        </div>
+        <div class="apply_form__body__actions container">
+          <button v-if="backEnabled" class="button --ghost --small" type="button" @click="goBack()">
+            <span>Previous</span>
+          </button>
+          <button v-if="nextEnabled" class="button --ghost --small" type="button" @click="goNext()">
+            <span v-html="nextButtonText"></span>
+          </button>
+        </div>
+      </form>
     </div>
-    <form class="apply_form__body container">
-      <div class="apply_form__body__step">
-        <slot :name="currentSlot"></slot>
-      </div>
-      <div class="apply_form__body__actions">
-        <button
-          v-if="backEnabled"
-          class="button --ghost --small"
-          type="button"
-          @click="goBack()">
-          Previous
-        </button>
-        <button
-          v-if="currentStep != steps.length - 1"
-          class="button --ghost --small"
-          type="button"
-          @click="goNext()">
-          <span v-html="nextButtonText"></span>
-        </button>
-      </div>
-    </form>
-  </div>
-</script>
+  </script>
 
 <script type="text/x-template" id="apply">
   <div>
@@ -40,28 +34,34 @@
       <div slot="page0">
         {% include 'hero.twig' with {'component': {
           mw_hero_image: {
-            mw_hero_headline: post.get_field("mw_apply_hero").mw_apply_hero_headline
+            mw_hero_color: hero.mw_apply_hero_color,
+            mw_hero_image: {
+              url: hero.mw_apply_hero_image.url
+            },
+            mw_hero_headline: hero.mw_apply_hero_headline
           }
         }} %}
 
-        <section>
-          <h2>{{post.get_field("mw_apply_what_youll_need_headline")}}</h2>
-          {% for item in post.get_field("mw_apply_what_youll_need") %}
-            <div>
-              <h3>{{item.mw_apply_what_youll_need_headline}}</h3>
-              <p>{{item.mw_apply_what_youll_need_copy}}</p>
-            </div>
-          {% endfor %}
-        </section>
+        <div class="container">
+          <section>
+            <h2>{{post.get_field("mw_apply_what_youll_need_headline")}}</h2>
+            {% for item in post.get_field("mw_apply_what_youll_need") %}
+              <div>
+                <h3>{{item.mw_apply_what_youll_need_headline}}</h3>
+                <p>{{item.mw_apply_what_youll_need_copy}}</p>
+              </div>
+            {% endfor %}
+          </section>
 
-        <section>
-          <h2>{{post.get_field("mw_apply_our_promise").mw_apply_our_promise_headline}}</h2>
-          <p>{{post.get_field("mw_apply_our_promise").mw_apply_our_promise_copy}}</p>
-        </section>
+          <section>
+            <h2>{{our_promise.mw_apply_our_promise_headline}}</h2>
+            <p>{{our_promise.mw_apply_our_promise_copy}}</p>
+          </section>
 
-        <section>
-          <h2>{{post.get_field("mw_apply_cta_headline")}}</h2>
-        </section>
+          <section>
+            <h2>{{post.get_field("mw_apply_cta_headline")}}</h2>
+          </section>
+        </div>
       </div>
       <div slot="page1">
         <h2>Overview</h2>

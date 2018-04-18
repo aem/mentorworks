@@ -32,6 +32,12 @@ textarea {
 
 input {
   border-bottom: 2px solid $light-slate-gray;
+
+  &.secondary {
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+    border-radius: $border-radius-medium;
+  }
 }
 
 input::placeholder {
@@ -60,6 +66,7 @@ label {
   padding-left: $spacing-small;
   color: $slate-gray;
   margin-top: $spacing-base;
+  cursor: pointer;
 
   input[type='radio'] {
     position: absolute;
