@@ -1,7 +1,7 @@
 <header id="header" class="global-header" :class="{ 'mobile-menu--open': showMenu }">
   <a class="global-header-logo" href="/">
     <img src="{{site.theme.link}}/png/m-wlogo.png">
-    MentorWorks
+    {{site.name}}
   </a>
   <button class="global-navigation-menu-icon" mobile-menu-icon></button>
   <svg class="global-navigation-menu-icon" xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@
       <rect class="bar" width="32" height="4" rx="1" />
       <rect class="bar-shadow" width="31" height="3" x=".5" rx="1" />
     </g>
-    <g class="bottom-bar" :class="{ rotated: showMenu }"> 
+    <g class="bottom-bar" :class="{ rotated: showMenu }">
       <rect class="bar" width="32" height="4" rx="1" />
       <rect class="bar-shadow" width="31" height="3" x=".5" rx="1" />
     </g>

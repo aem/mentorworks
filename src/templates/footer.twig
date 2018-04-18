@@ -1,10 +1,8 @@
 <div class="footer-main">
-  <!-- <div class="footer-logo"> -->
-    <span class="footer-logo">
-      <img class="logo-icon" src="{{site.theme.link}}/svg/mw-logo-white.svg">
-      MentorWorks
-    </span>
-  <!-- </div> -->
+  <span class="footer-logo">
+    <img class="logo-icon" src="{{site.theme.link}}/svg/mw-logo-white.svg">
+    {{site.name}}
+  </span>
   <div class="footer-nav">
     {% for item in footer_menu.items %}
       <a class="nav-link {{ item.classes|join(' ') }}" href="{{ item.link }}">
@@ -25,7 +23,7 @@
 
 <div class="footer-attributions">
   <div class="copyright">
-    Copyright MentorWorks.io 2018
+    {{options.mw_footer_copyright_copy}}
   </div>
   <div class="attribution">
     <a class="scout-byline" href="https://neu.edu/scout" target="_blank">
@@ -39,9 +37,7 @@
 </div>
 
 <div class="footer-disclaimer">
-  <b>DISCLAIMER</b>
+  <b>{{options.mw_footer_disclaimer.mw_footer_disclaimer_headline}}</b>
   <br>
-  The information on this website is in no way a solicitation of an offer to sell or buy securities or other financial
-  instruments. Further, none of the information contained on this website is a recommendation to invest in any securities or
-  other financial instruments.
+  {{options.mw_footer_disclaimer.mw_footer_disclaimer_copy}}
 </div>
