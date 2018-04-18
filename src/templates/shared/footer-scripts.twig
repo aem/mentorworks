@@ -104,23 +104,24 @@
           lifeDifficulty: null,
           careerInterests: null
         },
-        references: [
-          {
-            name: null,
-            email: null,
-            phone: null
-          },
-          {
-            name: null,
-            email: null,
-            phone: null
-          },
-          {
-            name: null,
-            email: null,
-            phone: null
-          },
-        ],
+        reference0: {
+          name: null,
+          email: null,
+          phone: null,
+          relationship: null
+        },
+        reference1: {
+          name: null,
+          email: null,
+          phone: null,
+          relationship: null
+        },
+        reference2: {
+          name: null,
+          email: null,
+          phone: null,
+          relationship: null
+        },
         attachments: {
           resume: null,
           transcript: null,
@@ -154,12 +155,36 @@
     },
     methods: {
       validateRequiredFields(currentStep) {
+        {# if (currentStep == 1) {
+          return this.validateJsonObjForNulls(this.personal, ["linkedinProfile", "otherProfSite"]);
+        } else if (currentStep == 2) {
+          return this.fundingAmount == null || this.validateAllEducationFields();
+        } else if (currentStep == 3) {
+          return this.validateJsonObjForNulls(this.freeResponse);
+        } else if (currentStep == 4) {
+          return this.validateJsonObjForNulls(this.reference0) || this.validateJsonObjForNulls(this.reference1);
+        } #}
+
         return false;
-
-        if (currentStep == 1) {
-          return this.personal.name == null || this.personal.phone == null || this.personal.email == null || this.personal.methodOfContact == null || this.personal.authorized == null;
+      },
+      validateAllEducationFields() {
+        if (this.reasonForFunding == "undergraduate") {
+          return this.validateJsonObjForNulls(this.undergraduate);
+        } else if (this.reasonForFunding == "graduate") {
+          return this.validateJsonObjForNulls(this.undergraduate) || this.validateJsonObjForNulls(this.graduate);
+        } else if (this.reasonForFunding == "bootCamp") {
+          return this.validateJsonObjForNulls(this.bootCamp);
+        } else {
+          return false;
         }
-
+      },
+      validateJsonObjForNulls(field, ignoredFields = []) {
+        for (var f in field) {
+          if (field[f] == null && ignoredFields.indexOf(f) == -1) {
+            return true;
+          }
+        }
+        return false;
       }
     },
   });
@@ -167,5 +192,6 @@
   var app = new Vue({
     el: '#apply-form',
     template: `<apply steps="${this.steps}"></apply>`,
+    delimiters: ['${', '}']
   });
 </script>

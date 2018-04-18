@@ -22,6 +22,10 @@ textarea {
   border-bottom: 0;
 }
 
+textarea {
+  min-height: 200px;
+}
+
 input::placeholder {
   color: $slate-gray;
 }
@@ -33,6 +37,13 @@ select {
 label {
   display: block;
   margin-bottom: $spacing-xxs;
+}
+
+.input-hint {
+  display: block;
+  color: $slate-gray;
+  font-size: $font-size-small;
+  margin-top: $spacing-xxs;
 }
 
 .radio-button-row-container {

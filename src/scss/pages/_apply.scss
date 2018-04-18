@@ -15,6 +15,10 @@
 .apply_form__body__step,
 .apply_form__body__actions {
   margin: $spacing-large auto;
+
+  button + button {
+    margin-left: $spacing-base;
+  }
 }
 
 .apply_form {
@@ -31,6 +35,12 @@
   .input-container + .input-container {
     margin-top: $spacing-medium;
   }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+  }
 }
 
 .apply-form-column-container {
@@ -39,10 +49,5 @@
 
   .apply-form-column {
     width: calc(50% - #{$spacing-medium});
-  }
-
-  input {
-    display: block;
-    width: 100%;
   }
 }

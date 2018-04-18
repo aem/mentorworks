@@ -1,6 +1,7 @@
 {% extends "base.twig" %}
 
 {% set hero = post.get_field("mw_apply_hero") %}
+{% set what_youll_need = post.get_field("mw_apply_what_youll_need") %}
 {% set our_promise = post.get_field("mw_apply_our_promise") %}
 
 {% block content %}
@@ -22,6 +23,10 @@
           <button v-if="nextEnabled" class="button --ghost --small" type="button" @click="goNext()" :disabled="validateRequiredFields(currentStep)">
             <span v-html="nextButtonText"></span>
           </button>
+        </div>
+        <div class="above-sock-disclaimer" v-if="isSlot0">
+          <h4>{{our_promise.mw_apply_our_promise_headline}}</h4>
+          <p>{{our_promise.mw_apply_our_promise_copy}}</p>
         </div>
       </form>
     </div>
@@ -45,18 +50,19 @@
 
         <div class="container">
           <section>
-            <h2>{{post.get_field("mw_apply_what_youll_need_headline")}}</h2>
-            {% for item in post.get_field("mw_apply_what_youll_need") %}
-              <div>
-                <h3>{{item.mw_apply_what_youll_need_headline}}</h3>
-                <p>{{item.mw_apply_what_youll_need_copy}}</p>
-              </div>
-            {% endfor %}
-          </section>
-
-          <section>
-            <h2>{{our_promise.mw_apply_our_promise_headline}}</h2>
-            <p>{{our_promise.mw_apply_our_promise_copy}}</p>
+            <h2>{{what_youll_need.mw_apply_what_youll_need_headline}}</h2>
+            <div class="apply-form-column-container">
+              {% for item in what_youll_need.mw_apply_what_youll_need_points %}
+                {% if loop.index % 2 != 0 %}
+                  <div v-bind:class="{ 'apply-form-column': {{loop.index % 2}} != 0 }">
+                {% endif %}
+                  <h3>{{item.mw_apply_what_youll_need_points_headline}}</h3>
+                  <p>{{item.mw_apply_what_youll_need_points_copy}}</p>
+                {% if loop.index % 2 == 0 %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
           </section>
 
           <section>
@@ -164,24 +170,25 @@
         <h2>Your education</h2>
 
         <div class="input-container">
-          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
+          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
           <input id="fundingAmount" class="secondary" v-model="fundingAmount">
+          <span class="input-hint">We provide between $3,000 - $25,000.</span>
         </div>
 
         <div class="input-container">
           <label for="reasonForFunding" class="input-label input-label-question">What do you need funding for?</label>
 
           <div class="radio-button-row-container">
-            <label for="undergraduate" class="radio-button-container">Undergraduate education
-              <input type="radio" id="undergraduate" value="undergraduate" v-model="reasonForFunding">
+            <label for="reasonForFunding-undergraduate" class="radio-button-container">Undergraduate education
+              <input type="radio" id="reasonForFunding-undergraduate" name="reasonForFunding" value="undergraduate" v-model="reasonForFunding">
               <span class="radio-button"></span>
             </label>
-            <label for="graduate" class="radio-button-container">Graduate education
-              <input type="radio" id="graduate" value="graduate" v-model="reasonForFunding">
+            <label for="reasonForFunding-graduate" class="radio-button-container">Graduate education
+              <input type="radio" id="reasonForFunding-graduate" value="graduate" name="reasonForFunding" v-model="reasonForFunding">
               <span class="radio-button"></span>
             </label>
-            <label for="bootCamp" class="radio-button-container">Boot camp
-              <input type="radio" id="bootCamp" value="bootCamp" v-model="reasonForFunding">
+            <label for="reasonForFunding-bootCamp" class="radio-button-container">Boot camp
+              <input type="radio" id="reasonForFunding-bootCamp" value="bootCamp" name="reasonForFunding" v-model="reasonForFunding">
               <span class="radio-button"></span>
             </label>
           </div>
@@ -289,17 +296,83 @@
         <h2>References</h2>
         <p>List three professional references. These can be professors, coaches, or other adults who know your strengths, but should not be friends or family.</p>
         <p>You must notify your references that you are listing them, but they do not need to write a letter. We will reach out to them shortly.</p>
-        <div v-for="(n, i) in 3">
-          <h3>Reference <span v-html="i + 1"></span></h3>
 
-          <label for="reference{{i}}-name" class="input-label">Full name:</label>
-          <input id="reference{{i}}-name" v-model="references[i].name">
+        <h3>Reference 1</h3>
+        <div class="apply-form-column-container">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference0-name" class="input-label">Full name:</label>
+              <input id="reference0-name" v-model="reference0.name">
+            </div>
 
-          <label for="reference{{i}}-email" class="input-label">Email address:</label>
-          <input id="reference{{i}}-email" v-model="references[i].email">
+            <div class="input-container">
+              <label for="reference0-phone" class="input-label">Phone number:</label>
+              <input id="reference0-phone" v-model="reference0.phone">
+            </div>
+          </div>
 
-          <label for="reference{{i}}-phone" class="input-label">Phone number:</label>
-          <input id="reference{{i}}-phone" v-model="references[i].phone">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference0-email" class="input-label">Email address:</label>
+              <input id="reference0-email" v-model="reference0.email">
+            </div>
+            <div class="input-container">
+              <label for="reference0-relationship" class="input-label">Relationship to reference:</label>
+              <input id="reference0-relationship" v-model="reference0.relationship">
+            </div>
+          </div>
+        </div>
+
+        <h3>Reference 2</h3>
+        <div class="apply-form-column-container">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference1-name" class="input-label">Full name:</label>
+              <input id="reference1-name" v-model="reference1.name">
+            </div>
+
+            <div class="input-container">
+              <label for="reference1-phone" class="input-label">Phone number:</label>
+              <input id="reference1-phone" v-model="reference1.phone">
+            </div>
+          </div>
+
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference1-email" class="input-label">Email address:</label>
+              <input id="reference1-email" v-model="reference1.email">
+            </div>
+            <div class="input-container">
+              <label for="reference1-relationship" class="input-label">Relationship to reference:</label>
+              <input id="reference1-relationship" v-model="reference1.relationship">
+            </div>
+          </div>
+        </div>
+
+        <h3>Reference 3 (optional)</span></h3>
+        <div class="apply-form-column-container">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference2-name" class="input-label">Full name:</label>
+              <input id="reference2-name" v-model="reference2.name">
+            </div>
+
+            <div class="input-container">
+              <label for="reference2-phone" class="input-label">Phone number:</label>
+              <input id="reference2-phone" v-model="reference2.phone">
+            </div>
+          </div>
+
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="reference2-email" class="input-label">Email address:</label>
+              <input id="reference2-email" v-model="reference2.email">
+            </div>
+            <div class="input-container">
+              <label for="reference2-relationship" class="input-label">Relationship to reference:</label>
+              <input id="reference2-relationship" v-model="reference2.relationship">
+            </div>
+          </div>
         </div>
       </div>
       <div slot="page5">
@@ -324,7 +397,11 @@
         </div>
       </div>
       <div slot="page6">
-
+        <h2>Congrats</h2>
+        <p>We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
+        {% for item in recent_blog_posts %}
+          {% include 'tease-post.twig' with { 'post': item } %}
+        {% endfor %}
       </div>
     </apply_form>
   </div>
