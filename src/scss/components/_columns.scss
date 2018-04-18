@@ -6,7 +6,6 @@
 
   .dual-focus {
     padding: $spacing-base;
-    box-sizing: border-box;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -16,7 +15,6 @@
     height: auto;
     max-width: 480px;
     padding: $spacing-base;
-    box-sizing: border-box;
     flex: 1 0 324px;
     display: flex;
     flex-flow: column nowrap;
