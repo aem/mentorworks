@@ -19,7 +19,7 @@
           <button v-if="backEnabled" class="button --ghost --small" type="button" @click="goBack()">
             <span>Previous</span>
           </button>
-          <button v-if="nextEnabled" class="button --ghost --small" type="button" @click="goNext()">
+          <button v-if="nextEnabled" class="button --ghost --small" type="button" @click="goNext()" :disabled="validateRequiredFields(currentStep)">
             <span v-html="nextButtonText"></span>
           </button>
         </div>
@@ -30,7 +30,8 @@
 <script type="text/x-template" id="apply">
   <div>
     <apply_form
-      :steps="steps">
+      :steps="steps"
+      :validateRequiredFields="validateRequiredFields">
       <div slot="page0">
         {% include 'hero.twig' with {'component': {
           mw_hero_image: {
@@ -87,12 +88,12 @@
               <label for="personal-authorized" class="input-label input-label-question">Are you authorized to work in the US while in school or after graduation?</label>
               <p>Do not answer yes for OPT (F1 visa), temporary, DACA, or on campus work authorization.</p>
               <div class="radio-button-row-container">
-                <label for="yes" class="radio-button-container">Yes
-                  <input type="radio" id="yes" value="true" v-model="personal.authorized">
+                <label for="personal-authorized--yes" class="radio-button-container">Yes
+                  <input type="radio" id="personal-authorized--yes" name="personal-authorized" value="true" v-model="personal.authorized">
                   <span class="radio-button"></span>
                 </label>
-                <label for="no" class="radio-button-container">No
-                  <input type="radio" id="no" value="false" v-model="personal.authorized">
+                <label for="personal-authorized--no" class="radio-button-container">No
+                  <input type="radio" id="personal-authorized--no" name="personal-authorized" value="false" v-model="personal.authorized">
                   <span class="radio-button"></span>
                 </label>
               </div>
@@ -108,16 +109,16 @@
             <div class="input-container">
               <label for="personal-contactMethod" class="input-label">Preferred method of contact:</label>
               <div class="radio-button-row-container">
-                <label for="email" class="radio-button-container">Email
-                  <input type="radio" id="email" value="email" v-model="personal.authorized">
+                <label for="personal-contactMethod--email" class="radio-button-container">Email
+                  <input type="radio" id="personal-contactMethod--email" name="personal-contactMethod" value="email" v-model="personal.methodOfContact">
                   <span class="radio-button"></span>
                 </label>
-                <label for="call" class="radio-button-container">Call
-                  <input type="radio" id="call" value="call" v-model="personal.authorized">
+                <label for="personal-contactMethod--call" class="radio-button-container">Call
+                  <input type="radio" id="personal-contactMethod--call" name="personal-contactMethod" value="call" v-model="personal.methodOfContact">
                   <span class="radio-button"></span>
                 </label>
-                <label for="text" class="radio-button-container">Text
-                  <input type="radio" id="text" value="text" v-model="personal.authorized">
+                <label for="personal-contactMethod--text" class="radio-button-container">Text
+                  <input type="radio" id="personal-contactMethod--text" name="personal-contactMethod" value="text" v-model="personal.methodOfContact">
                   <span class="radio-button"></span>
                 </label>
               </div>
@@ -131,28 +132,28 @@
             <div class="input-container">
               <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
 
-              <label for="facebook" class="radio-button-container">Facebook
-                <input type="radio" id="facebook" value="facebook" v-model="personal.authorized">
+              <label for="personal-referral--facebook" class="radio-button-container">Facebook
+                <input type="radio" id="personal-referral--facebook" name="personal-referral" value="facebook" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
-              <label for="on-campus-presentation" class="radio-button-container">On-campus presentation
-                <input type="radio" id="on-campus-presentation" value="on-campus-presentation" v-model="personal.authorized">
+              <label for="personal-referral--on-campus-presentation" class="radio-button-container">On-campus presentation
+                <input type="radio" id="personal-referral--on-campus-presentation" name="personal-referral" value="on-campus-presentation" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
-              <label for="website-search" class="radio-button-container">Website or search
-                <input type="radio" id="website-search" value="website" v-model="personal.authorized">
+              <label for="personal-referral--website-search" class="radio-button-container">Website or search
+                <input type="radio" id="personal-referral--website-search" name="personal-referral" value="website-search" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
-              <label for="friend" class="radio-button-container">Friend
-                <input type="radio" id="friend" value="friend" v-model="personal.authorized">
+              <label for="personal-referral--friend" class="radio-button-container">Friend
+                <input type="radio" id="personal-referral--friend" name="personal-referral" value="friend" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
-              <label for="campus-abassador" class="radio-button-container">Campus abassador
-                <input type="radio" id="campus-abassador" value="campus-ambassador" v-model="personal.authorized">
+              <label for="personal-referral--campus-abassador" class="radio-button-container">Campus abassador
+                <input type="radio" id="personal-referral--campus-abassador" name="personal-referral" value="campus-ambassador" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
-              <label for="other" class="radio-button-container">Other
-                <input type="radio" id="other" value="other" v-model="personal.authorized">
+              <label for="personal-referral--other" class="radio-button-container">Other
+                <input type="radio" id="personal-referral--other" name="personal-referral" value="other" v-model="personal.referral">
                 <span class="radio-button"></span>
               </label>
             </div>
@@ -164,7 +165,7 @@
 
         <div class="input-container">
           <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
-          <input id="fundingAmount" v-model="fundingAmount">
+          <input id="fundingAmount" class="secondary" v-model="fundingAmount">
         </div>
 
         <div class="input-container">
@@ -188,45 +189,85 @@
 
         <div v-if="reasonForFunding === 'bootCamp'">
           <h2>Boot camp details</h2>
-          <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
-          <input id="bootCamp-name" v-model="bootCamp.name">
 
-          <label for="bootCamp-course" class="input-label">Course name:</label>
-          <input id="bootCamp-course" v-model="bootCamp.course">
+          <div class="apply-form-column-container">
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
+                <input id="bootCamp-name" v-model="bootCamp.name">
+              </div>
+              <div class="input-container">
+                <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
+                <input id="bootCamp-date" v-model="bootCamp.date">
+              </div>
+            </div>
 
-          <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
-          <input id="bootCamp-date" v-model="bootCamp.date">
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="bootCamp-course" class="input-label">Course name:</label>
+                <input id="bootCamp-course" v-model="bootCamp.course">
+              </div>
 
-          <label for="bootCamp-length" class="input-label">Course length:</label>
-          <input id="bootCamp-length" v-model="bootCamp.length">
+              <div class="input-container">
+                <label for="bootCamp-length" class="input-label">Course length:</label>
+                <input id="bootCamp-length" v-model="bootCamp.length">
+              </div>
+            </div>
+          </div>
         </div>
         <div v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your graduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
-          <label for="graduate-name" class="input-label">University name:</label>
-          <input id="graduate-name" v-model="graduate.name">
 
-          <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
-          <input id="graduate-date" v-model="graduate.date">
+          <div class="apply-form-column-container">
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="graduate-name" class="input-label">University name:</label>
+                <input id="graduate-name" v-model="graduate.name">
+              </div>
+              <div class="input-container">
+                <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
+                <input id="graduate-gpa" v-model="graduate.gpa">
+              </div>
+            </div>
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
+                <input id="graduate-date" v-model="graduate.date">
+              </div>
 
-          <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
-          <input id="graduate-gpa" v-model="graduate.gpa">
-
-          <label for="graduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
-          <input id="graduate-majorMinor" v-model="graduate.majorMinor">
+              <div class="input-container">
+                <label for="graduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+                <input id="graduate-majorMinor" v-model="graduate.majorMinor">
+              </div>
+            </div>
+          </div>
         </div>
         <div v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your undergraduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
-          <label for="undergraduate-name" class="input-label">University name:</label>
-          <input id="undergraduate-name" v-model="undergraduate.name">
 
-          <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
-          <input id="undergraduate-date" v-model="undergraduate.date">
+          <div class="apply-form-column-container">
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="undergraduate-name" class="input-label">University name:</label>
+                <input id="undergraduate-name" v-model="undergraduate.name">
+              </div>
+              <div class="input-container">
+                <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
+                <input id="undergraduate-gpa" v-model="undergraduate.gpa">
+              </div>
+            </div>
+            <div class="apply-form-column">
+              <div class="input-container">
+                <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
+                <input id="undergraduate-date" v-model="undergraduate.date">
+              </div>
 
-          <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
-          <input id="undergraduate-gpa" v-model="undergraduate.gpa">
-
-          <label for="undergraduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
-          <input id="undergraduate-majorMinor" v-model="undergraduate.majorMinor">
+              <div class="input-container">
+                <label for="undergraduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+                <input id="undergraduate-majorMinor" v-model="undergraduate.majorMinor">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div slot="page3">

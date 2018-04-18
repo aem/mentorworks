@@ -20,6 +20,10 @@
     padding: ($spacing-base - 2px) ($spacing-medium - 2px);
   }
 
+  &:disabled {
+    opacity: 0.3;
+  }
+
   &:hover {
     box-shadow: 2px -2px 0 2px $white;
   }

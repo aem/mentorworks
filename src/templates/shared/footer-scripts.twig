@@ -6,7 +6,8 @@
   Vue.component('apply_form', {
   template: "#apply_form",
   props: {
-    steps: {}
+    steps: {},
+    validateRequiredFields: {}
   },
   data () {
     return {
@@ -59,7 +60,7 @@
       if (this.currentStep > 0) {
         this.currentStep--;
       }
-    },
+    }
   },
   });
 
@@ -68,56 +69,56 @@
     data() {
       return {
         personal: {
-          name: "",
-          phone: "",
-          linkedinProfile: "",
+          name: null,
+          phone: null,
+          linkedinProfile: null,
           authorized: null,
-          email: "",
-          methodOfContact: "",
-          otherProfSite: ""
+          email: null,
+          methodOfContact: null,
+          otherProfSite: null
         },
-        referral: "",
-        fundingAmount: "",
-        reasonForFunding: "",
+        referral: null,
+        fundingAmount: null,
+        reasonForFunding: null,
         undergraduate: {
-          name: "",
-          date: "",
-          gpa: "",
-          majorMinor: ""
+          name: null,
+          date: null,
+          gpa: null,
+          majorMinor: null
         },
         graduate: {
-          name: "",
-          date: "",
-          gpa: "",
-          majorMinor: ""
+          name: null,
+          date: null,
+          gpa: null,
+          majorMinor: null
         },
         bootCamp: {
-          name: "",
-          course: "",
-          date: "",
-          length: ""
+          name: null,
+          course: null,
+          date: null,
+          length: null
         },
         freeResponse: {
-          extracurriculars: "",
-          workExperience: "",
-          lifeDifficulty: "",
-          careerInterests: ""
+          extracurriculars: null,
+          workExperience: null,
+          lifeDifficulty: null,
+          careerInterests: null
         },
         references: [
           {
-            name: "",
-            email: "",
-            phone: ""
+            name: null,
+            email: null,
+            phone: null
           },
           {
-            name: "",
-            email: "",
-            phone: ""
+            name: null,
+            email: null,
+            phone: null
           },
           {
-            name: "",
-            email: "",
-            phone: ""
+            name: null,
+            email: null,
+            phone: null
           },
         ],
         attachments: {
@@ -152,6 +153,14 @@
       };
     },
     methods: {
+      validateRequiredFields(currentStep) {
+        return false;
+
+        if (currentStep == 1) {
+          return this.personal.name == null || this.personal.phone == null || this.personal.email == null || this.personal.methodOfContact == null || this.personal.authorized == null;
+        }
+
+      }
     },
   });
 

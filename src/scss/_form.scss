@@ -1,24 +1,3 @@
-.form-input-container {
-  display: flex;
-  max-width: $container-width-medium;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-
-  & + .form-input-container {
-    margin-top: $spacing-medium;
-  }
-
-  .form-input-small {
-    width: 33.333%;
-  }
-
-  small {
-    display: block;
-    margin-top: $spacing-xxs;
-  }
-}
-
 input,
 select,
 textarea {
@@ -32,12 +11,15 @@ textarea {
 
 input {
   border-bottom: 2px solid $light-slate-gray;
+}
 
-  &.secondary {
-    padding-left: $spacing-xs;
-    padding-right: $spacing-xs;
-    border-radius: $border-radius-medium;
-  }
+input.secondary,
+textarea {
+  padding-left: $spacing-xs;
+  padding-right: $spacing-xs;
+  border-radius: $border-radius-medium;
+  box-shadow: inset 0 1px 3px 0 $light-slate-gray;
+  border-bottom: 0;
 }
 
 input::placeholder {
@@ -85,19 +67,16 @@ label {
   border-radius: 50%;
 }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
 .radio-button:after {
   content: '';
   position: absolute;
   display: none;
 }
 
-/* Show the indicator (dot/circle) when checked */
 .radio-button-container input:checked ~ .radio-button:after {
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
 .radio-button-container .radio-button:after {
   top: 4px;
   left: 4px;
