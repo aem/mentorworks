@@ -1,6 +1,4 @@
 .section.stats-wrapper {
-  // TODO: fix this!
-  // padding: $spacing-medium;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -10,27 +8,6 @@
   .stat {
     flex: 0 1 300px;
   }
-
-  // @media (max-width: 900px) {
-  //   flex-flow: column nowrap;
-
-  //   .stat {
-  //     max-width: 50%;
-  //     align-self: flex-start;
-  //   }
-
-  //   .stat:nth-child(even) {
-  //     align-self: flex-end;
-  //   }
-  // }
-
-  // @media (max-width: 600px) {
-  //   align-items: center;
-
-  //   .stat {
-  //     max-width: 100%;
-  //   }
-  // }
 
   .number-wrapper {
     height: 250px;
