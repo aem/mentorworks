@@ -1,5 +1,6 @@
 .button {
   padding: 12px 32px;
+  background: transparent;
   border: 2px solid $white;
   border-radius: $border-radius-base;
   appearance: none;
@@ -35,5 +36,10 @@
     &:hover {
       box-shadow: 2px -2px 0 2px $light-slate-gray;
     }
+  }
+
+  &.--ghost {
+    border: 2px solid $ocean-green;
+    color: $ocean-green;
   }
 }
