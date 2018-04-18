@@ -43,4 +43,9 @@
   .apply-form-column {
     width: calc(50% - #{$spacing-medium});
   }
+
+  input {
+    display: block;
+    width: 100%;
+  }
 }

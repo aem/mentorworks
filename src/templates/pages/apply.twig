@@ -1,0 +1,292 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+  <div id="apply-form"></div>
+
+  <script type="text/x-template" id="apply_form">
+  <div class="apply_form">
+    <div class="apply_form__steps" v-if="!isSlot0">
+      <div class="apply_form__steps__progress" :style="{width: progressBarWidth}"></div>
+    </div>
+    <form class="apply_form__body container">
+      <div class="apply_form__body__step">
+        <slot :name="currentSlot"></slot>
+      </div>
+      <div class="apply_form__body__actions">
+        <button
+          v-if="backEnabled"
+          class="button --ghost --small"
+          type="button"
+          @click="goBack()">
+          Previous
+        </button>
+        <button
+          v-if="currentStep != steps.length - 1"
+          class="button --ghost --small"
+          type="button"
+          @click="goNext()">
+          <span v-html="nextButtonText"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</script>
+
+<script type="text/x-template" id="apply">
+  <div>
+    <apply_form
+      :steps="steps">
+      <div slot="page0">
+        {% include 'hero.twig' with {'component': {
+          mw_hero_image: {
+            mw_hero_headline: post.get_field("mw_apply_hero").mw_apply_hero_headline
+          }
+        }} %}
+
+        <section>
+          <h2>{{post.get_field("mw_apply_what_youll_need_headline")}}</h2>
+          {% for item in post.get_field("mw_apply_what_youll_need") %}
+            <div>
+              <h3>{{item.mw_apply_what_youll_need_headline}}</h3>
+              <p>{{item.mw_apply_what_youll_need_copy}}</p>
+            </div>
+          {% endfor %}
+        </section>
+
+        <section>
+          <h2>{{post.get_field("mw_apply_our_promise").mw_apply_our_promise_headline}}</h2>
+          <p>{{post.get_field("mw_apply_our_promise").mw_apply_our_promise_copy}}</p>
+        </section>
+
+        <section>
+          <h2>{{post.get_field("mw_apply_cta_headline")}}</h2>
+        </section>
+      </div>
+      <div slot="page1">
+        <h2>Overview</h2>
+
+        <div class="apply-form-column-container">
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="personal-fullName" class="input-label">Full name:</label>
+              <input id="personal-fullName" v-model="personal.name">
+            </div>
+
+            <div class="input-container">
+              <label for="personal-phone" class="input-label">Phone number:</label>
+              <input id="personal-phone" v-model="personal.phone">
+            </div>
+
+            <div class="input-container">
+              <label for="personal-linkedin" class="input-label">LinkedIn Profile (optional):</label>
+              <input id="personal-linkedin" v-model="personal.linkedinProfile">
+            </div>
+
+            <div class="input-container">
+              <label for="personal-authorized" class="input-label input-label-question">Are you authorized to work in the US while in school or after graduation?</label>
+              <p>Do not answer yes for OPT (F1 visa), temporary, DACA, or on campus work authorization.</p>
+              <div class="radio-button-row-container">
+                <label for="yes" class="radio-button-container">Yes
+                  <input type="radio" id="yes" value="true" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="no" class="radio-button-container">No
+                  <input type="radio" id="no" value="false" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="apply-form-column">
+            <div class="input-container">
+              <label for="personal-email" class="input-label">Email address:</label>
+              <input id="personal-email" v-model="personal.email">
+            </div>
+
+            <div class="input-container">
+              <label for="personal-contactMethod" class="input-label">Preferred method of contact:</label>
+              <div class="radio-button-row-container">
+                <label for="email" class="radio-button-container">Email
+                  <input type="radio" id="email" value="email" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="call" class="radio-button-container">Call
+                  <input type="radio" id="call" value="call" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+                <label for="text" class="radio-button-container">Text
+                  <input type="radio" id="text" value="text" v-model="personal.authorized">
+                  <span class="radio-button"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="input-container">
+              <label for="personal-profSite" class="input-label">Other professional site (optional):</label>
+              <input id="personal-profSite" v-model="personal.otherProfSite">
+            </div>
+
+            <div class="input-container">
+              <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
+
+              <label for="facebook" class="radio-button-container">Facebook
+                <input type="radio" id="facebook" value="facebook" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="on-campus-presentation" class="radio-button-container">On-campus presentation
+                <input type="radio" id="on-campus-presentation" value="on-campus-presentation" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="website-search" class="radio-button-container">Website or search
+                <input type="radio" id="website-search" value="website" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="friend" class="radio-button-container">Friend
+                <input type="radio" id="friend" value="friend" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="campus-abassador" class="radio-button-container">Campus abassador
+                <input type="radio" id="campus-abassador" value="campus-ambassador" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+              <label for="other" class="radio-button-container">Other
+                <input type="radio" id="other" value="other" v-model="personal.authorized">
+                <span class="radio-button"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div slot="page2">
+        <h2>Your education</h2>
+
+        <div class="input-container">
+          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need? We provide between $3,000 - $25,000.</label>
+          <input id="fundingAmount" v-model="fundingAmount">
+        </div>
+
+        <div class="input-container">
+          <label for="reasonForFunding" class="input-label input-label-question">What do you need funding for?</label>
+
+          <div class="radio-button-row-container">
+            <label for="undergraduate" class="radio-button-container">Undergraduate education
+              <input type="radio" id="undergraduate" value="undergraduate" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+            <label for="graduate" class="radio-button-container">Graduate education
+              <input type="radio" id="graduate" value="graduate" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+            <label for="bootCamp" class="radio-button-container">Boot camp
+              <input type="radio" id="bootCamp" value="bootCamp" v-model="reasonForFunding">
+              <span class="radio-button"></span>
+            </label>
+          </div>
+        </div>
+
+        <div v-if="reasonForFunding === 'bootCamp'">
+          <h2>Boot camp details</h2>
+          <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
+          <input id="bootCamp-name" v-model="bootCamp.name">
+
+          <label for="bootCamp-course" class="input-label">Course name:</label>
+          <input id="bootCamp-course" v-model="bootCamp.course">
+
+          <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
+          <input id="bootCamp-date" v-model="bootCamp.date">
+
+          <label for="bootCamp-length" class="input-label">Course length:</label>
+          <input id="bootCamp-length" v-model="bootCamp.length">
+        </div>
+        <div v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+          <h2>Your graduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
+          <label for="graduate-name" class="input-label">University name:</label>
+          <input id="graduate-name" v-model="graduate.name">
+
+          <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
+          <input id="graduate-date" v-model="graduate.date">
+
+          <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
+          <input id="graduate-gpa" v-model="graduate.gpa">
+
+          <label for="graduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+          <input id="graduate-majorMinor" v-model="graduate.majorMinor">
+        </div>
+        <div v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+          <h2>Your undergraduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
+          <label for="undergraduate-name" class="input-label">University name:</label>
+          <input id="undergraduate-name" v-model="undergraduate.name">
+
+          <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
+          <input id="undergraduate-date" v-model="undergraduate.date">
+
+          <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
+          <input id="undergraduate-gpa" v-model="undergraduate.gpa">
+
+          <label for="undergraduate-majorMinor" class="input-label">Major &amp; Minor, if applicable:</label>
+          <input id="undergraduate-majorMinor" v-model="undergraduate.majorMinor">
+        </div>
+      </div>
+      <div slot="page3">
+        <h2>Your achievements</h2>
+        <label for="freeResponse-extracurriculars" class="input-label input-label-question">Highlight what you’ve done outside of classes. List any leadership positions here as well.</label>
+        <textarea id="freeResponse-extracurriculars" v-model="freeResponse.extracurriculars"></textarea>
+
+        <label for="freeResponse-workExperience" class="input-label input-label-question">Please list any significant work or military experience.</label>
+        <textarea id="freeResponse-workExperience" v-model="freeResponse.workExperience"></textarea>
+
+        <h2>Your experience</h2>
+        <label for="freeResponse-lifeDifficulty" class="input-label input-label-question">Briefy describe a significant difficulty in your life that you had to overcome (up to 100 words).</label>
+        <textarea id="freeResponse-lifeDifficulty" v-model="freeResponse.lifeDifficulty"></textarea>
+
+        <label for="freeResponse-careerInterests" class="input-label input-label-question">Please list up to three careers that you interested in pursuing and why you are interested in pursuing them (up to 100 words).</label>
+        <textarea id="freeResponse-careerInterests" v-model="freeResponse.careerInterests"></textarea>
+      </div>
+      <div slot="page4">
+        <h2>References</h2>
+        <p>List three professional references. These can be professors, coaches, or other adults who know your strengths, but should not be friends or family.</p>
+        <p>You must notify your references that you are listing them, but they do not need to write a letter. We will reach out to them shortly.</p>
+        <div v-for="(n, i) in 3">
+          <h3>Reference <span v-html="i + 1"></span></h3>
+
+          <label for="reference{{i}}-name" class="input-label">Full name:</label>
+          <input id="reference{{i}}-name" v-model="references[i].name">
+
+          <label for="reference{{i}}-email" class="input-label">Email address:</label>
+          <input id="reference{{i}}-email" v-model="references[i].email">
+
+          <label for="reference{{i}}-phone" class="input-label">Phone number:</label>
+          <input id="reference{{i}}-phone" v-model="references[i].phone">
+        </div>
+      </div>
+      <div slot="page5">
+        <h2>Attachments</h2>
+        <p>You’re almost done! Just add the finishing touches.</p>
+
+        <div>
+          <h3>Resume</h3>
+          <p>Your resume must be a PDF. If you have a word document, save as a PDF.</p>
+        </div>
+        <div>
+          <h3>Transcript</h3>
+          <p>This can be official or unofficial. If it’s unofficial, note that you will need to provide the official version if accepted into MentorWorks.</p>
+        </div>
+        <div>
+          <h3>Identification document</h3>
+          <p>We accept driver’s license, passport, state ID, or college/university-issued ID.</p>
+        </div>
+        <div>
+          <h3>Financial Aid document (optional)</h3>
+          <p>Demonstrate your financial need with your school or program’s financial aid package. If you choose not to attach a document at this time, note that you will eventually need to prove your financial need.</p>
+        </div>
+      </div>
+      <div slot="page6">
+
+      </div>
+    </apply_form>
+  </div>
+</script>
+
+{% endblock %}

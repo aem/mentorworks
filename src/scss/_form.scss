@@ -22,17 +22,20 @@
 input,
 select,
 textarea {
-  padding: 12px;
-  border: 1px solid $dark-gray;
-  border-radius: $border-radius-base;
-  padding: 12px;
+  padding: $spacing-xxs 0;
+  border: 0;
   font-size: $font-size-base;
-  box-sizing: border-box;
   appearance: none;
+  outline: 0;
+  color: $slate-gray;
+}
+
+input {
+  border-bottom: 2px solid $light-slate-gray;
 }
 
 input::placeholder {
-  color: #a5a5a5;
+  color: $slate-gray;
 }
 
 select {
