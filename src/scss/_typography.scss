@@ -21,28 +21,39 @@ p {
 
 h1 {
   margin: 0;
-  font-size: $font-size-xxxxl;
   font-family: $font-family-headers;
   font-weight: normal;
+  line-height: $line-height-medium;
 
-  @include tablet() {
-    font-size: $font-size-xxl;
-  }
+  @include poly-fluid-sizing('font-size', (
+    768px: $font-size-xxl,
+    1280px: $font-size-xxxxl
+  ));
+
+  @include poly-fluid-sizing('margin-bottom', (
+    1100px: 12px,
+    1280px: $spacing-small
+  ));
 }
 
 h2 {
-  margin: 0 0 $spacing-medium 0;
-  font-size: $font-size-xxxl;
+  margin: 0;
   font-family: $font-family-headers;
   font-weight: normal;
 
-  @include tablet() {
-    font-size: $font-size-xl;
-  }
+  @include poly-fluid-sizing('font-size', (
+    768px: $font-size-xl,
+    1280px: $font-size-xxl
+  ));
+
+  @include poly-fluid-sizing('margin-bottom', (
+    1100px: 12px,
+    1280px: $spacing-small
+  ));
 }
 
 h3 {
-  margin: ($spacing-base * 1.6) 0 0 0;
+  margin: 0;
   font-size: $font-size-large;
   font-family: $font-family-headers;
   font-weight: normal;
@@ -59,6 +70,8 @@ h5 {
   color: $slate-gray;
   font-family: $font-family-body;
   font-size: $font-size-base;
+  font-weight: normal;
+  line-height: 1.667;
 }
 
 h6 {

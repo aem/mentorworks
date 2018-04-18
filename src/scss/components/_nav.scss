@@ -1,39 +1,78 @@
 .global-navigation {
   @include tablet() {
     display: none;
+    opacity: 0;
+    transition: opacity 1s;
 
     .mobile-menu--open & {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      background-color: $digital-black;
+      padding-top: 100px;
+      background: $transparent-white;
+
       position: fixed;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
+      opacity: 1;
     }
   }
 }
 
 .global-navigation-menu-icon {
+  width: 35px;
+  height: 35px;
   appearance: none;
-  background-image: url('svg/menu.svg');
-  background-color: transparent;
   border: 0;
-  width: 32px;
-  height: 20px;
+  cursor: pointer;
 
-  @include tablet() {
-    .mobile-menu--open & {
-      position: fixed;
-      right: $spacing-large;
-      background-image: url('svg/close.svg');
-      width: 26px;
-      height: 26px;
-      z-index: 11;
-    }
+  .mobile-menu--open & {
+    width: 28px;
+    height: 28px;
+    position: fixed;
+    right: 23px;
+    top: 16px;
+    z-index: 11;
+  }
+
+  g {
+    transition: all 0.3s;
+  }
+
+  .bar {
+    fill: $lightest-slate-gray;
+  }
+
+  .bar-shadow {
+    fill: none;
+    stroke: $ocean-green;
+  }
+
+  .top-bar {
+    transform: translate(0 7.5px);
+  }
+
+  .middle-bar {
+    transform: translate(0 15.5px);
+  }
+
+  .bottom-bar {
+    transform: translate(0 23.5px);
+  }
+
+  .top-bar.rotated {
+    transform: rotate(45deg) translate(0 17.5px);
+    transform-origin: center center;
+  }
+
+  .middle-bar.rotated {
+    opacity: 0;
+  }
+
+  .bottom-bar.rotated {
+    transform: rotate(-45deg) translate(0 17.5px);
+    transform-origin: center center;
   }
 
   @include desktop() {
@@ -42,8 +81,10 @@
 }
 
 .global-navigation-link {
+  padding: 8px 16px;
   color: $digital-black;
   text-decoration: none;
+  font-size: 1.4rem;
 
   & + .global-navigation-link {
     margin-left: $spacing-medium;
@@ -51,20 +92,20 @@
 
   @include tablet() {
     .mobile-menu--open & {
-      color: $white;
+      color: $digital-black;
       margin-left: 0;
+      font-family: $font-family-headers;
       font-size: $font-size-large;
-      margin-bottom: $spacing-medium;
+      line-height: 3.6rem;
+      padding: 12px 0;
+      border-bottom: 2px solid $ocean-green;
+      text-align: left;
+      margin-left: $spacing-medium;
     }
 
     .mobile-menu--open &.button {
       padding: 0;
     }
-  }
-
-  &.button {
-    border: 2px solid $ocean-green;
-    color: $ocean-green;
   }
 }
 

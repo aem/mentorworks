@@ -1,39 +1,43 @@
 {% block html_head_container %}
-
-{% include 'html-header.twig' %}
-	{% block head %}
-	{% endblock %}
-	</head>
-{% endblock %}
-
-	<body class="{{body_class}}" data-template="base.twig">
-		{% block header %}
-			<header id="header" class="header">
-				{% include 'header.twig' %}
-			</header>
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" {{site.language_attributes}}> <![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" {{site.language_attributes}}> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" {{site.language_attributes}}>
+<!--<![endif]-->
+	<head>
+		{% include 'html-header.twig' %}
+			{% block head %}
+			{% endblock %}
 		{% endblock %}
-
-		<section id="content" role="main" class="content-wrapper">
-			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="wrapper {{sidebar_class}}">
-				{% block content %}
-					Sorry, no content
+	</head>
+	<body class="{{body_class}}" data-template="base.twig">
+		<div id="app">
+			{% block header %}
+				{% include 'header.twig' %}
+			{% endblock %}
+			<section id="content" role="main" class="content-wrapper">
+				{% if title %}<h1>{{title}}</h1>{% endif %}
+				<div class="wrapper {{sidebar_class}}">
+					{% block content %}
+						Sorry, no content
+					{% endblock %}
+				</div>
+				{% if sidebar %}
+					<aside class="layout-sidebar">
+						{{sidebar}}
+					</aside>
+				{% endif %}
+			</section>
+			{% include 'email-signup.twig' %}
+			{% block footer %}
+				<footer id="footer" class="footer">
+					{% include 'footer.twig' %}
+				</footer>
 				{% endblock %}
 			</div>
-			{% if sidebar %}
-				<aside class="layout-sidebar">
-					{{sidebar}}
-				</aside>
-			{% endif %}
-		</section>
-
-		{% block footer %}
-			<footer id="footer" class="footer">
-				{% include 'footer.twig' %}
-			</footer>
 			{{ function('wp_footer') }}
-		{% endblock %}
-
-		{% include 'footer-scripts.twig' %}
+			{% include 'footer-scripts.twig' %}
 	</body>
 </html>

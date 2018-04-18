@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="245" viewBox="0 0 140 245">
-    <g fill="none" fill-rule="evenodd" font-family="AdellePE, Adelle PE" font-size="300">
+<svg xmlns="http://www.w3.org/2000/svg" width="142" height="246" viewBox="0 0 142 246">
+    <g fill="none" fill-rule="evenodd" font-size="300">
         <text fill="#71808B" fill-opacity=".1" transform="translate(-11 -128)">
-            <tspan x="10.05" y="349">$</tspan>
+            <tspan x="12.05" y="350">$</tspan>
         </text>
         <text fill="#FFF" stroke="#419F8E" stroke-width=".3" opacity=".5" transform="translate(-11 -128)">
             <tspan x=".05" y="339">$</tspan>

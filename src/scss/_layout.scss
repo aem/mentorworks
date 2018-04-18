@@ -4,6 +4,17 @@ body {
   font-size: 62.5%;
   -ms-text-size-adjust: 62.5%;
   -webkit-text-size-adjust: 62.5%;
+  // Fixes bug with mix-blend-mode in Chrome 58+
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=711955
+  background: white;
+  // Renders fonts akin to the mockups with a slightly lighter
+  // weight in Blink and Webkit
+  -webkit-font-smoothing: antialiased;
+}
+
+// TODO: simplify content tags and such
+#content {
+  padding-top: 72px; // TODO: change this based on responsive size
 }
 
 .container {

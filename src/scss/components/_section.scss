@@ -1,22 +1,4 @@
-.section {
-  // TODO: what should the side spacing be?
-  padding: $spacing-xl $spacing-base $spacing-medium $spacing-base;
-  text-align: center;
-  box-sizing: border-box;
-
-  &:first-child {
-    padding: ($spacing-base * 5.8) 0;
-  }
-
-  &:nth-child(odd) {
-    background: $light-gray;
-  }
-
-  &:nth-child(even) {
-    background: $white;
-  }
-
-  .section-cta {
-    margin: $spacing-medium 0;
-  }
+.section:not(.hero) {
+  padding: $spacing-xl 0 0 0;
+  background: white;
 }
