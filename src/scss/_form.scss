@@ -39,6 +39,20 @@ label {
   margin-bottom: $spacing-xxs;
 }
 
+.input-label {
+  font-size: $font-size-large;
+  font-family: $font-family-headers;
+}
+
+.form-column-container {
+  display: flex;
+  justify-content: space-between;
+
+  .form-column {
+    width: calc(50% - #{$spacing-medium});
+  }
+}
+
 .input-hint {
   display: block;
   color: $slate-gray;

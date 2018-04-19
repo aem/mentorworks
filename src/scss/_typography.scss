@@ -5,19 +5,9 @@ body {
 }
 
 p {
-  max-width: $container-width-base;
-  margin: 0 auto $spacing-medium auto;
   color: $slate-gray;
   font-size: $font-size-base;
   line-height: $line-height-medium;
-
-  &.large-text {
-    font-size: $font-size-medium;
-
-    @include tablet() {
-      font-size: $font-size-base;
-    }
-  }
 }
 
 h1 {

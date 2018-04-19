@@ -1,10 +1,10 @@
 .button {
-  padding: 12px 32px;
+  padding: $spacing-base $spacing-medium;
   background: transparent;
-  border: 2px solid $white;
+  border: $border-size-base solid $white;
   border-radius: $border-radius-base;
   appearance: none;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
 
   display: inline-flex;
   justify-content: center;
@@ -14,7 +14,6 @@
 
   font-size: $font-size-base;
   text-decoration: none;
-  letter-spacing: 0.6px;
   color: $white;
 
   @media (min-width: 1280px) {
@@ -26,7 +25,7 @@
   }
 
   &:hover {
-    box-shadow: 2px -2px 0 2px $white;
+    box-shadow: $button-shadow-hover $white;
   }
 
   &.--hero {
@@ -39,12 +38,12 @@
     border: none;
 
     &:hover {
-      box-shadow: 2px -2px 0 2px $light-slate-gray;
+      box-shadow: $button-shadow-hover $light-slate-gray;
     }
   }
 
   &.--ghost {
-    border: 2px solid $ocean-green;
+    border: $border-size-base solid $ocean-green;
     color: $ocean-green;
   }
 }

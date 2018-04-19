@@ -1,1 +1,7 @@
-{{ function('do_shortcode', component.mw_contact_form.mw_contact_form_id) }}
+{% set form = component.mw_contact_form %}
+
+<section class="container">
+  <h2>{{ form.mw_contact_form_section_headline }}</h2>
+  <p>{{ form.mw_contact_form_section_copy }}</p>
+  {{ form.mw_contact_form_id|shortcodes }}
+</section>

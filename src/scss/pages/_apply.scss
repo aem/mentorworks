@@ -22,11 +22,6 @@
 }
 
 .apply_form {
-  .input-label {
-    font-size: $font-size-large;
-    font-family: $font-family-headers;
-  }
-
   .input-label-question {
     color: $slate-gray;
     font-family: $font-family-body;
@@ -40,15 +35,6 @@
   textarea {
     display: block;
     width: 100%;
-  }
-}
-
-.apply-form-column-container {
-  display: flex;
-  justify-content: space-between;
-
-  .apply-form-column {
-    width: calc(50% - #{$spacing-medium});
   }
 }
 

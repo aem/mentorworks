@@ -54,15 +54,23 @@ $container-width-base: 480px;
 $container-width-medium: $container-width-base * 2;
 $container-width-large: $container-width-base * 2.5;
 
+// Font weights
+$font-weight-base: 400;
+$font-weight-semibold: 500;
+
 // Media queries
 $phone-width: 540px;
 $tablet-width: 768px;
+
+// Borders
+$border-size-base: 2px;
 
 // Border Radii
 $border-radius-base: 2px;
 $border-radius-medium: $border-radius-base * 2;
 
 // Miscellaneous
+$button-shadow-hover: 2px -2px 0 2px;
 $stats-font-size: 6.666rem;
 $stats-font-size-tablet: 5rem;
 $percent-font-size: 16.666rem;
