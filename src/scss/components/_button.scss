@@ -13,12 +13,16 @@
   text-decoration: none;
   color: $white;
 
-  &:disabled {
-    opacity: 0.3;
-  }
-
   &:hover {
     box-shadow: $button-shadow-hover $white;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+
+    &:hover {
+      box-shadow: none !important;
+    }
   }
 
   &.--hero {
