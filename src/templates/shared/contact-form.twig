@@ -1,7 +1,7 @@
 {% set form = component.mw_contact_form %}
 
-<section class="container">
+<div class="section container">
   <h2>{{ form.mw_contact_form_section_headline }}</h2>
-  <p>{{ form.mw_contact_form_section_copy }}</p>
+  <p class="large-text max-width-paragraph">{{ form.mw_contact_form_section_copy }}</p>
   {{ form.mw_contact_form_id|shortcodes }}
-</section>
+</div>
