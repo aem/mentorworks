@@ -38,12 +38,14 @@ $font-family-quotes: 'Bitter', serif;
 
 // Spacing
 $spacing-base: 20px;
+$spacing-xxxs: $spacing-base * 0.25; // 5px
 $spacing-xxs: $spacing-base * 0.5; // 10px
 $spacing-xs: $spacing-base * 0.75; // 15px
 $spacing-small: $spacing-base * 1.5; // 30px
 $spacing-medium: $spacing-base * 2; // 40px
 $spacing-large: $spacing-base * 3; // 60px
 $spacing-xl: $spacing-base * 4; // 80px
+$spacing-xxl: $spacing-base * 8; // 160px
 
 // Line heights
 $line-height-single: 1;

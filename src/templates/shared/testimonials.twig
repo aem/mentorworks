@@ -1,1 +1,12 @@
 {% set testimonials = component.mw_testimonials %}
+
+<div class="testimonials-slider container">
+  {% for item in testimonials %}
+    <div class="testimonials-slider-entry">
+      <div class="testimonials-slider-entry-content-container">
+        <p class="large-text">{{item.mw_testimonial_copy}}</p>
+        <p class="large-text">- {{item.mw_testimonial_credit}}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>

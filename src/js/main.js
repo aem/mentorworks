@@ -9,6 +9,12 @@
       slidesToShow: 3,
       accessibility: false,
     });
+    $('.testimonials-slider').slick({
+      slidesToShow: 1,
+      accessibility: false,
+      dots: true,
+      infinite: true,
+    });
   });
 })(jQuery);
 

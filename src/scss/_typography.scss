@@ -8,6 +8,14 @@ p {
   color: $slate-gray;
   font-size: $font-size-base;
   line-height: $line-height-medium;
+
+  &.large-text {
+    font-size: $font-size-large;
+
+    @include tablet() {
+      font-size: $font-size-base;
+    }
+  }
 }
 
 h1 {

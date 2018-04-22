@@ -1,0 +1,41 @@
+.testimonials-slider {
+  padding: $spacing-xxl 0;
+
+  .testimonials-slider-entry {
+    position: relative;
+
+    .testimonials-slider-entry-content-container {
+      max-width: 600px;
+      padding-left: $spacing-xl;
+
+      @include tablet() {
+        max-width: 450px;
+        margin: $spacing-base auto;
+        padding-left: 0;
+      }
+    }
+
+    &::before {
+      content: '';
+      background-image: url('svg/left-quote.svg');
+      background-size: contain;
+      width: 60px;
+      height: 52px;
+      position: absolute;
+
+      @include tablet() {
+        position: static;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @include tablet() {
+    padding: $spacing-medium 0;
+  }
+
+  @include phone() {
+    padding: $spacing-base 0;
+  }
+}
