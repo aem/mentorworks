@@ -90,7 +90,7 @@
     }
   }
 
-  &:nth-of-type(even) {
+  &.left-side {
     @include desktop() {
       .big-circle {
         left: -18vw;
@@ -106,7 +106,7 @@
     }
   }
 
-  &:nth-of-type(odd) {
+  &.right-side {
     @include desktop() {
       .big-circle {
         right: -18vw;

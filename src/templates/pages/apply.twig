@@ -40,6 +40,7 @@
       <div slot="page0">
         {% include 'hero.twig' with {'component': {
           mw_hero_image: {
+            mw_hero_orientation: hero.mw_apply_hero_orientation,
             mw_hero_color: hero.mw_apply_hero_color,
             mw_hero_image: {
               url: hero.mw_apply_hero_image.url
