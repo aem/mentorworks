@@ -1,27 +1,33 @@
 {% extends "base.twig" %}
 
 {% block content %}
-  <div class="hero inverted-hero">
-    <h1>Frequently Asked Questions</h1>
-  </div>
-
+  {% include 'hero.twig' with {'component': {
+            mw_hero_image: {
+              mw_hero_headline: post.title
+            }
+          }} %}
   {% for term in faqs %}
-    <div class="faq-section">
+    <div class="faq-section{% if loop.index == 1 %} show{% endif %}">
       <div class="faq-section-header">
         <div class="container">
-          <h2>{{term[0]}}</h2>
-          <img src="{{site.theme.link}}/svg/minus.svg">
+          <div class="faq-section-header-copy">{{term[0]}}</div>
+          <div class="show-hide-icon" faq-section-toggle>
+            <img class="icon-minus" src="{{site.theme.link}}/svg/minus.svg">
+            <img class="icon-plus" src="{{site.theme.link}}/svg/plus.svg">
+          </div>
         </div>
       </div>
 
-      {% for faq in term[1] %}
-        <div class="faq-entry container">
-          <p>{{faq.post_title}}</p>
-          <div class="faq-entry-content">
-            <p>{{faq.post_content}}</p>
+      <div class="faq-entry-container">
+        {% for faq in term[1] %}
+          <div class="faq-entry container">
+            <h3>{{faq.post_title}}</h3>
+            <div class="faq-entry-content">
+              {{faq.post_content|wpautop}}
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
   {% endfor %}
 {% endblock %}

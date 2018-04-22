@@ -15,6 +15,11 @@
       dots: true,
       infinite: true,
     });
+    $('[faq-section-toggle]').on('click', function() {
+      $(this)
+        .parents('.faq-section')
+        .toggleClass('show');
+    });
   });
 })(jQuery);
 
