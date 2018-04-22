@@ -16,6 +16,10 @@ p {
       font-size: $font-size-base;
     }
   }
+
+  &.max-width-paragraph {
+    max-width: 600px;
+  }
 }
 
 h1 {

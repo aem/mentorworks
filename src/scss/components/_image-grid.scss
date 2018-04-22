@@ -1,15 +1,19 @@
-.image-grid {
-  width: $container-width-medium;
-  margin: auto;
-  padding-top: $spacing-small;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.image-row-layout {
+  .images {
+    display: flex;
+    flex-wrap: wrap;
 
-  .image {
-    width: 160px;
-    height: 41px;
-    margin: 0 $spacing-medium $spacing-medium $spacing-medium;
-    background-color: $dark-gray;
+    .image {
+      width: 33.333%;
+      padding: $spacing-small $spacing-small $spacing-small 0;
+
+      @include tablet() {
+        width: 50%;
+      }
+
+      @include phone() {
+        width: auto;
+      }
+    }
   }
 }
