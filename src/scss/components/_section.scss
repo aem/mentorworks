@@ -1,4 +1,12 @@
 .section:not(.hero) {
   padding: $spacing-xl 0;
   background: $white;
+
+  &.--ocean-green {
+    background-color: transparentize($ocean-green, 0.9);
+
+    h2 {
+      color: $genoa;
+    }
+  }
 }

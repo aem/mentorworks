@@ -1,1 +1,14 @@
 {% set layout = component.mw_image_copy_layout %}
+{% set layout_direction = layout.mw_image_copy_layout_direction %}
+
+<div class="section image-copy-layout {{component.mw_component_bg_color}} {{layout_direction}}">
+  <div class="container">
+    <div class="image">
+      <img src="{{TimberImage(layout.mw_image_copy_layout_image).src}}">
+    </div>
+    <div class="copy">
+      <h2>{{layout.mw_image_copy_layout_section_headline}}</h2>
+      {{layout.mw_image_copy_layout_copy}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.image-copy-layout {
+  .container {
+    align-items: center;
+    display: flex;
+
+    @include phone() {
+      display: block;
+    }
+  }
+
+  .image {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .image,
+  .copy {
+    width: 50%;
+    padding: $spacing-base;
+  }
+
+  &.image-right {
+    .image {
+      order: 1;
+    }
+  }
+}
