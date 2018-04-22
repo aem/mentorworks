@@ -29,10 +29,6 @@
   &.--filled {
     background: $genoa;
     border: none;
-
-    &:hover {
-      box-shadow: $button-shadow-hover $light-slate-gray;
-    }
   }
 
   &.--ghost {
