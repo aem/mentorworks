@@ -12,9 +12,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-// TODO: simplify content tags and such
+* {
+  box-sizing: border-box;
+}
+
 #content {
-  padding-top: 72px; // TODO: change this based on responsive size
+  padding-top: 72px;
 }
 
 .container {

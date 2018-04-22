@@ -5,8 +5,11 @@
   <section class="content">
     <h1>{{ hero.mw_hero_headline }}</h1>
     <div class="subtitle">{{ hero.mw_hero_subheadline }}</div>
-    <a href="{{ hero.mw_hero_cta_link }}" class="button">
-      {{ hero.mw_hero_cta_copy }}
-    </a>
+
+    {% if hero.mw_hero_cta_copy and hero.mw_hero_cta_link %}
+      <a href="{{ hero.mw_hero_cta_link }}" class="button">
+        {{ hero.mw_hero_cta_copy }}
+      </a>
+    {% endif %}
   </section>
 </section>

@@ -1,11 +1,10 @@
 .section.hero {
-  height: 500px; // TODO what should this be? use vw?
+  height: 550px;
   position: relative;
   overflow: hidden;
   background-size: cover;
 
   .big-circle {
-    box-sizing: border-box;
     padding: 0 $spacing-xl;
     width: 70vw;
     height: 70vw;
@@ -48,7 +47,6 @@
   .content {
     width: 42vw;
     height: 100%;
-    box-sizing: border-box;
     align-self: center;
     display: flex;
     flex-flow: column nowrap;

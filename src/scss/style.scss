@@ -38,11 +38,13 @@ Version: 1.0.0
 @import 'components/slick';
 @import 'components/statistics';
 @import 'components/email-signup';
+@import 'components/above-sock-disclaimer';
 
 // Pages: Import every page that has its own specific styles
 @import 'pages/blog';
 @import 'pages/faq';
 @import 'pages/single';
+@import 'pages/apply';
 
 // Vendor: Third-party libraries
 @import 'vendor/slick';
