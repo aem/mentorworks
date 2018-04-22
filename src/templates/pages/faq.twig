@@ -1,5 +1,7 @@
 {% extends "base.twig" %}
 
+{% set references = post.get_field("mw_faq_references") %}
+
 {% block content %}
   {% include 'hero.twig' with {'component': {
             mw_hero_image: {
@@ -30,4 +32,9 @@
       </div>
     </div>
   {% endfor %}
+
+  <div class="above-sock-disclaimer">
+    <h4>{{references.mw_faq_references_headline}}</h4>
+    {{references.mw_faq_references_copy}}
+  </div>
 {% endblock %}
