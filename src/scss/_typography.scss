@@ -79,9 +79,11 @@ h5 {
 }
 
 h6 {
+  margin: 0;
   color: $slate-gray;
   font-family: $font-family-body;
   font-size: $font-size-small;
+  font-weight: normal;
 }
 
 small {

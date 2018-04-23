@@ -1,7 +1,11 @@
 {% block content %}
   <article class="tease">
-    <div class="tease-image"></div>
+    <div class="tease-image" style="background-image: url('{{post.thumbnail.src}}');">
+      <div class="ribbon {{post.terms('category')[0]|lower|replace(' ', '-')}}">
+        {{post.terms('category')[0]}}
+      </div>
+    </div>
     <h3 class="tease-title">{{post.post_title}}</h3>
-    <p class="tease-date">{{post.post_date}}</p>
+    <h6 class="tease-date">{{post.post_date|date('n.j.y')}}</h6>
   </article>
 {% endblock %}

@@ -1,60 +1,43 @@
-.blog-index-section {
-  margin-top: $spacing-xl;
-  margin-bottom: $spacing-xl;
-
-  .blog-index-section-title {
-    margin-bottom: $spacing-large;
-  }
-
-  .blog-posts-grid-see-more-link {
-    color: $dark-gray;
-    display: inline-block;
-    margin-top: $spacing-base;
-    text-decoration: none;
-  }
-}
-
-.blog-index-featured-post {
-  display: flex;
-
-  .blog-index-featured-post-image {
-    width: 450px;
-    height: 297px;
-    background-color: $light-gray;
-    margin-right: $spacing-medium;
-  }
-
-  .blog-index-featured-post-title {
-    font-size: $font-size-large;
-  }
-
-  .blog-index-featured-post-date {
-    color: $dark-gray;
-    margin-top: 0;
-  }
-}
-
-.blog-posts-grid {
+.posts-grid {
   display: flex;
   justify-content: space-between;
 
-  .slick-list {
-    margin: 0 -$spacing-small;
-  }
-
   .tease {
-    margin: 0 $spacing-small;
+    position: relative;
+    width: calc(33.333% - #{$spacing-medium});
 
-    .tease-image {
-      width: 100%;
-      height: 201px;
-      background-color: $light-gray;
-      margin-bottom: $spacing-base;
+    .ribbon {
+      position: absolute;
+      top: $spacing-small;
+      left: -($spacing-small);
+      color: $white;
+      padding: $spacing-xxxs $spacing-base;
+      font-family: $font-family-headers;
+      border-radius: $border-radius-base;
+
+      @include ribbon-color('mentor-spotlight', $pastel-green, $ocean-green);
+      @include ribbon-color('featured-content', $froly, #bc7464);
+      @include ribbon-color('in-the-news', $ocean-green, #2f7e6f);
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: $spacing-base solid transparent;
+        border-right: 0 solid transparent;
+        border-top: $spacing-xxs solid;
+        position: absolute;
+        bottom: -($spacing-xxs);
+        left: 0;
+      }
     }
 
-    .tease-date {
-      color: $dark-gray;
-      margin-top: 0;
+    .tease-image {
+      display: block;
+      height: 201px;
+      margin-bottom: $spacing-xs;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 }
