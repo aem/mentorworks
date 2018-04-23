@@ -1,0 +1,9 @@
+.stylized-number-list-entry {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-large;
+
+  .number-icon {
+    margin-right: $spacing-medium;
+  }
+}
