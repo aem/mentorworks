@@ -15,6 +15,7 @@
 
   &:hover {
     box-shadow: $button-shadow-hover $white;
+    color: inherit;
   }
 
   &:disabled {
