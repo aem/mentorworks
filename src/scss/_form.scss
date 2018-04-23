@@ -122,3 +122,17 @@ label {
   border-radius: 50%;
   background: $pastel-green;
 }
+
+// Styles related to Contact Form 7 plugin
+.wpcf7-form {
+  span.wpcf7-not-valid-tip {
+    font-family: $font-family-body;
+    font-size: $font-size-xxs;
+    color: $slate-gray;
+    margin-top: $spacing-xxs;
+  }
+
+  .wpcf7-not-valid {
+    border-bottom-color: $froly;
+  }
+}
