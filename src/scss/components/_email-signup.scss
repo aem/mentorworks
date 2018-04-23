@@ -1,8 +1,6 @@
 .email-signup {
-  width: 100%;
-  padding: 24px 0;
+  padding: $spacing-medium 0;
   display: flex;
-  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   background: $pastel-green;
@@ -14,11 +12,8 @@
   }
 
   input[type='text'] {
-    width: 280px;
-    height: 45px;
-    margin: $spacing-base;
-    border: none;
+    width: 360px;
+    margin: 0 $spacing-small;
     line-height: $line-height-medium;
-    font-size: $font-size-base;
   }
 }

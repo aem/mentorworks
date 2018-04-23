@@ -35,6 +35,7 @@
   &.--filled {
     background: $genoa;
     border: none;
+    padding: $spacing-xxs $spacing-base;
 
     &:hover {
       color: $white;
