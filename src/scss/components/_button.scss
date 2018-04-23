@@ -16,6 +16,8 @@
   text-decoration: none;
   color: $white;
 
+  cursor: pointer;
+
   @media (min-width: 1280px) {
     padding: ($spacing-base - 2px) ($spacing-medium - 2px);
   }
@@ -45,5 +47,9 @@
   &.--ghost {
     border: $border-size-base solid $ocean-green;
     color: $ocean-green;
+
+    &:hover {
+      box-shadow: $button-shadow-hover $ocean-green;
+    }
   }
 }
