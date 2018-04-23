@@ -12,6 +12,7 @@
   font-size: $font-size-base;
   text-decoration: none;
   color: $white;
+  outline: 0;
 
   &:hover {
     box-shadow: $button-shadow-hover $white;
