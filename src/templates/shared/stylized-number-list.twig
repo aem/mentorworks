@@ -6,7 +6,7 @@
     <p class="large-text max-width-paragraph">{{list.mw_stylized_number_list_section_copy}}</p>
     <div class="form-column-container">
       {% for entry in list.mw_stylized_number_list_entries %}
-        {% if loop.index == 1 or loop.index % 4 == 0 %}
+        {% if loop.index == 1 or loop.index % 3 == 0 %}
           <div class="form-column">
         {% endif %}
           <div class="stylized-number-list-entry">
@@ -16,7 +16,7 @@
               <p>{{entry.mw_stylized_number_list_entry_copy}}</p>
             </div>
           </div>
-        {% if loop.index % 3 == 0 %}
+        {% if loop.index % 2 == 0 %}
           </div>
         {% endif %}
       {% endfor %}

@@ -5,5 +5,14 @@
 
   .number-icon {
     margin-right: $spacing-medium;
+
+    @include tablet() {
+      margin-right: 0;
+    }
+  }
+
+  @include tablet() {
+    text-align: center;
+    display: block;
   }
 }
