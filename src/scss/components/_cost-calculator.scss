@@ -1,0 +1,167 @@
+// TODO: change everything in this file to variables!
+
+.calculator-container {
+  width: 100%;
+  min-height: 1500px;
+  overflow: hidden;
+}
+
+.section.calculator {
+  // TODO calc($container-width-large + ($spacing-medium * 2))
+  max-width: 1280px;
+  margin: auto;
+  // padding: $spacing-medium;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+
+  h1,
+  .sub-headline {
+    max-width: 800px;
+    text-align: center;
+    align-self: center;
+  }
+
+  .monthly-payments {
+    margin: $spacing-medium;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .monthly-figure-container {
+      height: 324px;
+      margin: $spacing-medium;
+      flex: 0 1 408px;
+      position: relative;
+      z-index: 1;
+
+      .monthly-figure {
+        width: 100%;
+        height: 100%;
+        padding: $spacing-medium;
+        box-sizing: border-box;
+        position: absolute;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: space-between;
+
+        h2,
+        p {
+          margin: 0;
+        }
+
+        &::after {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          content: '';
+          z-index: -1;
+          right: -($spacing-base);
+          top: -($spacing-base);
+        }
+
+        &.--outline {
+          border: 3px solid rgba(65, 159, 142, 0.3);
+          background: white;
+
+          &::after {
+            background: #f7f8f9;
+          }
+        }
+
+        &.--shadow {
+          background: #f7f8f9;
+
+          .number {
+            color: $slate-gray;
+          }
+
+          &::after {
+            border: 3px solid rgba(65, 159, 142, 0.3);
+            background: white;
+          }
+        }
+      }
+    }
+  }
+
+  .isa-loan-comparison {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    display: relative;
+    margin: $spacing-medium;
+
+    .compare {
+      flex: 1 0 300px;
+      margin: $spacing-medium;
+
+      h2 {
+        text-align: center;
+      }
+    }
+
+    b {
+      // TODO: make this more generic
+      color: $ocean-green;
+    }
+  }
+}
+
+.interactive-payments-wrapper {
+  margin: $spacing-medium;
+  width: 600px;
+  height: 400px;
+  // max-width: 800px;
+  align-self: flex-start;
+}
+
+.additional-graphs {
+  // Resolves Flexbox responsive issues: chart wouldn't shrink when this shrinks
+  min-width: 0; // TODO?
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between; // TODO
+
+  // &:after {
+  //   content: "";
+  //   justify-content: center;
+  // }
+
+  .defer-payments-wrapper,
+  .monthly-cap-wrapper {
+    // flex-grow: 1;
+    max-width: 500px;
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    margin: $spacing-medium;
+    padding: $spacing-medium;
+    // background: red;
+    border: solid 3px rgba(65, 159, 142, 0.3);
+  }
+}
+
+.prepayment-wrapper {
+  width: 600px;
+}
+
+// TODO: add the spacing to the footer
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// Prevent FOUC (flash of unrendered* content)
+[v-cloak] {
+  display: none !important;
+}

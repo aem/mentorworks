@@ -1,0 +1,122 @@
+{% verbatim %}
+  <!-- TODO: there's still a FOCU! How do I eliminate it!?-->
+  <style type="text/css">
+    /* Prevent a 'flash of unstyled content' */
+    .no-fouc {
+      display: none;
+    }
+  </style>
+  <div id="calculator" class="calculator-container">
+    <transition name="fade">
+      <div class="section calculator no-fouc" v-if="loaded">  
+        <h1>Understanding the Numbers</h1>
+        <p class="sub-headline">
+          This calculator is an estimate of your income share rate and is not final. 
+          Your final Income Share rate will be disclosed before you sign.
+        </p>
+        <div class="monthly-payments">
+          <div class="monthly-figure-container">
+            <div class="monthly-figure --outline">
+              <h2>MentorWorks ISA</h2>
+              <div class="number">{{ isa.rate }}</div>
+              <p>of your income</p>
+            </div>
+            <div class="monthly-figure-backdrop --shadow"></div>
+          </div>
+          <div class="monthly-figure-container">
+            <div class="monthly-figure --shadow">
+              <h2>Student Loans</h2>
+              <div class="number">{{ loan.payment }}</div>
+              <p>monthly payment ({{ loan.rate }} interest)</p>
+            </div>
+            <div class="monthly-figure-backdrop --outline"></div>
+          </div>
+        </div>
+        <div class="isa-loan-comparison">
+          <div class="compare">
+            <h2>ISAs</h2>
+            <p>
+              Total payment caps at
+              <b>{{ isa.totalCap }}</b>
+              and never accumulates interest.
+            </p>
+            <p>Monthly payment caps at
+              <b>{{ isa.monthlyCap }}</b>
+            </p>
+            <p>
+              Your obligation ends after
+              <b>{{ isa.obligationYears }}</b>, regardless of how much you’ve paid back.
+            </p>
+          </div>
+          <div class="compare">
+            <h2>Loans</h2>
+            <p>
+              Total payment is a minimum of
+              <b>{{ loan.totalMinimum }}</b>. Unpaid interest will accumulate and add to total payments due.
+            </p>
+            <p>
+              There is
+              <b>no cap</b>
+              on payments; these payments can increase if you accrue unpaid interest. Payment duration can also be indefinite if payments are not made.
+            </p>
+          </div>
+        </div>
+        <h2>Monthly ISA Payment Calculator</h2>
+        <p>Graph shows expected salary based on field of study. ISA Payments end after 108 months.</p>
+        <div class="interactive-payments-wrapper">
+          <interactive-payments :chart-data="interactivePayments.chartData"
+            :options="interactivePayments.options"></interactive-payments>
+        </div>
+        <div class="additional-graphs">
+          <div class="defer-payments-wrapper">
+            <h2>Defering Payments</h2>
+            <defer-payments :chart-data="deferPayments.chartData"
+              :options="deferPayments.options"></defer-payments>
+            <p>
+                If you salary is below
+                <b>$25,000</b>, you will not be obliged to 
+                make payments, and there is no accrued interest.
+            </p>
+          </div>
+          <div class="monthly-cap-wrapper">
+            <h2>Monthly Cap</h2>
+            <monthly-cap :chart-data="monthlyCapGraph.data"
+              :options="monthlyCapGraph.options"></monthly-cap>
+            <p>
+              No matter how much you end up making, your 
+              monthly payments will never exceed <b>{{ isa.monthlyCap }}</b>.
+            </p>
+          </div>
+        </div>
+        <h2>Prepayment: ISA vs Loan</h2>
+        <p>
+          If you’d like to pay your ISA back early, here’s how much you’d pay by the end of the year to be obligation free.
+        </p>
+        <div class="prepayment-wrapper">
+          <prepayment :chart-data="prepayment.chartData" :options="prepayment.options"></prepayment>
+        </div>
+        <div class="cta-container">
+            <a herf="#" class="button --ghost">Recalculate</a>
+        </div>
+        <h2>Ready to join?</h2>
+        <p>
+          Apply to get funded today. We’ll walk you through what a MentorWorks income share agreement looks like for you.
+        <div class="cta-container">
+          <a herf="/apply" class="button --ghost">Apply</a>
+        </div>
+      </div>
+    </transition>
+  </div>
+  <div class="above-sock-disclaimer">
+    <h4>References</h4>
+    <p>
+      Wolff, H., and K. Moser, 2009, Effects of Networking on Career Success: A Longitudinal Study, Journal of Applied Psychology,
+      94, 196-206.
+    </p>
+    <p>
+      Allen, T. D., L. T. Eby, M. L. Poteet, E. Lentz, and L. Lima, 2004, Career Benefits Associated with Mentoring for Proteges:
+      A Meta-Analysis, 89, 127-136.
+    </p>
+  </div>
+{% endverbatim %}
+<script src="{{site.theme.link}}/js/calculator.js"></script>
