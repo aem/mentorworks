@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{site.theme.link}}/js/main.js"></script>
 
-<script type="text/javascript">
+{# <script type="text/javascript">
   Vue.component('apply_form', {
   template: "#apply_form",
   props: {
@@ -158,7 +158,7 @@
     },
     methods: {
       validateRequiredFields(currentStep) {
-        {# if (currentStep == 1) {
+        if (currentStep == 1) {
           return this.validateJsonObjForNulls(this.personal, ["linkedinProfile", "otherProfSite"]);
         } else if (currentStep == 2) {
           return this.fundingAmount == null || this.validateAllEducationFields();
@@ -166,7 +166,7 @@
           return this.validateJsonObjForNulls(this.freeResponse);
         } else if (currentStep == 4) {
           return this.validateJsonObjForNulls(this.reference0) || this.validateJsonObjForNulls(this.reference1);
-        } #}
+        }
 
         return false;
       },
@@ -197,4 +197,4 @@
     template: `<apply steps="${this.steps}"></apply>`,
     delimiters: ['${', '}']
   });
-</script>
+</script> #}

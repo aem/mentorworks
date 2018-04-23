@@ -12,9 +12,9 @@
   });
 })(jQuery);
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    showMenu: false,
-  },
-});
+// var app = new Vue({
+//   el: '#app',
+//   data: {
+//     showMenu: false,
+//   },
+// });
