@@ -74,3 +74,9 @@ h6 {
 small {
   font-size: $font-size-xs;
 }
+
+.number {
+  font-family: $font-family-headers;
+  font-size: 112px; // TODO: fix this
+  color: $froly;
+}
