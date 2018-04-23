@@ -139,30 +139,36 @@
             <div class="input-container">
               <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
 
-              <label for="personal-referral--facebook" class="radio-button-container">Facebook
-                <input type="radio" id="personal-referral--facebook" name="personal-referral" value="facebook" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--on-campus-presentation" class="radio-button-container">On-campus presentation
-                <input type="radio" id="personal-referral--on-campus-presentation" name="personal-referral" value="on-campus-presentation" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--website-search" class="radio-button-container">Website or search
-                <input type="radio" id="personal-referral--website-search" name="personal-referral" value="website-search" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--friend" class="radio-button-container">Friend
-                <input type="radio" id="personal-referral--friend" name="personal-referral" value="friend" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--campus-abassador" class="radio-button-container">Campus abassador
-                <input type="radio" id="personal-referral--campus-abassador" name="personal-referral" value="campus-ambassador" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--other" class="radio-button-container">Other
-                <input type="radio" id="personal-referral--other" name="personal-referral" value="other" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
+              <div class="form-column-container">
+                <div class="form-column">
+                  <label for="personal-referral--facebook" class="radio-button-container">Facebook
+                    <input type="radio" id="personal-referral--facebook" name="personal-referral" value="facebook" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--on-campus-presentation" class="radio-button-container">On-campus presentation
+                    <input type="radio" id="personal-referral--on-campus-presentation" name="personal-referral" value="on-campus-presentation" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--website-search" class="radio-button-container">Website or search
+                    <input type="radio" id="personal-referral--website-search" name="personal-referral" value="website-search" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--friend" class="radio-button-container">Friend
+                    <input type="radio" id="personal-referral--friend" name="personal-referral" value="friend" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                </div>
+                <div class="form-column">
+                  <label for="personal-referral--campus-abassador" class="radio-button-container">Campus abassador
+                    <input type="radio" id="personal-referral--campus-abassador" name="personal-referral" value="campus-ambassador" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--other" class="radio-button-container">Other
+                    <input type="radio" id="personal-referral--other" name="personal-referral" value="other" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,10 +176,13 @@
       <div slot="page2">
         <h2>Your education</h2>
 
-        <div class="input-container">
-          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
-          <input id="fundingAmount" class="secondary" v-model="fundingAmount">
-          <span class="input-hint">We provide between $3,000 - $25,000.</span>
+        <div class="form-column-container">
+          <div class="form-column">
+            <div class="input-container">
+              <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
+              <input id="fundingAmount" v-model="fundingAmount">
+            </div>
+          </div>
         </div>
 
         <div class="input-container">
@@ -398,14 +407,24 @@
         </div>
       </div>
       <div slot="page6">
-        <div class="container">
-          <img class="apply-form-balloons" src="{{site.theme.link}}/gif/balloons.gif">
-          <h2>Congrats</h2>
-          <p>We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
-          <h2>Stay connected while you wait</h2>
-          {% for item in recent_blog_posts %}
-            {% include 'tease-post.twig' with { 'post': item } %}
-          {% endfor %}
+        <div class="container container-large">
+          <div class="form-column-container align-center">
+            <div class="form-column">
+              <img class="apply-form-balloons" src="{{site.theme.link}}/gif/balloons.gif">
+            </div>
+            <div class="form-column">
+              <h2>Congrats!</h2>
+              <p class="large-text">We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
+            </div>
+          </div>
+          <div class="apply-form-success-blogs">
+            <h2>Stay connected while you wait</h2>
+            <div class="posts-grid">
+              {% for post in recent_blog_posts %}
+                {% include 'tease-post.twig' %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </apply_form>
