@@ -1,13 +1,10 @@
 .footer {
-  display: flex;
-  flex-flow: column nowrap;
   padding: $spacing-medium $spacing-xl;
   background: $slate-gray;
   color: $white;
 
   .footer-main {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     margin: 0 0 $spacing-medium 0;
@@ -19,17 +16,15 @@
 
       .logo-icon {
         height: 40px;
-        margin-right: 12px;
+        margin-right: $spacing-xxs;
       }
     }
 
     .footer-nav {
       display: flex;
-      flex-flow: row wrap;
-      font-size: 16px;
 
       .nav-link {
-        margin: 20px;
+        margin: $spacing-base;
         flex: 1 0;
         text-decoration: none;
         color: $white;
@@ -38,27 +33,24 @@
 
     .footer-social-media {
       display: flex;
-      flex-flow: row nowrap;
 
       .social-media-icon {
-        width: 24px;
-        height: 24px;
-        margin-left: 12px;
+        width: $footer-social-media-icon-size;
+        height: $footer-social-media-icon-size;
+        margin-left: $spacing-xxs;
       }
     }
   }
 
   .footer-divider {
-    width: 100%;
-    height: 2px;
+    height: $border-size-base;
     background: $white;
   }
 
   .footer-attributions {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: space-between;
-    font-size: $font-size-xs;
+    font-size: $font-size-xxs;
 
     .scout-byline {
       text-decoration: none;
@@ -72,7 +64,7 @@
   }
 
   .footer-disclaimer {
-    font-size: $font-size-xs;
+    font-size: $font-size-xxs;
     line-height: $line-height-medium;
     margin: $spacing-base 0;
   }

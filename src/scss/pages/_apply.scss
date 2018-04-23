@@ -1,8 +1,7 @@
 .apply_form__steps {
   list-style: none;
   height: 20px;
-  background-color: $white;
-  box-shadow: 0 2px 4px 0 $shadow-light;
+  background-color: $lightest-slate-gray;
   padding: 0;
   margin: 0;
 
@@ -27,10 +26,6 @@
     font-family: $font-family-body;
   }
 
-  .input-container + .input-container {
-    margin-top: $spacing-medium;
-  }
-
   input,
   textarea {
     display: block;
@@ -43,4 +38,10 @@
   width: 550px;
   height: 548px;
   margin: 0 auto;
+}
+
+.apply-form-success-blogs {
+  h2 {
+    text-align: center;
+  }
 }

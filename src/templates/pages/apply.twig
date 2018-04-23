@@ -3,6 +3,7 @@
 {% set hero = post.get_field("mw_apply_hero") %}
 {% set what_youll_need = post.get_field("mw_apply_what_youll_need") %}
 {% set our_promise = post.get_field("mw_apply_our_promise") %}
+{% set placeholders = post.get_field("mw_apply_placeholders") %}
 
 {% block content %}
   <div id="apply-form"></div>
@@ -78,12 +79,12 @@
           <div class="form-column">
             <div class="input-container">
               <label for="personal-fullName" class="input-label">Full name:</label>
-              <input id="personal-fullName" v-model="personal.name">
+              <input id="personal-fullName" v-model="personal.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="personal-phone" class="input-label">Phone number:</label>
-              <input id="personal-phone" v-model="personal.phone">
+              <input id="personal-phone" v-model="personal.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
 
             <div class="input-container">
@@ -110,7 +111,7 @@
           <div class="form-column">
             <div class="input-container">
               <label for="personal-email" class="input-label">Email address:</label>
-              <input id="personal-email" v-model="personal.email">
+              <input id="personal-email" v-model="personal.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
 
             <div class="input-container">
@@ -139,30 +140,36 @@
             <div class="input-container">
               <label for="personal-referral" class="input-label input-label-question">How did you hear about MentorWorks?</label>
 
-              <label for="personal-referral--facebook" class="radio-button-container">Facebook
-                <input type="radio" id="personal-referral--facebook" name="personal-referral" value="facebook" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--on-campus-presentation" class="radio-button-container">On-campus presentation
-                <input type="radio" id="personal-referral--on-campus-presentation" name="personal-referral" value="on-campus-presentation" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--website-search" class="radio-button-container">Website or search
-                <input type="radio" id="personal-referral--website-search" name="personal-referral" value="website-search" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--friend" class="radio-button-container">Friend
-                <input type="radio" id="personal-referral--friend" name="personal-referral" value="friend" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--campus-abassador" class="radio-button-container">Campus abassador
-                <input type="radio" id="personal-referral--campus-abassador" name="personal-referral" value="campus-ambassador" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
-              <label for="personal-referral--other" class="radio-button-container">Other
-                <input type="radio" id="personal-referral--other" name="personal-referral" value="other" v-model="personal.referral">
-                <span class="radio-button"></span>
-              </label>
+              <div class="form-column-container">
+                <div class="form-column">
+                  <label for="personal-referral--facebook" class="radio-button-container">Facebook
+                    <input type="radio" id="personal-referral--facebook" name="personal-referral" value="facebook" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--on-campus-presentation" class="radio-button-container">On-campus presentation
+                    <input type="radio" id="personal-referral--on-campus-presentation" name="personal-referral" value="on-campus-presentation" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--website-search" class="radio-button-container">Website or search
+                    <input type="radio" id="personal-referral--website-search" name="personal-referral" value="website-search" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--friend" class="radio-button-container">Friend
+                    <input type="radio" id="personal-referral--friend" name="personal-referral" value="friend" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                </div>
+                <div class="form-column">
+                  <label for="personal-referral--campus-abassador" class="radio-button-container">Campus ambassador
+                    <input type="radio" id="personal-referral--campus-abassador" name="personal-referral" value="campus-ambassador" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                  <label for="personal-referral--other" class="radio-button-container">Other
+                    <input type="radio" id="personal-referral--other" name="personal-referral" value="other" v-model="personal.referral">
+                    <span class="radio-button"></span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,10 +177,13 @@
       <div slot="page2">
         <h2>Your education</h2>
 
-        <div class="input-container">
-          <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
-          <input id="fundingAmount" class="secondary" v-model="fundingAmount">
-          <span class="input-hint">We provide between $3,000 - $25,000.</span>
+        <div class="form-column-container">
+          <div class="form-column">
+            <div class="input-container">
+              <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
+              <input id="fundingAmount" v-model="fundingAmount" placeholder="{{placeholders.mw_apply_placeholder_funding_amount}}">
+            </div>
+          </div>
         </div>
 
         <div class="input-container">
@@ -202,23 +212,23 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
-                <input id="bootCamp-name" v-model="bootCamp.name">
+                <input id="bootCamp-name" v-model="bootCamp.name" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_name}}">
               </div>
               <div class="input-container">
                 <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
-                <input id="bootCamp-date" v-model="bootCamp.date">
+                <input id="bootCamp-date" v-model="bootCamp.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
             </div>
 
             <div class="form-column">
               <div class="input-container">
-                <label for="bootCamp-course" class="input-label">Course name:</label>
-                <input id="bootCamp-course" v-model="bootCamp.course">
+                <label for="bootCamp-course" class="input-label">Course name:</label >
+                <input id="bootCamp-course" v-model="bootCamp.course" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_course_name}}">
               </div>
 
               <div class="input-container">
                 <label for="bootCamp-length" class="input-label">Course length:</label>
-                <input id="bootCamp-length" v-model="bootCamp.length">
+                <input id="bootCamp-length" v-model="bootCamp.length" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_course_length}}">
               </div>
             </div>
           </div>
@@ -230,17 +240,17 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="graduate-name" class="input-label">University name:</label>
-                <input id="graduate-name" v-model="graduate.name">
+                <input id="graduate-name" v-model="graduate.name" placeholder="{{placeholders.mw_apply_placeholder_university_name}}">
               </div>
               <div class="input-container">
                 <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
-                <input id="graduate-gpa" v-model="graduate.gpa">
+                <input id="graduate-gpa" v-model="graduate.gpa" placeholder="{{placeholders.mw_apply_placeholder_gpa}}">
               </div>
             </div>
             <div class="form-column">
               <div class="input-container">
                 <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
-                <input id="graduate-date" v-model="graduate.date">
+                <input id="graduate-date" v-model="graduate.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
 
               <div class="input-container">
@@ -257,17 +267,17 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="undergraduate-name" class="input-label">University name:</label>
-                <input id="undergraduate-name" v-model="undergraduate.name">
+                <input id="undergraduate-name" v-model="undergraduate.name" placeholder="{{placeholders.mw_apply_placeholder_university_name}}">
               </div>
               <div class="input-container">
                 <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
-                <input id="undergraduate-gpa" v-model="undergraduate.gpa">
+                <input id="undergraduate-gpa" v-model="undergraduate.gpa" placeholder="{{placeholders.mw_apply_placeholder_gpa}}">
               </div>
             </div>
             <div class="form-column">
               <div class="input-container">
                 <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
-                <input id="undergraduate-date" v-model="undergraduate.date">
+                <input id="undergraduate-date" v-model="undergraduate.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
 
               <div class="input-container">
@@ -303,23 +313,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference0-name" class="input-label">Full name:</label>
-              <input id="reference0-name" v-model="reference0.name">
+              <input id="reference0-name" v-model="reference0.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference0-phone" class="input-label">Phone number:</label>
-              <input id="reference0-phone" v-model="reference0.phone">
+              <input id="reference0-phone" v-model="reference0.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference0-email" class="input-label">Email address:</label>
-              <input id="reference0-email" v-model="reference0.email">
+              <input id="reference0-email" v-model="reference0.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference0-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference0-relationship" v-model="reference0.relationship">
+              <input id="reference0-relationship" v-model="reference0.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
@@ -329,23 +339,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference1-name" class="input-label">Full name:</label>
-              <input id="reference1-name" v-model="reference1.name">
+              <input id="reference1-name" v-model="reference1.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference1-phone" class="input-label">Phone number:</label>
-              <input id="reference1-phone" v-model="reference1.phone">
+              <input id="reference1-phone" v-model="reference1.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference1-email" class="input-label">Email address:</label>
-              <input id="reference1-email" v-model="reference1.email">
+              <input id="reference1-email" v-model="reference1.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference1-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference1-relationship" v-model="reference1.relationship">
+              <input id="reference1-relationship" v-model="reference1.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
@@ -355,23 +365,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference2-name" class="input-label">Full name:</label>
-              <input id="reference2-name" v-model="reference2.name">
+              <input id="reference2-name" v-model="reference2.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference2-phone" class="input-label">Phone number:</label>
-              <input id="reference2-phone" v-model="reference2.phone">
+              <input id="reference2-phone" v-model="reference2.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference2-email" class="input-label">Email address:</label>
-              <input id="reference2-email" v-model="reference2.email">
+              <input id="reference2-email" v-model="reference2.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference2-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference2-relationship" v-model="reference2.relationship">
+              <input id="reference2-relationship" v-model="reference2.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
@@ -398,14 +408,24 @@
         </div>
       </div>
       <div slot="page6">
-        <div class="container">
-          <img class="apply-form-balloons" src="{{site.theme.link}}/gif/balloons.gif">
-          <h2>Congrats</h2>
-          <p>We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
-          <h2>Stay connected while you wait</h2>
-          {% for item in recent_blog_posts %}
-            {% include 'tease-post.twig' with { 'post': item } %}
-          {% endfor %}
+        <div class="container container-large">
+          <div class="form-column-container align-center">
+            <div class="form-column">
+              <img class="apply-form-balloons" src="{{site.theme.link}}/gif/balloons.gif">
+            </div>
+            <div class="form-column">
+              <h2>Congrats!</h2>
+              <p class="large-text">We’ve received your application and will contact you soon. Check your email within 10 business days. Here’s towards your first step into your future career!</p>
+            </div>
+          </div>
+          <div class="apply-form-success-blogs">
+            <h2>Stay connected while you wait</h2>
+            <div class="posts-grid">
+              {% for post in recent_blog_posts %}
+                {% include 'tease-post.twig' %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </apply_form>
