@@ -207,7 +207,7 @@
           </div>
         </div>
 
-        <div v-if="reasonForFunding === 'bootCamp'">
+        <div class="reason-for-funding-container" v-if="reasonForFunding === 'bootCamp'">
           <h2>Boot camp details</h2>
 
           <div class="form-column-container">
@@ -235,7 +235,7 @@
             </div>
           </div>
         </div>
-        <div v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+        <div class="reason-for-funding-container" v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your graduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
 
           <div class="form-column-container">
@@ -262,7 +262,7 @@
             </div>
           </div>
         </div>
-        <div v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+        <div class="reason-for-funding-container" v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your undergraduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
 
           <div class="form-column-container">

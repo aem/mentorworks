@@ -172,11 +172,11 @@
       },
       validateAllEducationFields() {
         if (this.reasonForFunding == "undergraduate") {
-          return this.validateJsonObjForNulls(this.undergraduate);
+          return this.validateJsonObjForNulls(this.undergraduate, ["majorMinor"]);
         } else if (this.reasonForFunding == "graduate") {
-          return this.validateJsonObjForNulls(this.undergraduate) || this.validateJsonObjForNulls(this.graduate);
+          return this.validateJsonObjForNulls(this.undergraduate, ["majorMinor"]) || this.validateJsonObjForNulls(this.graduate, ["majorMinor"]);
         } else if (this.reasonForFunding == "bootCamp") {
-          return this.validateJsonObjForNulls(this.bootCamp);
+          return this.validateJsonObjForNulls(this.bootCamp, ["majorMinor"]);
         } else {
           return false;
         }
