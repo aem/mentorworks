@@ -1,34 +1,25 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<article class="blog-article" id="post-{{post.ID}}">
-		<section class="blog-article2">
-			<header>
-				<h1>{{ post.title }}</h1>
-				<h3>There's supposed to be a subtitle here</h3>
-				<p class="blog-byline">
-					{{ post.author.name }} | {{ post.post_date | date }}
-				</p>
-			</header>
-			<main class="blog-content">
-				{{ post.content }}
-			</main>
-		</section>
-		<footer class="related">
-			<h2>Related {{ post.category }}</h2>
-			<section class="related-posts">
-				{% for post in relatedPosts %}
-					<a href="{{ post.link }}">
-						<section class="related-post">
-							<img class="related-thumbnail" src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" />
-							<h3 class="related-title">{{ post.title }}</h3>
-							<!-- Example date: 3.11.18 -->
-							<p class="related-date">{{ post.post_date | date('n.j.y') }}</p>
-						</section>
-					</a>
-				{% endfor %}
-			</section>
-		</footer>
+	<article class="single-post container" id="post-{{post.ID}}">
+		<header class="single-post-header">
+			<h1>{{ post.title }}</h1>
+			<h3 class="single-post-subtitle">{{post.get_field("mw_post_subtitle")}}</h3>
+			<h6 class="single-post-meta">
+				{{ post.author.name }} | {{ post.post_date | date }}
+			</h6>
+		</header>
+		<main class="single-post-content">
+			{{ post.content }}
+		</main>
 	</article>
-	{% include 'email-signup.twig' %}
+
+	<div class="above-sock-disclaimer">
+		<h2>Related Articles</h2>
+		<div class="posts-grid">
+			{% for post in relatedPosts %}
+				{% include 'tease-post.twig' %}
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
