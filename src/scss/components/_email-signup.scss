@@ -6,7 +6,7 @@
   background: $pastel-green;
   color: $genoa;
 
-  @include tablet() {
+  @include phone() {
     flex-flow: column nowrap;
     padding: $spacing-medium 0;
   }
@@ -15,5 +15,10 @@
     width: 360px;
     margin: 0 $spacing-small;
     line-height: $line-height-medium;
+
+    @include phone() {
+      margin-top: $spacing-base;
+      margin-bottom: $spacing-base;
+    }
   }
 }
