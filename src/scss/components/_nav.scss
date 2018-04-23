@@ -91,6 +91,18 @@
     margin-left: $spacing-small;
   }
 
+  &.current-menu-item {
+    color: $light-digital-black;
+  }
+
+  &.header-menu-home {
+    display: none;
+  }
+
+  &:hover {
+    color: $pastel-green;
+  }
+
   @include tablet() {
     .mobile-menu--open & {
       font-family: $font-family-headers;
@@ -98,6 +110,10 @@
       padding: $spacing-xs 0;
       border-bottom: $border-size-base solid $light-ocean-green;
       margin-left: $spacing-medium;
+
+      &.header-menu-home {
+        display: block;
+      }
     }
 
     .mobile-menu--open &.button {
