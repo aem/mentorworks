@@ -21,7 +21,8 @@ $digital-black: #333333;
 $light-digital-black: rgba($digital-black, 0.2);
 
 // Font sizes
-$font-size-xs: 12px;
+$font-size-xxs: 12px;
+$font-size-xs: 14px;
 $font-size-small: 16px;
 $font-size-base: 18px;
 $font-size-medium: 21px;
@@ -76,3 +77,4 @@ $border-radius-medium: $border-radius-base * 2;
 $box-shadow-light: inset 0 1px 3px 0 $light-slate-gray;
 $button-shadow-hover: 4px -4px 0 0;
 $shadow-light: transparentize($digital-black, 0.7);
+$footer-social-media-icon-size: 24px;

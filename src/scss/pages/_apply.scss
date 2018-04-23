@@ -27,10 +27,6 @@
     font-family: $font-family-body;
   }
 
-  .input-container + .input-container {
-    margin-top: $spacing-medium;
-  }
-
   input,
   textarea {
     display: block;
