@@ -4,10 +4,10 @@
 
 {% block content %}
   {% include 'hero.twig' with {'component': {
-            mw_hero_image: {
-              mw_hero_headline: post.title
-            }
-          }} %}
+    mw_hero_image: {
+      mw_hero_headline: post.title
+    }
+  }} %}
   {% for term in faqs %}
     <div class="faq-section{% if loop.index == 1 %} show{% endif %}">
       <div class="faq-section-header">

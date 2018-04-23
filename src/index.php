@@ -24,7 +24,7 @@ $categories = array('Mentor Spotlight', 'Featured Content', 'In The News');
 foreach($categories as $category):
   $args = array(
     'category_name' => $category,
-    'posts_per_page' => 5
+    'posts_per_page' => 3
   );
   $query = new WP_Query( $args );
   $posts = array();
