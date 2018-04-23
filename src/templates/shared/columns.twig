@@ -2,15 +2,15 @@
 
 <section class="section multi-column-layout">
   <h2>{{ layout.mw_multi_column_layout_section_headline }}</h2>
-  <div class="dual-focus">
+  <div class="column-container">
     {% for column in layout.mw_multi_column_layout_columns %}
-      <section>
+      <div class="column">
         <div class="icon-container">
           <img class="icon" src="{{ column.mw_multi_column_layout_col_icon.url }}">
         </div>
         <h3>{{ column.mw_multi_column_layout_col_headline }}</h3>
         <h5>{{ column.mw_multi_column_layout_col_copy }}</h5>
-      </section>
+      </div>
     {% endfor %}
   </div>
 </section>

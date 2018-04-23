@@ -28,4 +28,8 @@ body {
   &.container-large {
     width: $container-width-large;
   }
+
+  @include tablet() {
+    width: 100%;
+  }
 }

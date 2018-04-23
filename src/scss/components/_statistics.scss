@@ -1,14 +1,4 @@
-.section.stats-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-
-  .stat {
-    flex: 0 1 300px;
-  }
-
+.stats-wrapper {
   .number-wrapper {
     height: 250px;
     position: relative;
@@ -26,11 +16,10 @@
     }
   }
 
-  label {
+  .stats-label {
+    text-align: center;
     max-width: 300px;
-    font-size: 2.4rem;
-    font-family: $font-family-body;
-    line-height: $line-height-medium;
-    color: $slate-gray;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

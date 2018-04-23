@@ -4,49 +4,25 @@
     text-align: center;
   }
 
-  .dual-focus {
-    padding: $spacing-base;
+  .column-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
   }
 
-  section {
-    height: auto;
+  .column {
     max-width: 480px;
     padding: $spacing-base;
     flex: 1 0 324px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
 
     @include tablet() {
       width: 324px;
     }
 
     .icon-container {
-      width: 15vw;
-      height: 15vw;
       max-width: 160px;
       max-height: 160px;
-      min-width: 80px;
-      min-height: 80px;
-      margin: 0 0 $spacing-small 0;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-
-      &.icon-cash {
-        background: $pastel-green;
-      }
-
-      &.icon-handshake {
-        background: $froly;
-      }
-
-      .icon {
-        width: 60%;
-      }
+      margin: 0 auto $spacing-small;
     }
   }
 }

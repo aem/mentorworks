@@ -1,0 +1,16 @@
+{% set layout = component.mw_image_row_layout %}
+
+<div class="section image-row-layout {{component.mw_component_bg_color}}">
+  <div class="container">
+    <h2>{{layout.mw_image_row_layout_section_headline}}</h2>
+    <p class="large-text max-width-paragraph">{{layout.mw_image_row_layout_section_copy}}</p>
+
+    <div class="images">
+      {% for item in layout.mw_image_row_layout_images %}
+        <div class="image">
+          <img src="{{TimberImage(item.mw_image_row_layout_image).src}}">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
