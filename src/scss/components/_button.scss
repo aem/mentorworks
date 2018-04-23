@@ -35,6 +35,10 @@
   &.--filled {
     background: $genoa;
     border: none;
+
+    &:hover {
+      color: $white;
+    }
   }
 
   &.--ghost {
@@ -43,6 +47,7 @@
 
     &:hover {
       box-shadow: $button-shadow-hover $ocean-green;
+      color: $ocean-green;
     }
   }
 }
