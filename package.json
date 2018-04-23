@@ -15,10 +15,13 @@
     "precommit": "lint-staged",
     "deploy": "./bin/deploy.sh",
     "start": "docker-compose start && gulp build && gulp watch",
-    "stop": "docker-compose stop"
+    "stop": "docker-compose stop",
+    "start-proxy":
+      "ws --rewrite '/api/* -> https://calculator.mentorworks.io/$1' --port 4000"
   },
   "devDependencies": {
     "@nuscout/eslint-config": "0.2.1",
+    "@nuscout/prettier-config": "^0.1.2",
     "autoprefixer": "8.2.0",
     "browser-sync": "2.11.1",
     "del": "2.2.0",
@@ -37,6 +40,7 @@
     "gulp-uglify": "1.5.2",
     "gulp-util": "3.0.7",
     "html5-history-api": "4.2.5",
+    "local-web-server": "^2.5.1",
     "merge-stream": "1.0.0",
     "node-sass": "^4.8.3",
     "normalize.css": "3.0.3",
@@ -48,8 +52,5 @@
   },
   "lint-staged": {
     "*.{js,json,css,scss,md}": ["prettier --write", "git add"]
-  },
-  "dependencies": {
-    "@nuscout/prettier-config": "^0.1.2"
   }
 }
