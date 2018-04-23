@@ -117,7 +117,10 @@
     }
 
     .mobile-menu--open &.button {
-      padding: 0;
+      color: inherit;
+      border: 0;
+      box-shadow: none;
+      justify-content: flex-start;
     }
   }
 }
