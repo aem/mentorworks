@@ -13,12 +13,16 @@
   text-decoration: none;
   color: $white;
 
-  &:disabled {
-    opacity: 0.3;
-  }
-
   &:hover {
     box-shadow: $button-shadow-hover $white;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+
+    &:hover {
+      box-shadow: none !important;
+    }
   }
 
   &.--hero {
@@ -29,14 +33,14 @@
   &.--filled {
     background: $genoa;
     border: none;
-
-    &:hover {
-      box-shadow: $button-shadow-hover $light-slate-gray;
-    }
   }
 
   &.--ghost {
     border: $border-size-base solid $ocean-green;
     color: $ocean-green;
+
+    &:hover {
+      box-shadow: $button-shadow-hover $ocean-green;
+    }
   }
 }

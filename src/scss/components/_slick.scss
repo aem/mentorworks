@@ -3,23 +3,94 @@
   position: absolute;
   top: 40%;
   display: block;
-  width: 15px;
-  height: 30px;
+  width: 118px;
+  height: 110px;
   padding: 0;
-  transform: translate(0, -50%);
   cursor: pointer;
   color: transparent;
   border: none;
   outline: none;
-  background: transparent;
+  background: $white;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @include tablet() {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include phone() {
+    display: none !important; // ugly important because of slick slider's dumb CSS
+  }
 }
 
 .slick-prev {
-  left: -30px;
+  left: -$spacing-xxl;
   background-image: url('svg/left-arrow.svg');
+
+  @include tablet() {
+    left: $spacing-base;
+  }
 }
 
 .slick-next {
-  right: -30px;
+  right: -$spacing-xl;
   background-image: url('svg/right-arrow.svg');
+
+  @include tablet() {
+    right: $spacing-base;
+  }
+}
+
+.slick-dots {
+  position: absolute;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  li {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    cursor: pointer;
+
+    button {
+      border: 0;
+      background: transparent;
+      display: block;
+      height: 30px;
+      outline: none;
+      line-height: 0px;
+      font-size: 0px;
+      color: transparent;
+      cursor: pointer;
+      padding: 0 $spacing-xxs;
+
+      &:hover,
+      &:focus {
+        outline: none;
+      }
+
+      &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '\2022';
+        width: $font-size-xxxl;
+        height: $font-size-xxxl;
+        font-size: $font-size-xxxl;
+        text-align: center;
+        color: $light-slate-gray;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
+    &.slick-active button:before {
+      color: $pastel-green;
+    }
+  }
 }

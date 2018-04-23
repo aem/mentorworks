@@ -53,6 +53,10 @@ label {
   }
 }
 
+.input-container {
+  margin-top: $spacing-large;
+}
+
 .input-hint {
   display: block;
   color: $slate-gray;

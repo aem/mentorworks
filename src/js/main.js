@@ -9,6 +9,17 @@
       slidesToShow: 3,
       accessibility: false,
     });
+    $('.testimonials-slider').slick({
+      slidesToShow: 1,
+      accessibility: false,
+      dots: true,
+      infinite: true,
+    });
+    $('[faq-section-toggle]').on('click', function() {
+      $(this)
+        .parents('.faq-section')
+        .toggleClass('show');
+    });
   });
 })(jQuery);
 

@@ -1,6 +1,8 @@
 <?php
 
 $context = Timber::get_context();
+$post = new TimberPost();
+$context['post'] = $post;
 
 $taxonomy = 'faq_categories';
 $terms = get_terms( $taxonomy );
@@ -31,7 +33,6 @@ foreach( $terms as $term) :
 endforeach;
 
 $context['faqs'] = $faqs_by_term;
-
 Timber::render('faq.twig', $context);
 
 

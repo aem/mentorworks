@@ -1,8 +1,12 @@
 {% set hero = component.mw_hero_image %}
+{% set image = hero.mw_hero_image.url %}
 
-<section class="section hero right-side" style="background-image: url('{{ hero.mw_hero_image.url }}')">
+<section class="section hero{% if not image %} no-image{% endif %} {{hero.mw_hero_orientation}}" {% if image %}style="background-image: url('{{ hero.mw_hero_image.url }}')"{% endif %}>
+  {% if image %}
   <div class="big-circle {{ hero.mw_hero_color }}"></div>
-  <section class="content">
+  {% endif %}
+
+  <section{% if image %} class="content"{% endif %}>
     <h1>{{ hero.mw_hero_headline }}</h1>
     <div class="subtitle">{{ hero.mw_hero_subheadline }}</div>
 

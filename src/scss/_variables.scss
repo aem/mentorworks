@@ -38,15 +38,18 @@ $font-family-quotes: 'Bitter', serif;
 
 // Spacing
 $spacing-base: 20px;
+$spacing-xxxs: $spacing-base * 0.25; // 5px
 $spacing-xxs: $spacing-base * 0.5; // 10px
 $spacing-xs: $spacing-base * 0.75; // 15px
 $spacing-small: $spacing-base * 1.5; // 30px
 $spacing-medium: $spacing-base * 2; // 40px
 $spacing-large: $spacing-base * 3; // 60px
 $spacing-xl: $spacing-base * 4; // 80px
+$spacing-xxl: $spacing-base * 8; // 160px
 
 // Line heights
 $line-height-single: 1;
+$line-height-small: 1.3;
 $line-height-medium: 1.5;
 
 // Containers
@@ -71,5 +74,5 @@ $border-radius-medium: $border-radius-base * 2;
 
 // Miscellaneous
 $box-shadow-light: inset 0 1px 3px 0 $light-slate-gray;
-$button-shadow-hover: 2px -2px 0 2px;
+$button-shadow-hover: 4px -4px 0 0;
 $shadow-light: transparentize($digital-black, 0.7);

@@ -1,25 +1,61 @@
 .faq-section {
   .faq-section-header {
-    background-color: $light-gray;
+    border: $border-size-base solid $ocean-green;
     margin-bottom: $spacing-xl;
     padding-top: $spacing-base;
     padding-bottom: $spacing-base;
+    margin: 0 $spacing-xl $spacing-large $spacing-xl;
+
+    .faq-section-header-copy {
+      font-size: $font-size-xxxl;
+    }
 
     .container {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
 
-  .faq-entry {
-    .faq-entry-content {
-      p {
-        color: $dark-gray;
-      }
+  .show-hide-icon {
+    cursor: pointer;
+
+    .icon-minus {
+      display: none;
     }
 
+    .icon-plus {
+      display: block;
+    }
+  }
+
+  &.show {
+    .faq-entry-container {
+      display: block;
+    }
+
+    .show-hide-icon {
+      .icon-minus {
+        display: block;
+      }
+
+      .icon-plus {
+        display: none;
+      }
+    }
+  }
+
+  .faq-entry-container {
+    display: none;
+  }
+
+  .faq-entry {
     & + .faq-entry {
       margin-top: $spacing-medium;
     }
+  }
+
+  & + .faq-section {
+    margin-top: $spacing-medium;
   }
 }

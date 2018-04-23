@@ -8,13 +8,25 @@ p {
   color: $slate-gray;
   font-size: $font-size-base;
   line-height: $line-height-medium;
+
+  &.large-text {
+    font-size: $font-size-large;
+
+    @include tablet() {
+      font-size: $font-size-base;
+    }
+  }
+
+  &.max-width-paragraph {
+    max-width: 600px;
+  }
 }
 
 h1 {
   margin: 0;
   font-family: $font-family-headers;
   font-weight: normal;
-  line-height: $line-height-medium;
+  line-height: $line-height-small;
 
   @include poly-fluid-sizing('font-size', (
     768px: $font-size-xxl,
@@ -55,6 +67,7 @@ h4 {
   margin: 0;
   font-family: $font-family-body;
   font-size: $font-size-medium;
+  font-weight: $font-weight-semibold;
 }
 
 h5 {
