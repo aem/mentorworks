@@ -3,6 +3,7 @@
 {% set hero = post.get_field("mw_apply_hero") %}
 {% set what_youll_need = post.get_field("mw_apply_what_youll_need") %}
 {% set our_promise = post.get_field("mw_apply_our_promise") %}
+{% set placeholders = post.get_field("mw_apply_placeholders") %}
 
 {% block content %}
   <div id="apply-form"></div>
@@ -78,12 +79,12 @@
           <div class="form-column">
             <div class="input-container">
               <label for="personal-fullName" class="input-label">Full name:</label>
-              <input id="personal-fullName" v-model="personal.name">
+              <input id="personal-fullName" v-model="personal.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="personal-phone" class="input-label">Phone number:</label>
-              <input id="personal-phone" v-model="personal.phone">
+              <input id="personal-phone" v-model="personal.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
 
             <div class="input-container">
@@ -110,7 +111,7 @@
           <div class="form-column">
             <div class="input-container">
               <label for="personal-email" class="input-label">Email address:</label>
-              <input id="personal-email" v-model="personal.email">
+              <input id="personal-email" v-model="personal.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
 
             <div class="input-container">
@@ -180,7 +181,7 @@
           <div class="form-column">
             <div class="input-container">
               <label for="fundingAmount" class="input-label input-label-question">How much funding do you need?</label>
-              <input id="fundingAmount" v-model="fundingAmount">
+              <input id="fundingAmount" v-model="fundingAmount" placeholder="{{placeholders.mw_apply_placeholder_funding_amount}}">
             </div>
           </div>
         </div>
@@ -211,23 +212,23 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="bootCamp-name" class="input-label">Bootcamp name:</label>
-                <input id="bootCamp-name" v-model="bootCamp.name">
+                <input id="bootCamp-name" v-model="bootCamp.name" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_name}}">
               </div>
               <div class="input-container">
                 <label for="bootCamp-date" class="input-label">Start date (mm/yyyy):</label>
-                <input id="bootCamp-date" v-model="bootCamp.date">
+                <input id="bootCamp-date" v-model="bootCamp.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
             </div>
 
             <div class="form-column">
               <div class="input-container">
-                <label for="bootCamp-course" class="input-label">Course name:</label>
-                <input id="bootCamp-course" v-model="bootCamp.course">
+                <label for="bootCamp-course" class="input-label">Course name:</label >
+                <input id="bootCamp-course" v-model="bootCamp.course" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_course_name}}">
               </div>
 
               <div class="input-container">
                 <label for="bootCamp-length" class="input-label">Course length:</label>
-                <input id="bootCamp-length" v-model="bootCamp.length">
+                <input id="bootCamp-length" v-model="bootCamp.length" placeholder="{{placeholders.mw_apply_placeholder_bootcamp_course_length}}">
               </div>
             </div>
           </div>
@@ -239,17 +240,17 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="graduate-name" class="input-label">University name:</label>
-                <input id="graduate-name" v-model="graduate.name">
+                <input id="graduate-name" v-model="graduate.name" placeholder="{{placeholders.mw_apply_placeholder_university_name}}">
               </div>
               <div class="input-container">
                 <label for="graduate-gpa" class="input-label">GPA (out of 4.0):</label>
-                <input id="graduate-gpa" v-model="graduate.gpa">
+                <input id="graduate-gpa" v-model="graduate.gpa" placeholder="{{placeholders.mw_apply_placeholder_gpa}}">
               </div>
             </div>
             <div class="form-column">
               <div class="input-container">
                 <label for="graduate-date" class="input-label">Graduation (mm/yyyy):</label>
-                <input id="graduate-date" v-model="graduate.date">
+                <input id="graduate-date" v-model="graduate.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
 
               <div class="input-container">
@@ -266,17 +267,17 @@
             <div class="form-column">
               <div class="input-container">
                 <label for="undergraduate-name" class="input-label">University name:</label>
-                <input id="undergraduate-name" v-model="undergraduate.name">
+                <input id="undergraduate-name" v-model="undergraduate.name" placeholder="{{placeholders.mw_apply_placeholder_university_name}}">
               </div>
               <div class="input-container">
                 <label for="undergraduate-gpa" class="input-label">GPA (out of 4.0):</label>
-                <input id="undergraduate-gpa" v-model="undergraduate.gpa">
+                <input id="undergraduate-gpa" v-model="undergraduate.gpa" placeholder="{{placeholders.mw_apply_placeholder_gpa}}">
               </div>
             </div>
             <div class="form-column">
               <div class="input-container">
                 <label for="undergraduate-date" class="input-label">Graduation (mm/yyyy):</label>
-                <input id="undergraduate-date" v-model="undergraduate.date">
+                <input id="undergraduate-date" v-model="undergraduate.date" placeholder="{{placeholders.mw_apply_placeholder_graduation_date}}">
               </div>
 
               <div class="input-container">
@@ -312,23 +313,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference0-name" class="input-label">Full name:</label>
-              <input id="reference0-name" v-model="reference0.name">
+              <input id="reference0-name" v-model="reference0.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference0-phone" class="input-label">Phone number:</label>
-              <input id="reference0-phone" v-model="reference0.phone">
+              <input id="reference0-phone" v-model="reference0.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference0-email" class="input-label">Email address:</label>
-              <input id="reference0-email" v-model="reference0.email">
+              <input id="reference0-email" v-model="reference0.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference0-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference0-relationship" v-model="reference0.relationship">
+              <input id="reference0-relationship" v-model="reference0.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
@@ -338,23 +339,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference1-name" class="input-label">Full name:</label>
-              <input id="reference1-name" v-model="reference1.name">
+              <input id="reference1-name" v-model="reference1.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference1-phone" class="input-label">Phone number:</label>
-              <input id="reference1-phone" v-model="reference1.phone">
+              <input id="reference1-phone" v-model="reference1.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference1-email" class="input-label">Email address:</label>
-              <input id="reference1-email" v-model="reference1.email">
+              <input id="reference1-email" v-model="reference1.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference1-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference1-relationship" v-model="reference1.relationship">
+              <input id="reference1-relationship" v-model="reference1.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
@@ -364,23 +365,23 @@
           <div class="form-column">
             <div class="input-container">
               <label for="reference2-name" class="input-label">Full name:</label>
-              <input id="reference2-name" v-model="reference2.name">
+              <input id="reference2-name" v-model="reference2.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}">
             </div>
 
             <div class="input-container">
               <label for="reference2-phone" class="input-label">Phone number:</label>
-              <input id="reference2-phone" v-model="reference2.phone">
+              <input id="reference2-phone" v-model="reference2.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}">
             </div>
           </div>
 
           <div class="form-column">
             <div class="input-container">
               <label for="reference2-email" class="input-label">Email address:</label>
-              <input id="reference2-email" v-model="reference2.email">
+              <input id="reference2-email" v-model="reference2.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}">
             </div>
             <div class="input-container">
               <label for="reference2-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference2-relationship" v-model="reference2.relationship">
+              <input id="reference2-relationship" v-model="reference2.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}">
             </div>
           </div>
         </div>
