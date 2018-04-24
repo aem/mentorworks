@@ -13,6 +13,12 @@
       font-family: $font-family-headers;
       font-size: 12rem;
       color: $froly;
+
+      @include tablet() {
+        & + .number {
+          margin-top: $spacing-base;
+        }
+      }
     }
   }
 

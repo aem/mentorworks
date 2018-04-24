@@ -6,6 +6,7 @@
     color: $digital-black;
     position: relative;
     width: calc(33.333% - #{$spacing-medium});
+    margin-bottom: $spacing-medium;
 
     .ribbon {
       position: absolute;
@@ -41,4 +42,12 @@
       background-size: cover;
     }
   }
+}
+
+.alm-btn-wrap {
+  text-align: center;
+}
+
+.alm-load-more-btn.done {
+  display: none;
 }
