@@ -24,9 +24,14 @@ body {
   width: $container-width-medium;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 $spacing-base;
 
   &.container-large {
     width: $container-width-large;
+
+    @include tablet() {
+      width: 100%;
+    }
   }
 
   @include tablet() {

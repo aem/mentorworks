@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-between;
 
+  @include phone() {
+    display: block;
+  }
+
   .tease {
     color: $digital-black;
     position: relative;
@@ -40,6 +44,14 @@
       margin-bottom: $spacing-xs;
       background-repeat: no-repeat;
       background-size: cover;
+    }
+
+    @include tablet() {
+      width: 50%;
+
+      &:last-child {
+        display: none;
+      }
     }
   }
 }
