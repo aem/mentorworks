@@ -44,6 +44,10 @@
       opacity: 1;
     }
 
+    @media screen and (max-width: 1280px) {
+      height: 85vw;
+    }
+
     @include tablet() {
       width: 100%;
       height: 100%;
