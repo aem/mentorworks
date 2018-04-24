@@ -23,7 +23,6 @@
   });
 
   $('body').on('click', '.alm-load-more-btn', function() {
-    // console.log(true);
     $('.ajax-load-more-wrap').ajaxloadmore();
   });
 })(jQuery);
