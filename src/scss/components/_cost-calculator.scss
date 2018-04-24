@@ -6,143 +6,247 @@
   overflow: hidden;
 }
 
-.section.calculator {
-  // TODO calc($container-width-large + ($spacing-medium * 2))
+.calculator {
   max-width: 1280px;
-  margin: auto;
-  // padding: $spacing-medium;
+  margin: 0 auto;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
   justify-content: stretch;
 
-  h1,
-  .sub-headline {
-    max-width: 800px;
-    text-align: center;
-    align-self: center;
+  // TODO use hero from FAQ
+  .intro {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    text-align: left;
+
+    @include poly-fluid-sizing('margin', (
+      320px: $spacing-base,
+      768px: $spacing-medium,
+      1280px: $spacing-xl
+    ));
+
+    p {
+      max-width: 800px;
+    }
   }
 
-  .monthly-payments {
-    margin: $spacing-medium;
+  .isa-loan-comparison {
+    margin: 0 $spacing-medium;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-between; // TODO: how does this look responsive?
 
-    .monthly-figure-container {
-      height: 324px;
-      margin: $spacing-medium;
-      flex: 0 1 408px;
-      position: relative;
-      z-index: 1;
+    // @include tablet() {
+    //   margin: $spacing-base;
+    // }
 
-      .monthly-figure {
-        width: 100%;
-        height: 100%;
-        padding: $spacing-medium;
-        box-sizing: border-box;
-        position: absolute;
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        justify-content: space-between;
+    .compare-item {
+      width: 480px !important; // TODO
+      // max-width: 480px;
+      margin: 0 auto; // Centers items if they wrap to one per row
+      flex: 1 1; // TODO?
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
 
-        h2,
-        p {
-          margin: 0;
-        }
+      @include poly-fluid-sizing('padding', (
+        320px: $spacing-base,
+        768px: $spacing-medium
+      ));
 
-        &::after {
-          width: 100%;
-          height: 100%;
+      .monthly-figure-container {
+        // max-width: 480px;
+        // height: 350px;
+        margin: 0 0 $spacing-large 0;
+        position: relative;
+        text-align: center;
+
+        @include poly-fluid-sizing('height', (
+          320px: 220px,
+          600px: 350px
+        ));
+
+        .monthly-figure {
+          width: calc(100% - #{$spacing-base});
+          height: calc(100% - #{$spacing-base});
+          box-sizing: border-box;
           position: absolute;
-          content: '';
-          z-index: -1;
-          right: -($spacing-base);
-          top: -($spacing-base);
-        }
+          left: 0;
+          bottom: 0;
+          z-index: 2;
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          justify-content: space-between;
 
-        &.--outline {
-          border: 3px solid rgba(65, 159, 142, 0.3);
-          background: white;
+          @include poly-fluid-sizing('padding', (
+            320px: $spacing-base,
+            768px: $spacing-medium
+          ));
 
-          &::after {
-            background: #f7f8f9;
+          h2,
+          p {
+            margin: 0;
           }
         }
 
-        &.--shadow {
+        .monthly-figure-backdrop {
+          width: calc(100% - #{$spacing-base});
+          height: calc(100% - #{$spacing-base});
+          box-sizing: border-box;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        .--outline {
+          border: 3px solid rgba(65, 159, 142, 0.3);
+          background: $white;
+        }
+
+        .--shadow {
           background: #f7f8f9;
 
           .number {
             color: $slate-gray;
           }
-
-          &::after {
-            border: 3px solid rgba(65, 159, 142, 0.3);
-            background: white;
-          }
         }
       }
     }
   }
 
-  .isa-loan-comparison {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    display: relative;
-    margin: $spacing-medium;
-
-    .compare {
-      flex: 1 0 300px;
-      margin: $spacing-medium;
-
-      h2 {
-        text-align: center;
-      }
-    }
-
-    b {
-      // TODO: make this more generic
-      color: $ocean-green;
-    }
+  b {
+    // TODO: make this more generic, use span
+    color: $ocean-green;
   }
 }
 
 .interactive-payments-wrapper {
-  margin: $spacing-medium;
-  width: 600px;
-  height: 400px;
-  // max-width: 800px;
-  align-self: flex-start;
+  align-self: stretch;
+  flex: 1 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  // TODO fix this
+  @include poly-fluid-sizing('margin', (
+    320px: $spacing-base,
+    768px: $spacing-medium,
+    1280px: $spacing-xl
+  ));
+
+  .interactive-chart-wrapper {
+    max-width: 700px;
+    margin: $spacing-base 0;
+    position: relative;
+  }
+
+  .interactive-chart-additional {
+    max-width: 700px;
+    min-height: 140px;
+    padding: $spacing-xxs;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    .interactive-legend {
+      min-width: 250px;
+      flex: 1 0;
+      margin: $spacing-xxs;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+
+      .legend-item {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        color: $slate-gray;
+        font-size: $font-size-small;
+        text-align: left;
+
+        &:not(:last-child) {
+          margin-bottom: $spacing-xxs;
+        }
+
+        .isa-color {
+          width: 53px;
+          height: 36px;
+          background: linear-gradient(to bottom, $pastel-green, $ocean-green);
+        }
+
+        .salary-color {
+          height: 3px;
+          margin: calc((36px - 3px) / 2) 0;
+          background: $froly;
+        }
+
+        .isa-color,
+        .salary-color {
+          width: 53px;
+          margin-right: $spacing-base;
+        }
+      }
+    }
+
+    .interactive-tooltip {
+      width: 280px;
+      margin: $spacing-xxs;
+      padding: $spacing-base;
+      border: 2px solid $froly;
+      border-radius: $border-radius-base;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      background: $white;
+      color: $slate-gray;
+      line-height: $line-height-medium;
+      font-size: $font-size-small;
+    }
+  }
 }
 
 .additional-graphs {
-  // Resolves Flexbox responsive issues: chart wouldn't shrink when this shrinks
-  min-width: 0; // TODO?
-  position: relative;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between; // TODO
 
-  // &:after {
-  //   content: "";
-  //   justify-content: center;
-  // }
+  .additional-graph {
+    max-width: 100%;
+    box-sizing: border-box;
+    @include poly-fluid-sizing('padding', (
+      320px: $spacing-base,
+      768px: $spacing-medium,
+      1280px: $spacing-xl
+    ));
 
-  .defer-payments-wrapper,
-  .monthly-cap-wrapper {
-    // flex-grow: 1;
-    max-width: 500px;
+    .defer-payments-wrapper,
+    .monthly-cap-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      border: solid 3px rgba(65, 159, 142, 0.3);
+      @include poly-fluid-sizing('padding', (
+        320px: $spacing-base,
+        768px: $spacing-medium
+      ));
 
-    display: flex;
-    flex-flow: column nowrap;
+      .defer-payments-chart-wrapper,
+      .monthly-cap-chart-wrapper {
+        max-width: 100%;
+        margin: 0 0 $spacing-base 0;
+        position: relative;
+      }
 
-    margin: $spacing-medium;
-    padding: $spacing-medium;
-    // background: red;
-    border: solid 3px rgba(65, 159, 142, 0.3);
+      p {
+        margin: 0;
+      }
+    }
   }
 }
 
@@ -150,7 +254,7 @@
   width: 600px;
 }
 
-// TODO: add the spacing to the footer
+// TODO: add the spacing to the footer ???
 
 .fade-enter-active,
 .fade-leave-active {
@@ -159,9 +263,4 @@
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-// Prevent FOUC (flash of unrendered* content)
-[v-cloak] {
-  display: none !important;
 }
