@@ -208,7 +208,7 @@
           </div>
         </div>
 
-        <div class="reason-for-funding-container" v-if="reasonForFunding === 'bootCamp'">
+        <div class="section" v-if="reasonForFunding === 'bootCamp'">
           <h2>Boot camp details</h2>
 
           <div class="form-column-container">
@@ -236,7 +236,7 @@
             </div>
           </div>
         </div>
-        <div class="reason-for-funding-container" v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+        <div class="section" v-if="reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your graduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
 
           <div class="form-column-container">
@@ -263,7 +263,7 @@
             </div>
           </div>
         </div>
-        <div class="reason-for-funding-container" v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
+        <div class="section" v-if="reasonForFunding === 'undergraduate' || reasonForFunding === 'graduate' || reasonForFunding === 'bootCamp'">
           <h2>Your undergraduate education<span v-if="reasonForFunding === 'bootCamp'"> (optional)</span></h2>
 
           <div class="form-column-container">
@@ -293,18 +293,23 @@
       </div>
       <div slot="page3">
         <h2>Your achievements</h2>
-        <label for="freeResponse-extracurriculars" class="input-label input-label-question">Highlight what you’ve done outside of classes. List any leadership positions here as well.</label>
-        <textarea id="freeResponse-extracurriculars" v-model="freeResponse.extracurriculars"></textarea>
-
-        <label for="freeResponse-workExperience" class="input-label input-label-question">Please list any significant work or military experience.</label>
-        <textarea id="freeResponse-workExperience" v-model="freeResponse.workExperience"></textarea>
-
-        <h2>Your experience</h2>
-        <label for="freeResponse-lifeDifficulty" class="input-label input-label-question">Briefy describe a significant difficulty in your life that you had to overcome (up to 100 words).</label>
-        <textarea id="freeResponse-lifeDifficulty" v-model="freeResponse.lifeDifficulty"></textarea>
-
-        <label for="freeResponse-careerInterests" class="input-label input-label-question">Please list up to three careers that you interested in pursuing and why you are interested in pursuing them (up to 100 words).</label>
-        <textarea id="freeResponse-careerInterests" v-model="freeResponse.careerInterests"></textarea>
+        <div class="section">
+          <label for="freeResponse-extracurriculars" class="input-label input-label-question">Highlight what you’ve done outside of classes. List any leadership positions here as well.</label>
+          <textarea id="freeResponse-extracurriculars" v-model="freeResponse.extracurriculars"></textarea>
+        </div>
+        <div class="section">
+          <label for="freeResponse-workExperience" class="input-label input-label-question">Please list any significant work or military experience.</label>
+          <textarea id="freeResponse-workExperience" v-model="freeResponse.workExperience"></textarea>
+        </div>
+        <div class="section">
+          <h2>Your experience</h2>
+          <label for="freeResponse-lifeDifficulty" class="input-label input-label-question">Briefy describe a significant difficulty in your life that you had to overcome (up to 100 words).</label>
+          <textarea id="freeResponse-lifeDifficulty" v-model="freeResponse.lifeDifficulty"></textarea>
+        </div>
+        <div class="section">
+          <label for="freeResponse-careerInterests" class="input-label input-label-question">Please list up to three careers that you interested in pursuing and why you are interested in pursuing them (up to 100 words).</label>
+          <textarea id="freeResponse-careerInterests" v-model="freeResponse.careerInterests"></textarea>
+        </div>
       </div>
       <div slot="page4">
         <h2>References</h2>
@@ -337,54 +342,58 @@
           </div>
         </div>
 
-        <h3>Reference 2</h3>
-        <div class="form-column-container">
-          <div class="form-column">
-            <div class="input-container">
-              <label for="reference1-name" class="input-label">Full name:</label>
-              <input id="reference1-name" v-model="reference1.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}" tabindex="5">
+        <div class="section">
+          <h3>Reference 2</h3>
+          <div class="form-column-container">
+            <div class="form-column">
+              <div class="input-container">
+                <label for="reference1-name" class="input-label">Full name:</label>
+                <input id="reference1-name" v-model="reference1.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}" tabindex="5">
+              </div>
+
+              <div class="input-container">
+                <label for="reference1-phone" class="input-label">Phone number:</label>
+                <input id="reference1-phone" v-model="reference1.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}" tabindex="7">
+              </div>
             </div>
 
-            <div class="input-container">
-              <label for="reference1-phone" class="input-label">Phone number:</label>
-              <input id="reference1-phone" v-model="reference1.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}" tabindex="7">
-            </div>
-          </div>
-
-          <div class="form-column">
-            <div class="input-container">
-              <label for="reference1-email" class="input-label">Email address:</label>
-              <input id="reference1-email" v-model="reference1.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}" tabindex="6">
-            </div>
-            <div class="input-container">
-              <label for="reference1-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference1-relationship" v-model="reference1.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}" tabindex="8">
+            <div class="form-column">
+              <div class="input-container">
+                <label for="reference1-email" class="input-label">Email address:</label>
+                <input id="reference1-email" v-model="reference1.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}" tabindex="6">
+              </div>
+              <div class="input-container">
+                <label for="reference1-relationship" class="input-label">Relationship to reference:</label>
+                <input id="reference1-relationship" v-model="reference1.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}" tabindex="8">
+              </div>
             </div>
           </div>
         </div>
 
-        <h3>Reference 3 (optional)</span></h3>
-        <div class="form-column-container">
-          <div class="form-column">
-            <div class="input-container">
-              <label for="reference2-name" class="input-label">Full name:</label>
-              <input id="reference2-name" v-model="reference2.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}" tabindex="9">
+        <div class="section">
+          <h3>Reference 3 (optional)</span></h3>
+          <div class="form-column-container">
+            <div class="form-column">
+              <div class="input-container">
+                <label for="reference2-name" class="input-label">Full name:</label>
+                <input id="reference2-name" v-model="reference2.name" placeholder="{{placeholders.mw_apply_placeholder_full_name}}" tabindex="9">
+              </div>
+
+              <div class="input-container">
+                <label for="reference2-phone" class="input-label">Phone number:</label>
+                <input id="reference2-phone" v-model="reference2.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}" tabindex="11">
+              </div>
             </div>
 
-            <div class="input-container">
-              <label for="reference2-phone" class="input-label">Phone number:</label>
-              <input id="reference2-phone" v-model="reference2.phone" placeholder="{{placeholders.mw_apply_placeholder_phone_number}}" tabindex="11">
-            </div>
-          </div>
-
-          <div class="form-column">
-            <div class="input-container">
-              <label for="reference2-email" class="input-label">Email address:</label>
-              <input id="reference2-email" v-model="reference2.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}" tabindex="10">
-            </div>
-            <div class="input-container">
-              <label for="reference2-relationship" class="input-label">Relationship to reference:</label>
-              <input id="reference2-relationship" v-model="reference2.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}" tabindex="12">
+            <div class="form-column">
+              <div class="input-container">
+                <label for="reference2-email" class="input-label">Email address:</label>
+                <input id="reference2-email" v-model="reference2.email" placeholder="{{placeholders.mw_apply_placeholder_email_address}}" tabindex="10">
+              </div>
+              <div class="input-container">
+                <label for="reference2-relationship" class="input-label">Relationship to reference:</label>
+                <input id="reference2-relationship" v-model="reference2.relationship" placeholder="{{placeholders.mw_apply_placeholder_reference_relationship}}" tabindex="12">
+              </div>
             </div>
           </div>
         </div>
@@ -393,21 +402,25 @@
         <h2>Attachments</h2>
         <p>You’re almost done! Just add the finishing touches.</p>
 
-        <div>
+        <div class="section">
           <h3>Resume</h3>
-          <p>Your resume must be a PDF. If you have a word document, save as a PDF.</p>
+          <p class="large-text max-width-paragraph">Your resume must be a PDF. If you have a word document, save as a PDF.</p>
+          <div class="upload-box">
+            <h3>Drag or upload</h3>
+            <button class="button --ghost">Select a file</button>
+          </div>
         </div>
-        <div>
+        <div class="section">
           <h3>Transcript</h3>
-          <p>This can be official or unofficial. If it’s unofficial, note that you will need to provide the official version if accepted into MentorWorks.</p>
+          <p class="large-text max-width-paragraph">This can be official or unofficial. If it’s unofficial, note that you will need to provide the official version if accepted into MentorWorks.</p>
         </div>
-        <div>
+        <div class="section">
           <h3>Identification document</h3>
-          <p>We accept driver’s license, passport, state ID, or college/university-issued ID.</p>
+          <p class="large-text max-width-paragraph">We accept driver’s license, passport, state ID, or college/university-issued ID.</p>
         </div>
-        <div>
+        <div class="section">
           <h3>Financial Aid document (optional)</h3>
-          <p>Demonstrate your financial need with your school or program’s financial aid package. If you choose not to attach a document at this time, note that you will eventually need to prove your financial need.</p>
+          <p class="large-text max-width-paragraph">Demonstrate your financial need with your school or program’s financial aid package. If you choose not to attach a document at this time, note that you will eventually need to prove your financial need.</p>
         </div>
       </div>
       <div slot="page6">

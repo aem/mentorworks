@@ -148,3 +148,14 @@ label {
     border-bottom-color: $froly;
   }
 }
+
+.upload-box {
+  border: $border-size-small dashed $slate-gray;
+  border-radius: $border-radius-base;
+  text-align: center;
+  padding: $spacing-medium 0;
+
+  .button {
+    margin-top: $spacing-base;
+  }
+}
