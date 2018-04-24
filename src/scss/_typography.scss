@@ -5,16 +5,16 @@ body {
 }
 
 p {
+  margin: 0 0 $spacing-base 0;
   color: $slate-gray;
   font-size: $font-size-base;
   line-height: $line-height-medium;
 
   &.large-text {
-    font-size: $font-size-large;
-
-    @include tablet() {
-      font-size: $font-size-base;
-    }
+    @include poly-fluid-sizing('font-size', (
+      768px: $font-size-base,
+      1280px: $font-size-large
+    ));
   }
 
   &.max-width-paragraph {
@@ -45,6 +45,7 @@ h2 {
   font-weight: normal;
 
   @include poly-fluid-sizing('font-size', (
+    320px: $font-size-large, 
     768px: $font-size-xl,
     1280px: $font-size-xxl
   ));
@@ -90,6 +91,11 @@ small {
 
 .number {
   font-family: $font-family-headers;
-  font-size: 112px; // TODO: fix this
+  // font-size: 112px; // TODO: fix this
   color: $froly;
+
+  @include poly-fluid-sizing('font-size', (
+    320px: $font-size-xxxxl,
+    600px: 112px
+  ));
 }
