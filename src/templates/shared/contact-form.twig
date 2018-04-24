@@ -1,7 +1,7 @@
 {% set form = component.mw_contact_form %}
 {% set id = component.mw_component_id %}
 
-<div{% if id %} id="{{id}}"{% endif %} class="container">
+<div{% if id %} id="{{id}}"{% endif %} class="container section">
   <h2>{{ form.mw_contact_form_section_headline }}</h2>
   <p class="large-text max-width-paragraph">{{ form.mw_contact_form_section_copy }}</p>
   {{ form.mw_contact_form_id|shortcodes }}

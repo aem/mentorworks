@@ -6,21 +6,15 @@
   <div class="container">
     <h2>{{list.mw_stylized_number_list_section_headline}}</h2>
     <p class="large-text max-width-paragraph">{{list.mw_stylized_number_list_section_copy}}</p>
-    <div class="form-column-container">
+    <div class="form-column-container stylized-number-list-container">
       {% for entry in list.mw_stylized_number_list_entries %}
-        {% if loop.index == 1 or loop.index % divider_count == 0 %}
-          <div class="form-column">
-        {% endif %}
-          <div class="stylized-number-list-entry">
-            <img class="number-icon" src="{{site.theme.link}}/svg/numbers/{{loop.index}}.svg">
-            <div>
-              <h3>{{entry.mw_stylized_number_list_entry_headline}}</h3>
-              <p>{{entry.mw_stylized_number_list_entry_copy}}</p>
-            </div>
+        <div class="stylized-number-list-entry">
+          <img class="number-icon" src="{{site.theme.link}}/svg/numbers/{{loop.index}}.svg">
+          <div>
+            <h3>{{entry.mw_stylized_number_list_entry_headline}}</h3>
+            <p>{{entry.mw_stylized_number_list_entry_copy}}</p>
           </div>
-        {% if loop.index % (divider_count - 1) == 0 %}
-          </div>
-        {% endif %}
+        </div>
       {% endfor %}
     </div>
   </div>
