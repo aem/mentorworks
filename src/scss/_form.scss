@@ -14,6 +14,10 @@ input {
 
   &:focus {
     color: $pastel-green;
+
+    &::placeholder {
+      color: transparent;
+    }
   }
 }
 
