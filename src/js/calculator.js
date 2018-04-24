@@ -1,322 +1,294 @@
+// Set sensible styles for all charts
 Chart.defaults.global.defaultFontSize = 12;
 Chart.defaults.global.defaultFontFamily =
   '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif';
 Chart.defaults.global.defaultFontColor = '#71808b';
 
-Chart.Tooltip.positioners.custom = function() {
-  return {
-    x: 0,
-    y: 0,
-  };
+// Create data structure shared across components
+var store = {
+  // Are the graphs ready to display/has the calculator data loaded?
+  loaded: false,
+  // ISA statistics
+  isa: {
+    rate: '',
+    totalCap: '',
+    monthlyCap: '',
+    obligation: '9 years', // TODO: Is this fixed? Variable? From API?
+    incomeThreshold: '',
+  },
+  // Loan statistics
+  loan: {
+    payment: '',
+    rate: '',
+    totalMinimum: '',
+  },
+  // Array of years to graph
+  labels: [],
+  // Interactive graph
+  expectedSalary: [],
+  expectedMonthlyPayments: [],
+  // Tooltip/hover data for interactive graph
+  interactive: {
+    activeDrag: false,
+    showTooltip: false,
+    hoverSalary: '',
+    hoverPayment: '',
+  },
 };
 
-// TODO: need to figure out how all the Vue instances interact with one another...
+// Utility functions
 
-var eventBus = new Vue();
-
-Vue.component('interactive-payments', {
-  extends: VueChartJs.Line,
-  mixins: [VueChartJs.mixins.reactiveProp],
-  props: ['chartData', 'options'],
-  mounted: function() {
-    // eventBus.$on(
-    //   'updateInteractive',
-    //   function(e) {
-    //     this.update();
-    //     // this.refresh();
-    //   }.bind(this)
-    // );
-    this.refresh();
-  },
-  methods: {
-    refresh: function() {
-      // TODO: calculate this based on the max points? idk
-      this.gradient = this.$refs.canvas
-        .getContext('2d')
-        .createLinearGradient(0, 100, 0, 600);
-      this.gradient.addColorStop(0, '#68d992');
-      this.gradient.addColorStop(1, '#419f8e');
-      // TODO: does this work?
-      this.chartData.datasets[1].backgroundColor = this.gradient;
-      this.renderChart(this.chartData, this.options);
-    },
-  },
-});
-
-Vue.component('defer-payments', {
-  extends: VueChartJs.Line,
-  mixins: [VueChartJs.mixins.reactiveProp],
-  props: ['chartData', 'options'],
-  mounted: function() {
-    // TODO: this fucks everything up...
-    // eventBus.$on(
-    //   'updateInteractive',
-    //   function(e) {
-    //     this.refresh();
-    //   }.bind(this)
-    // );
-    this.refresh();
-  },
-  methods: {
-    refresh: function() {
-      // TODO: calculate this based on the max points? idk
-      this.gradient = this.$refs.canvas
-        .getContext('2d')
-        .createLinearGradient(0, 0, 0, 300);
-      this.gradient.addColorStop(0, '#68d992');
-      this.gradient.addColorStop(1, '#419f8e');
-      // // TODO: does this work?
-      this.chartData.datasets[1].backgroundColor = this.gradient;
-      this.renderChart(this.chartData, this.options);
-    },
-  },
-});
-
-Vue.component('monthly-cap', {
-  extends: VueChartJs.Line,
-  mixins: [VueChartJs.mixins.reactiveProp],
-  props: ['chartData', 'options'],
-  mounted: function() {
-    // TODO: this fucks everything up...
-    // eventBus.$on(
-    //   'updateInteractive',
-    //   function(e) {
-    //     this.refresh();
-    //   }.bind(this)
-    // );
-    this.refresh();
-  },
-  methods: {
-    refresh: function() {
-      // TODO: calculate this based on the max points? idk
-      // this.gradient = this.$refs.canvas
-      //   .getContext('2d')
-      //   .createLinearGradient(0, 100, 0, 600);
-      // this.gradient.addColorStop(0, '#68d992');
-      // this.gradient.addColorStop(1, '#419f8e');
-      // // TODO: does this work?
-      // this.chartData.datasets[1].backgroundColor = this.gradient;
-      this.renderChart(this.chartData, this.options);
-    },
-  },
-});
-
-Vue.component('prepayment', {
-  extends: VueChartJs.Bar,
-  ixins: [VueChartJs.mixins.reactiveProp],
-  props: ['chartData', 'options'],
-  mounted: function() {
-    // TODO: this fucks everything up...
-    // eventBus.$on(
-    //   'updateInteractive',
-    //   function(e) {
-    //     this.refresh();
-    //   }.bind(this)
-    // );
-    this.refresh();
-  },
-  methods: {
-    refresh: function() {
-      // TODO: calculate this based on the max points? idk
-      this.gradient = this.$refs.canvas
-        .getContext('2d')
-        .createLinearGradient(0, 0, 0, 400);
-      this.gradient.addColorStop(0, '#68d992');
-      this.gradient.addColorStop(1, '#419f8e');
-      // // TODO: does this work?
-      this.chartData.datasets[0].backgroundColor = this.gradient;
-      this.renderChart(this.chartData, this.options);
-    },
-  },
-});
-
-function formatCurrency(amount, includeCents) {
+function formatCurrency(amount, decimalPlaces) {
   return (
     '$' +
     amount
-      .toFixed(includeCents ? 2 : 0)
+      .toFixed(decimalPlaces)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   );
 }
 
-var vm = new Vue({
-  el: '#calculator',
-  data: {
-    loaded: false,
+function calculatePayment(salary) {
+  // If the income drops below the floor, no monthly payments
+  // Otherwise, pay at ISA rate of income (per month)
+  // Also have the max be the monthly cap
+  return salary < 25000
+    ? 0
+    : Math.min(Math.max(0, 0.0221 * salary / 12), store.isa.monthlyCap);
+}
 
-    isa: {
-      rate: '',
-      totalCap: '',
-      monthlyCap: '',
-      obligation: '9 years', // TODO: Number of years... Fixed? Variable? Where to find it?
-      incomeThreshold: '',
-    },
-    loan: {
-      payment: '',
-      rate: '',
-      totalMinimum: '',
-    },
+// Add global Vue filter
+Vue.filter('formatCurrency', formatCurrency);
 
-    // INTERACTIVE PAYMENTS
-
-    interactivePayments: {
-      chartData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+// Interactive Monthly ISA Payment graph
+Vue.component('interactive-payments', {
+  extends: VueChartJs.Line,
+  mixins: [VueChartJs.mixins.reactiveProp],
+  props: ['chartData'],
+  mounted: function() {
+    // TODO: calculate this based on the max points and height? create helper!
+    this.gradient = this.$refs.canvas
+      .getContext('2d')
+      .createLinearGradient(0, 200, 0, 400);
+    this.gradient.addColorStop(0, '#68d992');
+    this.gradient.addColorStop(1, '#419f8e');
+    this.data.datasets[1].backgroundColor = this.gradient;
+    // Render the actual chart
+    this.renderChart(this.data, this.options);
+  },
+  data: function() {
+    return {
+      // Include the global Vue.js store
+      store: store,
+      data: {
+        labels: store.labels,
         datasets: [
           {
             yAxisID: 'annualSalary',
             label: 'Annual Salary',
             fill: false,
             borderColor: '#f5907a',
+            data: store.expectedSalary,
+            // Normal point styles
             pointBackgroundColor: '#ffffff',
             pointBorderColor: '#f5907a',
             pointBorderWidth: 3,
             pointRadius: 8,
+            // Hover styles
+            pointHoverBackgroundColor: '#ffffff',
+            pointHoverBorderColor: '#f5907a',
+            pointHoverBorderWidth: 3,
+            pointHoverRadius: 8,
             spanGaps: false,
+            lineTension: 0,
           },
           {
             yAxisID: 'monthlyPayment',
             label: 'ISA Monthly Payment',
-            data: [0, 5, 8, 12, 14, 20, 32],
+            data: store.expectedMonthlyPayments,
             fill: 'origin',
-            // backgroundColor: this.gradient,
-            borderWidth: -1, // TODO: 0 won't hide it....
+            borderWidth: -1,
             pointRadius: 0,
             pointHoverRadius: 0,
             spanGaps: false,
-            lineTension: 0,
+            lineTension: 0.2,
           },
         ],
       },
       options: {
-        // TODO move script to a different file
-        // TODO: use this if I want padding around the chart
-        // layout: {
-        //   padding: {
-        //     bottom: 200
-        //   }
-        // },
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          position: 'right',
-          labels: {
-            padding: 40,
-            usePointStyle: true,
-            fontSize: 16,
-          },
-        },
+        onHover: function(e, active) {
+          // Let the drag handler take care of updating
+          if (!this.store.interactive.activeDrag) {
+            if (active.length > 0) {
+              // Just use the index of the first active element... that's probably right
+              this.store.interactive.hoverSalary = formatCurrency(
+                this.data.datasets[0].data[active[0]._index],
+                2
+              );
+              this.store.interactive.hoverPayment = formatCurrency(
+                this.data.datasets[1].data[active[0]._index],
+                2
+              );
+              this.store.interactive.showTooltip = true;
+            } else {
+              this.store.interactive.showTooltip = false;
+            }
+          }
+        }.bind(this),
+        layout: { padding: { top: 10 } },
+        // Drag events and changes
+        dragData: true,
+        onDragStart: function(e) {
+          // Add top padding so points at the max don't get cut off
+          // Change cursor to 'move'
+          this.$refs.canvas.style.cursor = 'move';
+          this.store.interactive.activeDrag = true;
+        }.bind(this),
+        onDrag: function(e, datasetIndex, index, value) {
+          var dataset = this.data.datasets[datasetIndex];
+          // Touch events don't work well... (value is undefined!)
+          if (e.type === 'touchmove') {
+            return dataset.data[index];
+          }
+          // Enforce max/mins in the graph (coerce the value for the Chart.js plugin)
+          var yAxis = this.options.scales.yAxes.find(
+            function(el) {
+              return el.id === dataset.yAxisID;
+            }.bind(this)
+          ).ticks;
+          var salary = Math.min(yAxis.max, Math.max(yAxis.min, value));
+          // TODO: remove the rate and floor from being hardcoded
+          // TODO: add monthly cap
+          var payment = calculatePayment(salary);
+          // Update the monthly payment in tandem with salary
+          this.data.datasets[1].data.splice(index, 1, payment);
+          // Fill drag point orange
+          dataset.pointBackgroundColor = dataset.data.map(function(val, i) {
+            return i == index ? '#f5907a' : '#ffffff';
+          });
+          // Update the tooltip
+          this.store.interactive.showTooltip = true;
+          this.store.interactive.hoverSalary = formatCurrency(salary, 2);
+          this.store.interactive.hoverPayment = formatCurrency(payment, 2);
+          // Tell the Chart.js draggable plugin what the new value should be
+          return salary;
+        }.bind(this),
+        onDragEnd: function(e, datasetIndex, index, value) {
+          // Change cursor back to default (non move)
+          this.$refs.canvas.style.cursor = 'initial';
+          // TODO Change all the point back to a white background
+          var dataset = this.data.datasets[datasetIndex];
+          dataset.pointBackgroundColor = dataset.data.map(function() {
+            return '#ffffff';
+          });
+          this.store.interactive.activeDrag = false;
+        }.bind(this),
         scales: {
-          xAxes: [
-            {
-              gridLines: {
-                drawTicks: false,
-              },
-              ticks: {
-                padding: 20,
-              },
-            },
-          ],
+          xAxes: [{ gridLines: { drawTicks: false }, ticks: { padding: 20 } }],
           yAxes: [
             {
               display: false,
               id: 'annualSalary',
-              type: 'linear',
-              position: 'left',
               ticks: {
+                min: 0,
+                // Scale the graph so the max value is only ~75% of the axis
+                max: 1.3 * Math.max.apply(null, store.expectedSalary),
                 beginAtZero: true,
               },
             },
             {
               display: false,
               id: 'monthlyPayment',
-              type: 'linear',
-              position: 'right',
               ticks: {
+                min: 0, // Scale the graph so the max value is only half of the axis
+                max: 3 * Math.max.apply(null, store.expectedMonthlyPayments),
                 beginsAtZero: true,
               },
             },
           ],
         },
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          callbacks: {
-            label: function(tooltipItems, data) {
-              return (
-                '$' +
-                tooltipItems.yLabel
-                  .toFixed(2)
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-              );
-            },
-          },
-        },
+        legend: { display: false },
+        tooltips: { enabled: false },
       },
-    },
-    deferPayments: {
-      chartData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+    };
+  },
+});
+
+Vue.component('defer-payments', {
+  extends: VueChartJs.Line,
+  mixins: [VueChartJs.mixins.reactiveProp],
+  props: ['chartData'],
+  mounted: function() {
+    // TODO: calculate this based on the max points? idk
+    this.gradient = this.$refs.canvas
+      .getContext('2d')
+      .createLinearGradient(0, 150, 0, 300);
+    this.gradient.addColorStop(0, '#68d992');
+    this.gradient.addColorStop(1, '#419f8e');
+    // // TODO: does this work?
+    this.data.datasets[1].backgroundColor = this.gradient;
+    this.renderChart(this.data, this.options);
+  },
+  data: function() {
+    // Arbitrary data to simply illustrate you don't make paymetns for less than 25k
+    var exampleSalary = [
+      12000,
+      13000,
+      16000,
+      21000,
+      25000,
+      27000,
+      31000,
+      36000,
+      40000,
+    ];
+    var examplePayment = exampleSalary.map(calculatePayment);
+    return {
+      store: store,
+      data: {
+        labels: store.labels,
         datasets: [
           {
             fill: false,
             pointRadius: 0,
             borderDash: [4],
-            borderWidth: 1.5,
+            borderWidth: 2,
             borderColor: '#333333',
-            yAxisID: 'thing2',
-            data: [25000, 25000, 25000, 25000, 25000, 25000, 25000],
+            yAxisID: 'annualSalary',
+            data: store.labels.map(function() {
+              return 25000; // TODO: change to some other value
+            }),
           },
           {
-            // TODO: set min an max for this
-            yAxisID: 'thing1',
-            lineTension: 0.2, // Draw mostly straight lines, not bezier
-            pointRadius: 0,
-            borderWidth: -1,
-            data: [0, 5, 8, 0, 0, 20, 32],
-          },
-          {
-            yAxisID: 'thing2',
-            fill: false,
-            data: [12000, 12500, 18000, 25000, 32000, 34000, 46000],
+            // TODO: set min an max for this (in options)
+            yAxisID: 'monthlyPayment',
             lineTension: 0.2,
-            borderWidth: 1.5,
+            pointRadius: 0,
+            borderWidth: -1, // Oddly, 0 shows a border radius
+            data: examplePayment, // TODO
+          },
+          {
+            yAxisID: 'annualSalary',
+            fill: false,
+            data: exampleSalary,
+            lineTension: 0.2,
+            borderWidth: 2,
             borderColor: '#f5907a',
             pointRadius: 0,
           },
         ],
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false,
         },
-        layout: {
-          padding: {
-            left: 10,
-            right: 10,
-          },
+        tooltips: {
+          enabled: false,
         },
-        responsive: true,
-        maintainAspectRatio: false,
         scales: {
           xAxes: [
             {
@@ -332,71 +304,183 @@ var vm = new Vue({
           ],
           yAxes: [
             {
-              id: 'thing1',
+              id: 'monthlyPayment',
               display: false,
-              beginAtZero: true,
+              ticks: {
+                min: 0,
+                // Scale the graph so the max value is only 1/2 of the axis
+                max: 2 * Math.max.apply(null, examplePayment),
+                beginAtZero: true,
+              },
             },
             {
-              id: 'thing2',
+              id: 'annualSalary',
               ticks: {
-                fontSize: 18,
+                // TODO: don't hardcode this!
+                fontSize: 14,
                 min: 0,
                 max: 50000,
-                // autoSkip: false,
                 stepSize: 25000,
                 callback: function(value, index, values) {
                   return value === 25000 ? '$25,000' : '';
-                  // TODO: don't hardcode this!
-                  // return (
-                  //   '$' +
-                  //   Math.round(value)
-                  //     .toString()
-                  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  // );
                 },
               },
               gridLines: {
                 display: false,
               },
             },
-            // {
-            //   id: 'thing3',
-            // },
           ],
         },
       },
-    },
+    };
+  },
+});
 
-    // MONTHLY CAP CHART
-
-    monthlyCapGraph: {
+Vue.component('monthly-cap', {
+  extends: VueChartJs.Line,
+  mixins: [VueChartJs.mixins.reactiveProp],
+  props: ['chartData'],
+  mounted: function() {
+    // TODO: calculate this based on the max points? idk
+    this.gradient = this.$refs.canvas
+      .getContext('2d')
+      .createLinearGradient(0, 150, 0, 300);
+    this.gradient.addColorStop(0, '#68d992');
+    this.gradient.addColorStop(1, '#419f8e');
+    // // TODO: does this work?
+    this.data.datasets[2].backgroundColor = this.gradient;
+    this.renderChart(this.data, this.options);
+  },
+  data: function() {
+    // Salary at which you hit the cap
+    var greatSalary = 12 * store.isa.monthlyCap * (100 / store.isa.rate);
+    console.log(store.isa.monthlyCap);
+    console.log(store.isa.rate);
+    console.log(greatSalary);
+    // Arbitrary data to simply illustrate the monthly cap
+    var exampleSalary = [
+      greatSalary * 0.65,
+      greatSalary * 0.7,
+      greatSalary * 0.83,
+      greatSalary * 0.9,
+      greatSalary,
+      greatSalary * 1.1,
+      greatSalary * 1.2,
+      greatSalary * 1.4,
+      greatSalary * 1.65,
+    ];
+    var examplePayment = exampleSalary.map(calculatePayment);
+    return {
+      store: store,
       data: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+        // Since no labels are exposed, that doesn't matter
+        labels: exampleSalary,
         datasets: [
           {
-            label: 'ISA Monthly Payment',
-            data: [0, 5, 8, 12, 14, 20, 32],
+            yAxisID: 'monthlyPayment',
+            fill: false,
+            pointRadius: 0,
+            borderDash: [4],
+            borderWidth: 2,
+            borderColor: '#333333',
+            data: exampleSalary.map(function() {
+              return store.isa.monthlyCap;
+            }),
+          },
+          {
+            yAxisID: 'annualSalary',
+            fill: false,
+            data: exampleSalary,
+            lineTension: 0.2,
+            borderWidth: 2,
+            borderColor: '#f5907a',
+            pointRadius: 0,
+          },
+          {
+            // TODO: set min an max for this (in options)
+            yAxisID: 'monthlyPayment',
+            lineTension: 0.2,
+            pointRadius: 0,
+            borderWidth: -1, // Oddly, 0 shows a border radius
+            data: examplePayment, // TODO
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          enabled: false,
+        },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                color: '#b5b9be',
+                lineWidth: 0.5,
+                drawTicks: false,
+              },
+              ticks: {
+                display: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              id: 'annualSalary',
+              display: false,
+              ticks: {
+                min: -1 * Math.min.apply(null, exampleSalary),
+                // Scale the graph so the max value is only 1/2 of the axis
+                max: Math.max.apply(null, exampleSalary),
+              },
+            },
+            {
+              id: 'monthlyPayment',
+              ticks: {
+                fontSize: 14,
+                min: 0,
+                max: 2 * store.isa.monthlyCap,
+                stepSize: store.isa.monthlyCap,
+                callback: function(value, index, values) {
+                  return value === Math.round(store.isa.monthlyCap)
+                    ? formatCurrency(store.isa.monthlyCap, 2)
+                    : '';
+                },
+                beginsAtZero: true,
+              },
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
+        },
       },
-    },
+    };
+  },
+});
 
-    // PREPAYMENT CHART
-
-    prepayment: {
-      chartData: {
+Vue.component('prepayment', {
+  extends: VueChartJs.Bar,
+  mixins: [VueChartJs.mixins.reactiveProp],
+  props: ['chartData'],
+  mounted: function() {
+    // TODO: calculate this based on the max points? idk
+    this.gradient = this.$refs.canvas
+      .getContext('2d')
+      .createLinearGradient(0, 0, 0, 400);
+    this.gradient.addColorStop(0, '#68d992');
+    this.gradient.addColorStop(1, '#419f8e');
+    // TODO: does this work?
+    this.data.datasets[0].backgroundColor = this.gradient;
+    this.renderChart(this.data, this.options);
+  },
+  data: function() {
+    return {
+      data: {
         labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
         datasets: [
           {
@@ -422,13 +506,18 @@ var vm = new Vue({
           display: false,
         },
       },
-    },
+    };
   },
+});
+
+var vm = new Vue({
+  el: '#calculator',
+  data: store,
   created: function() {
-    var self = this;
     // var url = 'http://calculator.mentorworks.io/calculator/calculate.json'
     // TODO: tell Zhen to add cross-origin header, right now I have a proxy
     var url = 'http://localhost:4000/api/calculator/calculate.json';
+    // TODO: do this based on URL parameters
     axios
       .post(url, {
         amount: 10000,
@@ -438,67 +527,50 @@ var vm = new Vue({
         level: 'G',
         major: 59,
       })
-      .then(function(res) {
-        // Parse the first graph for the monthly ISA payments
-        var expectedMonthly = res.data.data.table3_1;
-        // Get the years for the labels of the graph
-        self.interactivePayments.chartData.labels = expectedMonthly
-          .filter(function(row) {
-            // Remove the final rows that summarize the data
-            return !isNaN(row[0]);
-          })
-          .map(function(row) {
-            return row[0];
-          });
-        // TODO
-        self.interactivePayments.chartData.datasets[0].data = expectedMonthly
-          .filter(function(row) {
-            // Remove the final rows that summarize the data
-            return !isNaN(row[0]);
-          })
-          .map(function(row) {
-            return row[1];
-          });
-        // TODO
-        self.interactivePayments.chartData.datasets[1].data = expectedMonthly
-          .filter(function(row) {
-            // Remove the final rows that summarize the data
-            return !isNaN(row[0]);
-          })
-          .map(function(row) {
-            return row[3];
-          });
-        // Force update of the graph (reactivity isn't working, unclear why)
-        eventBus.$emit('updateInteractive', 3);
-
-        // TODO: for monthly calculator ...
-
-        self.isa.rate = res.data.data.table0.income_share_rate + '%';
-        // 'Loan' is mispelled 'load' in the JSON TODO?
-        // TODO: should this be rounded or not!?
-        // TODO: Change to monthlyPayment up there
-        self.isa.totalCap = formatCurrency(
-          res.data.data.table0.max_repayment_amount,
-          false
-        );
-        self.isa.monthlyCap = formatCurrency(
-          res.data.data.table0.monthly_cap,
-          true
-        );
-
-        self.loan.payment = formatCurrency(
-          res.data.data.table0.load_monthly,
-          false
-        );
-        self.loan.rate = res.data.data.table0.load_rate + '%';
-        self.loan.totalMinimum = formatCurrency(
-          res.data.data.table0.loan_total_repayment,
-          false
-        );
-
-        // TODO: show the charts!
-        self.loaded = true;
-      })
+      .then(
+        function(res) {
+          var overview = res.data.data.table0;
+          var expected = res.data.data.table3_1;
+          // Parse data for the heading ISA/loan comparison
+          // TODO: I need raw data, can't use percentage here
+          this.isa.rate = overview.income_share_rate;
+          // 'Loan' is mispelled 'load' in the JSON
+          this.isa.totalCap = overview.max_repayment_amount;
+          this.isa.monthlyCap = overview.monthly_cap;
+          this.loan.payment = overview.load_monthly;
+          this.loan.rate = overview.load_rate + '%';
+          this.loan.totalMinimum = overview.loan_total_repayment;
+          // Get the years for the labels of the graph
+          this.labels = expected
+            .filter(function(row) {
+              // Remove the final rows that summarize the data
+              return !isNaN(row[0]);
+            })
+            .map(function(row) {
+              return row[0];
+            });
+          // TODO
+          this.expectedSalary = expected
+            .filter(function(row) {
+              // Remove the final rows that summarize the data
+              return !isNaN(row[0]);
+            })
+            .map(function(row) {
+              return row[1];
+            });
+          // TODO
+          this.expectedMonthlyPayments = expected
+            .filter(function(row) {
+              // Remove the final rows that summarize the data
+              return !isNaN(row[0]);
+            })
+            .map(function(row) {
+              return row[3];
+            });
+          // Show all the charts!
+          this.loaded = true;
+        }.bind(this)
+      )
       .catch(function(err) {
         console.error(err);
       });
