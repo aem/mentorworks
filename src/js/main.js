@@ -15,10 +15,14 @@
       dots: true,
       infinite: true,
     });
+
+    var $allFaqSections = $('.faq-entry-container');
     $('[faq-section-toggle]').on('click', function() {
-      $(this)
-        .parents('.faq-section')
-        .toggleClass('show');
+      var $parents = $(this).parents('.faq-section');
+      $allFaqSections.slideUp();
+      $allFaqSections.parents('.faq-section').removeClass('show');
+      $parents.find('.faq-entry-container').slideDown();
+      $parents.addClass('show');
     });
   });
 
