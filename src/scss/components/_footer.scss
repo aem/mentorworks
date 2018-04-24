@@ -43,6 +43,10 @@
           flex: 1 0 25%;
         }
       }
+
+      @include tablet() {
+        margin-top: $spacing-base;
+      }
     }
 
     .footer-social-media {
