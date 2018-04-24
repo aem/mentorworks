@@ -25,7 +25,7 @@ p {
 h1 {
   margin: 0;
   font-family: $font-family-headers;
-  font-weight: normal;
+  font-weight: $font-weight-base;
   line-height: $line-height-small;
 
   @include poly-fluid-sizing('font-size', (
@@ -42,12 +42,12 @@ h1 {
 h2 {
   margin: 0;
   font-family: $font-family-headers;
-  font-weight: normal;
+  font-weight: $font-weight-base;
 
   @include poly-fluid-sizing('font-size', (
     320px: $font-size-large, 
     768px: $font-size-xl,
-    1280px: $font-size-xxl
+    1280px: $font-size-xxxl
   ));
 
   @include poly-fluid-sizing('margin-bottom', (
@@ -60,7 +60,7 @@ h3 {
   margin: 0;
   font-size: $font-size-large;
   font-family: $font-family-headers;
-  font-weight: normal;
+  font-weight: $font-weight-base;
 }
 
 h4 {
@@ -75,18 +75,20 @@ h5 {
   color: $slate-gray;
   font-family: $font-family-body;
   font-size: $font-size-base;
-  font-weight: normal;
+  font-weight: $font-weight-base;
   line-height: 1.667;
 }
 
 h6 {
+  margin: 0;
   color: $slate-gray;
   font-family: $font-family-body;
   font-size: $font-size-small;
+  font-weight: $font-weight-base;
 }
 
 small {
-  font-size: $font-size-xs;
+  font-size: $font-size-xxs;
 }
 
 .number {

@@ -26,6 +26,7 @@
   appearance: none;
   border: 0;
   cursor: pointer;
+  background: none;
 
   .mobile-menu--open & {
     width: 28px;
@@ -81,39 +82,42 @@
 }
 
 .global-navigation-link {
-  padding: 8px 16px;
+  padding: $spacing-xxs $spacing-xs;
   color: $digital-black;
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: $font-size-xs;
 
   & + .global-navigation-link {
     margin-left: $spacing-small;
   }
 
+  &.current-menu-item {
+    color: $light-digital-black;
+  }
+
+  &.header-menu-home {
+    display: none;
+  }
+
+  &:hover {
+    color: $pastel-green;
+  }
+
   @include tablet() {
     .mobile-menu--open & {
-      color: $digital-black;
-      margin-left: 0;
       font-family: $font-family-headers;
       font-size: $font-size-large;
-      line-height: 3.6rem;
-      padding: 12px 0;
-      border-bottom: 2px solid $ocean-green;
-      text-align: left;
+      padding: $spacing-xs 0;
+      border-bottom: $border-size-base solid $light-ocean-green;
       margin-left: $spacing-medium;
+
+      &.header-menu-home {
+        display: block;
+      }
     }
 
     .mobile-menu--open &.button {
       padding: 0;
     }
-  }
-}
-
-.secondary-navigation-link {
-  color: $white;
-  text-decoration: none;
-
-  & + .secondary-navigation-link {
-    margin-left: $spacing-medium;
   }
 }

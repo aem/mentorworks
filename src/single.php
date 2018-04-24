@@ -29,8 +29,4 @@ if( $query->have_posts() ):
 endif;
 $context['relatedPosts'] = $posts;
 
-if ( post_password_required( $post->ID ) ) {
-	Timber::render( 'single-password.twig', $context );
-} else {
-	Timber::render( array( 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ), $context );
-}
+Timber::render( array( 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ), $context );

@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+
+{% set hero = post.get_field("mw_blog_hero") %}
+{% block content %}
+  {% include 'hero.twig' with {'component': {
+    mw_hero_image: {
+      mw_hero_orientation: hero.mw_blog_hero_orientation,
+      mw_hero_color: hero.mw_blog_hero_color,
+      mw_hero_image: {
+        url: hero.mw_blog_hero_image.url
+      },
+      mw_hero_headline: hero.mw_blog_hero_headline,
+      mw_hero_subheadline: hero.mw_blog_hero_subheadline
+    }
+  }} %}
+
+  <div class="container container-large">
+    {% for category, entries in categories %}
+      <div class="section">
+        <h2>{{category}}</h2>
+        <div class="posts-grid">
+          {% for post in entries %}
+            {% include 'tease-post.twig' %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
