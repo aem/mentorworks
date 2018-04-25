@@ -1,6 +1,7 @@
 .posts-grid {
   display: flex;
   justify-content: space-between;
+  margin: 0 $spacing-base;
 
   @include phone() {
     display: block;
@@ -25,6 +26,10 @@
       @include ribbon-color('featured-content', $froly, #bc7464);
       @include ribbon-color('in-the-news', $ocean-green, #2f7e6f);
 
+      @include phone() {
+        font-size: $font-size-small;
+      }
+
       &::after {
         content: '';
         width: 0;
@@ -47,11 +52,16 @@
     }
 
     @include tablet() {
-      width: 50%;
+      width: calc(50% - #{$spacing-base});
 
       &:last-child {
         display: none;
       }
+    }
+
+    @include phone() {
+      display: block;
+      width: 100%;
     }
   }
 }
@@ -62,4 +72,10 @@
 
 .alm-load-more-btn.done {
   display: none;
+}
+
+.blog-category-name {
+  @include tablet() {
+    margin-left: $spacing-base;
+  }
 }

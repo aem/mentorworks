@@ -3,6 +3,8 @@
   position: relative;
   overflow: hidden;
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 
   &.no-image {
     height: auto;
@@ -99,6 +101,10 @@
   }
 
   &.left-side {
+    @include phone() {
+      background-position: 80%;
+    }
+
     @include desktop() {
       .big-circle {
         left: -18vw;
@@ -115,6 +121,10 @@
   }
 
   &.right-side {
+    @include phone() {
+      background-position: 20%;
+    }
+
     @include desktop() {
       .big-circle {
         right: -18vw;
@@ -127,6 +137,12 @@
         'padding-right',
         (320px: $spacing-base, 768px: $spacing-medium, 1280px: $spacing-xl)
       );
+    }
+  }
+
+  @include tablet() {
+    .button {
+      margin-top: 12px;
     }
   }
 }
