@@ -4,6 +4,12 @@
     text-align: center;
   }
 
+  @include tablet() {
+    h3 {
+      text-align: left;
+    }
+  }
+
   .column-container {
     display: flex;
     flex-flow: row wrap;
