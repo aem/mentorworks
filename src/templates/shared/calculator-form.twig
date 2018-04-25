@@ -1,0 +1,35 @@
+<div class="calculator-form">
+  <div class="calculator-wrapper">
+    <form action="/calculator" method="get">
+      <h2>Calculate your ISA</h2>
+      <input type="hidden" name="maturity" value="9">
+      <input type="hidden" name="level" value="G">
+      <input type="hidden" name="_method" value="POST">
+      <fieldset>
+        <label for="amount">Funding needed ($)</label>
+        <input type="number" name="amount" v-model="amount" min="3000" max="25000" step="0.01" required class="dollar-input">
+      </fieldset>
+      <fieldset>
+        <label for="current_salary">Current salary ($)</label>
+        <input type="number" name="current_salary" v-model="current_salary" min="0" step="0.01" required class="dollar-input">
+      </fieldset>
+      <fieldset>
+        <label for="loan_rate">Comparable loan interest rate (%)</label>
+        <input type="number" name="loan_rate" v-model="loan_rate" min="0" step="1" max="30" value="11" required class="percent-input">
+      </fieldset>
+      <fieldset>
+        <label for="major">Your field of study or major</label>
+        <select name="major" required>
+          {# TODO: setup with custom fields! #}
+          <option value="54">Business Administration, Management and Operations</option>
+          <option value="55">Accounting and Related Services</option>
+          <option value="56">Finance and Financial Management Services</option>
+          <option value="57">Human Resources Management and Services</option>
+          <option value="58">Management Information Systems and Services</option>
+          <option value="59">Marketing</option>
+        </select>
+      </fieldset>
+      <input type="submit" class="button --ghost" value="Calculate">
+    </form>
+  </div>
+</div>
