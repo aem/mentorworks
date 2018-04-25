@@ -1,0 +1,64 @@
+.calculator-form {
+  width: 100%;
+  @include poly-fluid-sizing('padding', (
+    320px: $spacing-base,
+    768px: $spacing-medium,
+    1280px: $spacing-xl
+  ));
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .calculator-wrapper {
+    max-width: 720px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    box-sizing: border-box;
+    @include poly-fluid-sizing('padding', (
+      320px: $spacing-base,
+      768px: $spacing-medium,
+      1280px: $spacing-large
+    ));
+    border: solid 2px rgba(65, 159, 142, 0.3);
+    background: $white;
+  }
+
+  // .calculator-backdrop {
+  //   background: #f7f8f9;
+  // }
+
+  .dollar-input {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .percent-input {
+    width: 100%;
+    max-width: 100px;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  select {
+    width: 100%;
+    padding: $spacing-xxs;
+  }
+
+  label {
+    color: $slate-gray;
+    font-size: $font-size-base;
+    line-height: $line-height-single;
+  }
+
+  fieldset {
+    border: none;
+    margin: $spacing-small 0;
+    padding: 0;
+  }
+}
