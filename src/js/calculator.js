@@ -262,7 +262,7 @@ Vue.component('defer-payments', {
             pointRadius: 0,
             borderDash: [4],
             borderWidth: 2,
-            borderColor: '#333333',
+            borderColor: '#f5907a',
             yAxisID: 'annualSalary',
             data: store.labels.map(function() {
               return store.isa.incomeThreshold;
@@ -322,11 +322,7 @@ Vue.component('defer-payments', {
                 fontSize: 14,
                 min: 0,
                 max: 2 * store.isa.incomeThreshold,
-                stepSize: store.isa.incomeThreshold,
-                callback: function(value, index, values) {
-                  var amt = store.isa.incomeThreshold;
-                  return value === amt ? formatCurrency(amt, 0) : '';
-                },
+                display: false,
               },
               gridLines: {
                 display: false,
@@ -384,7 +380,7 @@ Vue.component('monthly-cap', {
             pointRadius: 0,
             borderDash: [4],
             borderWidth: 2,
-            borderColor: '#333333',
+            borderColor: '#419f8e',
             data: exampleSalary.map(function() {
               return store.isa.monthlyCap;
             }),
@@ -441,14 +437,9 @@ Vue.component('monthly-cap', {
               ticks: {
                 fontSize: 14,
                 min: 0,
-                max: 2 * store.isa.monthlyCap,
-                stepSize: store.isa.monthlyCap,
-                callback: function(value, index, values) {
-                  return value === Math.round(store.isa.monthlyCap)
-                    ? formatCurrency(store.isa.monthlyCap, 2)
-                    : '';
-                },
+                max: 3 * store.isa.monthlyCap,
                 beginsAtZero: true,
+                display: false,
               },
               gridLines: {
                 display: false,
