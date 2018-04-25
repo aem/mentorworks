@@ -25,7 +25,7 @@
 }
 
 .slick-prev {
-  left: -$spacing-xxl;
+  left: 0;
   background-image: url('svg/left-arrow.svg');
 
   @include tablet() {
@@ -34,7 +34,7 @@
 }
 
 .slick-next {
-  right: -$spacing-xl;
+  right: 0;
   background-image: url('svg/right-arrow.svg');
 
   @include tablet() {
