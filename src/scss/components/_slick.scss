@@ -13,6 +13,23 @@
   background: $white;
   background-repeat: no-repeat;
   background-size: contain;
+  z-index: 11;
+
+  &:before {
+    content: '';
+    width: $arrow-button-size;
+    height: $arrow-button-size;
+    border-radius: 50%;
+    background-color: $lightest-slate-gray;
+    position: absolute;
+    top: 0;
+    left: $spacing-xxs;
+    transition: 0.3s all;
+  }
+
+  &:hover:before {
+    left: 0;
+  }
 
   @include tablet() {
     width: 80px;
