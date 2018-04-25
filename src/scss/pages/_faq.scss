@@ -5,6 +5,11 @@
     padding: $spacing-base;
     margin: 0 $spacing-xl $spacing-large $spacing-xl;
 
+    @include phone() {
+      margin-left: $spacing-base;
+      margin-right: $spacing-base;
+    }
+
     .faq-section-header-copy {
       font-size: $font-size-xxxl;
     }

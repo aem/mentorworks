@@ -6,8 +6,12 @@
 
   &.no-image {
     height: auto;
-    padding: $spacing-large;
-    text-align: center;
+    padding: $spacing-large $spacing-xl;
+
+    @include phone() {
+      padding-left: $spacing-base;
+      padding-right: $spacing-base;
+    }
 
     .content {
       color: $digital-black;
