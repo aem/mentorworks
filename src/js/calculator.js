@@ -10,17 +10,17 @@ var store = {
   loaded: false,
   // ISA statistics
   isa: {
-    rate: '',
-    totalCap: '',
-    monthlyCap: '',
-    obligation: '9 years', // TODO: Is this fixed? Variable? From API?
-    incomeThreshold: '',
+    rate: null,
+    totalCap: null,
+    monthlyCap: null,
+    obligation: null,
+    incomeThreshold: null,
   },
   // Loan statistics
   loan: {
-    payment: '',
-    rate: '',
-    totalMinimum: '',
+    payment: null,
+    rate: null,
+    totalMinimum: null,
   },
   // Array of years to graph
   labels: [],
@@ -31,8 +31,8 @@ var store = {
   interactive: {
     activeDrag: false,
     showTooltip: false,
-    hoverSalary: '',
-    hoverPayment: '',
+    hoverSalary: null,
+    hoverPayment: null,
   },
 };
 
@@ -46,6 +46,10 @@ function formatCurrency(amount, decimalPlaces) {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   );
+}
+
+function parseCurrency(str) {
+  return Number(str.replace(/[^0-9\.-]+/g, ''));
 }
 
 function calculatePayment(salary) {
@@ -66,7 +70,6 @@ Vue.component('interactive-payments', {
   mixins: [VueChartJs.mixins.reactiveProp],
   props: ['chartData'],
   mounted: function() {
-    // TODO: calculate this based on the max points and height? create helper!
     this.gradient = this.$refs.canvas
       .getContext('2d')
       .createLinearGradient(0, 200, 0, 400);
@@ -122,6 +125,8 @@ Vue.component('interactive-payments', {
           // Let the drag handler take care of updating
           if (!this.store.interactive.activeDrag) {
             if (active.length > 0) {
+              // Change to a 'move' cursor on hover
+              this.$refs.canvas.style.cursor = 'move';
               // Just use the index of the first active element... that's probably right
               this.store.interactive.hoverSalary = formatCurrency(
                 this.data.datasets[0].data[active[0]._index],
@@ -134,7 +139,11 @@ Vue.component('interactive-payments', {
               this.store.interactive.showTooltip = true;
             } else {
               this.store.interactive.showTooltip = false;
+              // Change back to defalut cursor
+              this.$refs.canvas.style.cursor = 'default';
             }
+          } else {
+            this.$refs.canvas.style.cursor = 'move';
           }
         }.bind(this),
         layout: { padding: { top: 10 } },
@@ -159,8 +168,6 @@ Vue.component('interactive-payments', {
             }.bind(this)
           ).ticks;
           var salary = Math.min(yAxis.max, Math.max(yAxis.min, value));
-          // TODO: remove the rate and floor from being hardcoded
-          // TODO: add monthly cap
           var payment = calculatePayment(salary);
           // Update the monthly payment in tandem with salary
           this.data.datasets[1].data.splice(index, 1, payment);
@@ -178,11 +185,9 @@ Vue.component('interactive-payments', {
         onDragEnd: function(e, datasetIndex, index, value) {
           // Change cursor back to default (non move)
           this.$refs.canvas.style.cursor = 'initial';
-          // TODO Change all the point back to a white background
+          // Change all the point back to a white background -- doesn't really work :(
           var dataset = this.data.datasets[datasetIndex];
-          dataset.pointBackgroundColor = dataset.data.map(function() {
-            return '#ffffff';
-          });
+          dataset.pointBackgroundColor = '#ffffff';
           this.store.interactive.activeDrag = false;
         }.bind(this),
         scales: {
@@ -221,13 +226,11 @@ Vue.component('defer-payments', {
   mixins: [VueChartJs.mixins.reactiveProp],
   props: ['chartData'],
   mounted: function() {
-    // TODO: calculate this based on the max points? idk
     this.gradient = this.$refs.canvas
       .getContext('2d')
       .createLinearGradient(0, 150, 0, 300);
     this.gradient.addColorStop(0, '#68d992');
     this.gradient.addColorStop(1, '#419f8e');
-    // // TODO: does this work?
     this.data.datasets[1].backgroundColor = this.gradient;
     this.renderChart(this.data, this.options);
   },
@@ -248,7 +251,11 @@ Vue.component('defer-payments', {
     return {
       store: store,
       data: {
-        labels: store.labels,
+        // Map to blank labels
+        // Resolves bug that hides the last gridline when ticks.display is false
+        labels: exampleSalary.map(function() {
+          return '';
+        }),
         datasets: [
           {
             fill: false,
@@ -258,16 +265,15 @@ Vue.component('defer-payments', {
             borderColor: '#333333',
             yAxisID: 'annualSalary',
             data: store.labels.map(function() {
-              return 25000; // TODO: change to some other value
+              return store.isa.incomeThreshold;
             }),
           },
           {
-            // TODO: set min an max for this (in options)
             yAxisID: 'monthlyPayment',
             lineTension: 0.2,
             pointRadius: 0,
             borderWidth: -1, // Oddly, 0 shows a border radius
-            data: examplePayment, // TODO
+            data: examplePayment,
           },
           {
             yAxisID: 'annualSalary',
@@ -297,9 +303,6 @@ Vue.component('defer-payments', {
                 lineWidth: 0.5,
                 drawTicks: false,
               },
-              ticks: {
-                display: false,
-              },
             },
           ],
           yAxes: [
@@ -316,13 +319,13 @@ Vue.component('defer-payments', {
             {
               id: 'annualSalary',
               ticks: {
-                // TODO: don't hardcode this!
                 fontSize: 14,
                 min: 0,
-                max: 50000,
-                stepSize: 25000,
+                max: 2 * store.isa.incomeThreshold,
+                stepSize: store.isa.incomeThreshold,
                 callback: function(value, index, values) {
-                  return value === 25000 ? '$25,000' : '';
+                  var amt = store.isa.incomeThreshold;
+                  return value === amt ? formatCurrency(amt, 0) : '';
                 },
               },
               gridLines: {
@@ -341,22 +344,17 @@ Vue.component('monthly-cap', {
   mixins: [VueChartJs.mixins.reactiveProp],
   props: ['chartData'],
   mounted: function() {
-    // TODO: calculate this based on the max points? idk
     this.gradient = this.$refs.canvas
       .getContext('2d')
       .createLinearGradient(0, 150, 0, 300);
     this.gradient.addColorStop(0, '#68d992');
     this.gradient.addColorStop(1, '#419f8e');
-    // // TODO: does this work?
     this.data.datasets[2].backgroundColor = this.gradient;
     this.renderChart(this.data, this.options);
   },
   data: function() {
     // Salary at which you hit the cap
     var greatSalary = 12 * store.isa.monthlyCap * (100 / store.isa.rate);
-    console.log(store.isa.monthlyCap);
-    console.log(store.isa.rate);
-    console.log(greatSalary);
     // Arbitrary data to simply illustrate the monthly cap
     var exampleSalary = [
       greatSalary * 0.65,
@@ -373,8 +371,12 @@ Vue.component('monthly-cap', {
     return {
       store: store,
       data: {
+        // Map to blank labels
         // Since no labels are exposed, that doesn't matter
-        labels: exampleSalary,
+        // Resolves bug that hides the last gridline when ticks.display is false
+        labels: exampleSalary.map(function() {
+          return '';
+        }),
         datasets: [
           {
             yAxisID: 'monthlyPayment',
@@ -397,12 +399,11 @@ Vue.component('monthly-cap', {
             pointRadius: 0,
           },
           {
-            // TODO: set min an max for this (in options)
             yAxisID: 'monthlyPayment',
             lineTension: 0.2,
             pointRadius: 0,
             borderWidth: -1, // Oddly, 0 shows a border radius
-            data: examplePayment, // TODO
+            data: examplePayment,
           },
         ],
       },
@@ -422,9 +423,6 @@ Vue.component('monthly-cap', {
                 color: '#b5b9be',
                 lineWidth: 0.5,
                 drawTicks: false,
-              },
-              ticks: {
-                display: false,
               },
             },
           ],
@@ -463,80 +461,102 @@ Vue.component('monthly-cap', {
   },
 });
 
-Vue.component('prepayment', {
-  extends: VueChartJs.Bar,
-  mixins: [VueChartJs.mixins.reactiveProp],
-  props: ['chartData'],
-  mounted: function() {
-    // TODO: calculate this based on the max points? idk
-    this.gradient = this.$refs.canvas
-      .getContext('2d')
-      .createLinearGradient(0, 0, 0, 400);
-    this.gradient.addColorStop(0, '#68d992');
-    this.gradient.addColorStop(1, '#419f8e');
-    // TODO: does this work?
-    this.data.datasets[0].backgroundColor = this.gradient;
-    this.renderChart(this.data, this.options);
-  },
-  data: function() {
-    return {
-      data: {
-        labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-        datasets: [
-          {
-            label: 'MentorWorks',
-            data: [0, 5, 8, 12, 14, 20, 32],
-          },
-          {
-            label: 'Loan?',
-            data: [17, 3, 7, 8, 0, 12, 13, 4],
-            backgroundColor: 'rgba(113, 128, 139, 0.3)',
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        categoryPercentage: 0.1,
-        barPercentage: 0.1,
-        tooltips: {
-          enabled: false,
-        },
-        legend: {
-          display: false,
-        },
-      },
-    };
-  },
-});
+/*
+This is the WIP prepayment chart component, which is designed to
+go at the bottom of the calculator page.
+*/
+
+// Vue.component('prepayment', {
+//   extends: VueChartJs.Bar,
+//   mixins: [VueChartJs.mixins.reactiveProp],
+//   props: ['chartData'],
+//   mounted: function() {
+//     this.gradient = this.$refs.canvas
+//       .getContext('2d')
+//       .createLinearGradient(0, 0, 0, 400);
+//     this.gradient.addColorStop(0, '#68d992');
+//     this.gradient.addColorStop(1, '#419f8e');
+//     this.data.datasets[0].backgroundColor = this.gradient;
+//     this.renderChart(this.data, this.options);
+//   },
+//   data: function() {
+//     return {
+//       data: {
+//         labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+//         datasets: [
+//           {
+//             label: 'MentorWorks',
+//             data: [0, 5, 8, 12, 14, 20, 32],
+//           },
+//           {
+//             label: 'Loan?',
+//             data: [17, 3, 7, 8, 0, 12, 13, 4],
+//             backgroundColor: 'rgba(113, 128, 139, 0.3)',
+//           },
+//         ],
+//       },
+//       options: {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         categoryPercentage: 0.1,
+//         barPercentage: 0.1,
+//         tooltips: {
+//           enabled: false,
+//         },
+//         legend: {
+//           display: false,
+//         },
+//       },
+//     };
+//   },
+// });
 
 var vm = new Vue({
   el: '#calculator',
   data: store,
   created: function() {
-    // var url = 'http://calculator.mentorworks.io/calculator/calculate.json'
-    // TODO: tell Zhen to add cross-origin header, right now I have a proxy
-    var url = 'http://localhost:4000/api/calculator/calculate.json';
-    // TODO: do this based on URL parameters
+    // Parse URL parameters
+    // Here's an example:
+    // amount = 10000
+    // current_salary = 0
+    // loan_rate = 11
+    // maturity = 9
+    // level = 'G'
+    // major = 59
+    var query = location.search.substr(1);
+    var params = {};
+    query.split('&').forEach(function(part) {
+      var item = part.split('=');
+      params[item[0]] = decodeURIComponent(item[1]);
+    });
+    /*
+    ##############################################################################################################################
+    TODO for Zhen: for the live site, replace the axios.get lines with the lines below.
+    Since calculator.mentorworks.io doesn't allow cross origin requests, right now it uses example data,
+    but you'll want to change it so it does a POST to your API:
+    
     axios
-      .post(url, {
-        amount: 10000,
-        current_salary: 0,
-        loan_rate: 11,
-        maturity: 9,
-        level: 'G',
-        major: 59,
-      })
+      .post('https://calculator.mentorworks.io/calculator/calculate.json', params)
+    */
+    axios
+      .get('https://api.myjson.com/bins/p30hb')
       .then(
         function(res) {
           var overview = res.data.data.table0;
           var expected = res.data.data.table3_1;
           // Parse data for the heading ISA/loan comparison
-          // TODO: I need raw data, can't use percentage here
           this.isa.rate = overview.income_share_rate;
           // 'Loan' is mispelled 'load' in the JSON
           this.isa.totalCap = overview.max_repayment_amount;
           this.isa.monthlyCap = overview.monthly_cap;
+          this.isa.obligation = overview.maturity; // Years until the ISA is "mature"/fulfilled
+          // Determine the income threshold (amount below which you don't have to make payments)
+          // Clearly, this is a pain to parse from the API and should be simplified in the future
+          this.isa.incomeThreshold = parseCurrency(
+            res.data.data.table1.find(function(el) {
+              return el[0] === 'SAFE income threshold';
+            })[1]
+          );
           this.loan.payment = overview.load_monthly;
           this.loan.rate = overview.load_rate + '%';
           this.loan.totalMinimum = overview.loan_total_repayment;
@@ -549,7 +569,7 @@ var vm = new Vue({
             .map(function(row) {
               return row[0];
             });
-          // TODO
+          // Parse expected salary data
           this.expectedSalary = expected
             .filter(function(row) {
               // Remove the final rows that summarize the data
@@ -558,7 +578,7 @@ var vm = new Vue({
             .map(function(row) {
               return row[1];
             });
-          // TODO
+          // Parse expeted payments data
           this.expectedMonthlyPayments = expected
             .filter(function(row) {
               // Remove the final rows that summarize the data
