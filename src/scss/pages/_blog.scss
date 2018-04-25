@@ -1,6 +1,7 @@
 .posts-grid {
   display: flex;
   justify-content: space-between;
+  margin: 0 $spacing-base;
 
   @include phone() {
     display: block;
@@ -47,7 +48,7 @@
     }
 
     @include tablet() {
-      width: 50%;
+      width: calc(50% - #{$spacing-base});
 
       &:last-child {
         display: none;
