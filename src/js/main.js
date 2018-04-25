@@ -15,17 +15,25 @@
       dots: true,
       infinite: true,
     });
+
+    var $allFaqSections = $('.faq-entry-container');
     $('[faq-section-toggle]').on('click', function() {
-      $(this)
-        .parents('.faq-section')
-        .toggleClass('show');
+      var $parents = $(this).parents('.faq-section');
+      $allFaqSections.slideUp();
+      $allFaqSections.parents('.faq-section').removeClass('show');
+      $parents.find('.faq-entry-container').slideDown();
+      $parents.addClass('show');
     });
+  });
+
+  $('body').on('click', '.alm-load-more-btn', function() {
+    $('.ajax-load-more-wrap').ajaxloadmore();
   });
 })(jQuery);
 
-// var app = new Vue({
-//   el: '#app',
-//   data: {
-//     showMenu: false,
-//   },
-// });
+var app = new Vue({
+  el: '#header',
+  data: {
+    showMenu: false,
+  },
+});

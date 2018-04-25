@@ -8,7 +8,7 @@
       display: flex;
       flex-direction: column;
       padding-top: 100px;
-      background: $transparent-white;
+      background: $white;
 
       position: fixed;
       top: 0;
@@ -63,7 +63,7 @@
   }
 
   .top-bar.rotated {
-    transform: rotate(45deg) translate(0 17.5px);
+    transform: rotate(50deg) translate(0 17px);
     transform-origin: center center;
   }
 
@@ -72,7 +72,7 @@
   }
 
   .bottom-bar.rotated {
-    transform: rotate(-45deg) translate(0 17.5px);
+    transform: rotate(-50deg) translate(0 14px);
     transform-origin: center center;
   }
 
@@ -84,7 +84,6 @@
 .global-navigation-link {
   padding: $spacing-xxs $spacing-xs;
   color: $digital-black;
-  text-decoration: none;
   font-size: $font-size-xs;
 
   & + .global-navigation-link {
@@ -117,7 +116,10 @@
     }
 
     .mobile-menu--open &.button {
-      padding: 0;
+      color: inherit;
+      border: 0;
+      box-shadow: none;
+      justify-content: flex-start;
     }
   }
 }

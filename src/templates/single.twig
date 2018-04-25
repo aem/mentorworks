@@ -15,11 +15,13 @@
 	</article>
 
 	<div class="above-sock-disclaimer">
-		<h2>{{options.mw_post_related_articles_headline}}</h2>
-		<div class="posts-grid">
-			{% for post in relatedPosts %}
-				{% include 'tease-post.twig' %}
-			{% endfor %}
+		<div class="container container-large">
+			<h2>{{options.mw_post_related_articles_headline}}</h2>
+			<div class="posts-grid">
+				{% for post in relatedPosts %}
+					{% include 'tease-post.twig' %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

@@ -1,0 +1,24 @@
+.stylized-number-list-container {
+  flex-wrap: wrap;
+}
+
+.stylized-number-list-entry {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-large;
+  width: calc(50% - #{$spacing-base});
+
+  .number-icon {
+    margin-right: $spacing-medium;
+
+    @include tablet() {
+      margin-right: 0;
+    }
+  }
+
+  @include tablet() {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+}

@@ -24,9 +24,18 @@ body {
   width: $container-width-medium;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 $spacing-base;
 
   &.container-large {
     width: $container-width-large;
+
+    @media screen and (max-width: 1200px) {
+      width: $container-width-medium;
+    }
+
+    @include tablet() {
+      width: 100%;
+    }
   }
 
   @include tablet() {
