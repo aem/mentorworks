@@ -34,5 +34,3 @@ endforeach;
 
 $context['faqs'] = $faqs_by_term;
 Timber::render('faq.twig', $context);
-
-

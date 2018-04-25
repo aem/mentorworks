@@ -5,16 +5,16 @@ body {
 }
 
 p {
+  margin: 0 0 $spacing-base 0;
   color: $slate-gray;
   font-size: $font-size-base;
   line-height: $line-height-medium;
 
   &.large-text {
-    font-size: $font-size-large;
-
-    @include tablet() {
-      font-size: $font-size-base;
-    }
+    @include poly-fluid-sizing('font-size', (
+      768px: $font-size-base,
+      1280px: $font-size-large
+    ));
   }
 
   &.max-width-paragraph {
@@ -54,6 +54,7 @@ h2 {
   font-weight: $font-weight-base;
 
   @include poly-fluid-sizing('font-size', (
+    320px: $font-size-large, 
     768px: $font-size-xl,
     1280px: $font-size-xxxl
   ));
@@ -73,10 +74,10 @@ h3 {
 
 h4 {
   color: $digital-black;
-  margin: 0;
   font-family: $font-family-body;
   font-size: $font-size-medium;
   font-weight: $font-weight-semibold;
+  margin: 0 0 $spacing-base 0;
 }
 
 h5 {
@@ -97,4 +98,14 @@ h6 {
 
 small {
   font-size: $font-size-xxs;
+}
+
+.number {
+  font-family: $font-family-headers;
+  color: $froly;
+
+  @include poly-fluid-sizing('font-size', (
+    320px: $font-size-xxxxl,
+    600px: 112px
+  ));
 }

@@ -32,7 +32,7 @@
 })(jQuery);
 
 var app = new Vue({
-  el: '#app',
+  el: '#header',
   data: {
     showMenu: false,
   },

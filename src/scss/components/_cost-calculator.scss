@@ -1,0 +1,279 @@
+.calculator-container {
+  width: 100%;
+  min-height: 1500px;
+  overflow: hidden;
+}
+
+.calculator {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+
+  .intro {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    text-align: left;
+
+    @include poly-fluid-sizing('margin', (
+      320px: $spacing-base,
+      768px: $spacing-medium,
+      1280px: $spacing-xl
+    ));
+    margin-bottom: 0 !important;
+
+    p {
+      max-width: 800px;
+    }
+  }
+
+  .isa-loan-comparison {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    @include poly-fluid-sizing('padding', (
+      320px: 0,
+      768px: $spacing-medium
+    ));
+    padding-top: 0 !important;
+
+    .compare-item {
+      margin: 0 auto;
+      flex: 0 1 480px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      @include poly-fluid-sizing('padding', (
+        320px: $spacing-base,
+        768px: $spacing-medium
+      ));
+
+      .monthly-figure-container {
+        @include poly-fluid-sizing('min-width', (
+          320px: 0,
+          768px: 480px
+        ));
+        margin: 0 0 $spacing-large 0;
+        position: relative;
+        text-align: center;
+
+        @include poly-fluid-sizing('height', (
+          320px: 220px,
+          600px: 350px
+        ));
+
+        .monthly-figure {
+          width: calc(100% - 16px);
+          height: calc(100% - 16px);
+          box-sizing: border-box;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 2;
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          justify-content: space-between;
+
+          @include poly-fluid-sizing('padding', (
+            320px: $spacing-base,
+            768px: $spacing-medium
+          ));
+
+          h2,
+          p {
+            margin: 0;
+          }
+        }
+
+        .monthly-figure-backdrop {
+          width: calc(100% - 16px);
+          height: calc(100% - 16px);
+          box-sizing: border-box;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        .--outline {
+          border: 3px solid rgba(65, 159, 142, 0.3);
+          background: $white;
+        }
+
+        .--shadow {
+          background: #f7f8f9;
+
+          .number {
+            color: $slate-gray;
+          }
+        }
+      }
+    }
+  }
+
+  b {
+    color: $ocean-green;
+  }
+}
+
+.interactive-payments-wrapper {
+  align-self: stretch;
+  flex: 1 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  @include poly-fluid-sizing('margin', (
+    320px: $spacing-base,
+    768px: $spacing-medium,
+    1280px: $spacing-xl
+  ));
+  margin-top: $spacing-base !important;
+  margin-bottom: $spacing-base !important;
+
+  .interactive-chart-wrapper {
+    max-width: 700px;
+    margin: $spacing-base 0;
+    position: relative;
+  }
+
+  .interactive-legend {
+    min-width: 250px;
+    flex: 1 0;
+    margin: $spacing-xxs;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+
+    .legend-item {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      color: $slate-gray;
+      font-size: $font-size-small;
+      text-align: left;
+
+      &:not(:last-child) {
+        margin-right: $spacing-small;
+      }
+
+      .isa-color {
+        width: 53px;
+        height: 28px;
+        background: linear-gradient(to bottom, $pastel-green, $ocean-green);
+      }
+
+      .salary-color {
+        height: 3px;
+        margin: calc((28 - 3px) / 2) 0;
+        background: $froly;
+      }
+
+      .isa-color,
+      .salary-color {
+        width: 53px;
+        margin-right: $spacing-base;
+      }
+    }
+  }
+
+  .interactive-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 230px;
+    padding: $spacing-xxs;
+    border: 2px solid $froly;
+    border-radius: $border-radius-base;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background: $white;
+    color: $slate-gray;
+    line-height: $line-height-medium;
+    font-size: $font-size-xs;
+  }
+}
+
+.additional-graphs {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  @include poly-fluid-sizing('padding', (
+    320px: 0,
+    768px: $spacing-medium,
+    1280px: $spacing-large
+  ));
+
+  .additional-graph {
+    min-width: 0;
+    flex: 0 1 500px;
+    box-sizing: border-box;
+    padding: $spacing-base;
+
+    .defer-payments-wrapper,
+    .monthly-cap-wrapper {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      border: solid 3px rgba(65, 159, 142, 0.3);
+      @include poly-fluid-sizing('padding', (
+        320px: $spacing-base,
+        768px: $spacing-medium
+      ));
+
+      h3 {
+        text-align: center;
+      }
+
+      .defer-payments-chart-wrapper,
+      .monthly-cap-chart-wrapper {
+        max-width: 100%;
+        margin: $spacing-medium 0 $spacing-base 0;
+        position: relative;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.cta-container {
+  @include poly-fluid-sizing('padding', (
+    320px: $spacing-base,
+    768px: $spacing-medium,
+    1280px: $spacing-xl
+  ));
+  padding-top: $spacing-base !important;
+  padding-bottom: $spacing-xl !important;
+
+  .button.recalc {
+    margin: 0 0 $spacing-xl 0;
+  }
+
+  p {
+    max-width: 700px;
+    margin: 0 0 $spacing-base 0;
+  }
+}
+
+// Vue transition after loading data
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -1,75 +1,75 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{site.theme.link}}/js/main.js"></script>
-
 {% if is_apply_page %}
   <script type="text/javascript">
     Vue.component('apply_form', {
-    template: "#apply_form",
-    props: {
-      steps: {},
-      validateRequiredFields: {}
-    },
-    data () {
-      return {
-        currentStep: 0
-      };
-    },
-    computed: {
-      progressBarWidth() {
-        var stepSize = 100 / this.steps.length;
-        var currentStepStart = stepSize * this.currentStep;
-        var currentStepMiddle = currentStepStart + (stepSize / 2);
-        if (this.currentStep == this.steps.length - 1) {
-          return '100%';
-        }
-        else {
-          return 'calc(' + currentStepMiddle + '%)';
-        }
+      template: "#apply_form",
+      props: {
+        steps: {},
+        validateRequiredFields: {}
       },
-      currentSlot() {
-        return this.steps[this.currentStep].slot;
+      data: function() {
+        return {
+          currentStep: 0
+        };
       },
-      backEnabled() {
-        return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
-      },
-      nextEnabled() {
-        return this.currentStep != this.steps.length - 1;
-      },
-      isSlot0() {
-        return this.currentSlot == 'page0';
-      },
-      isSlot6() {
-        return this.currentSlot == 'page6';
-      },
-      nextButtonText() {
-        if (this.currentStep == 0) {
-          return 'Get started';
-        } else if (this.currentStep == this.steps.length - 2) {
-          return 'Submit application';
-        } else {
-          return 'Next';
-        }
-      }
-    },
-    methods: {
-      goNext () {
-        window.scrollTo(0, 0);
-        if (this.currentStep < this.steps.length-1) {
-          this.currentStep++;
+      computed: {
+        progressBarWidth: function() {
+          var stepSize = 100 / this.steps.length;
+          var currentStepStart = stepSize * this.currentStep;
+          var currentStepMiddle = currentStepStart + (stepSize / 2);
+          if (this.currentStep == this.steps.length - 1) {
+            return '100%';
+          }
+          else {
+            return 'calc(' + currentStepMiddle + '%)';
+          }
+        },
+        currentSlot: function() {
+          return this.steps[this.currentStep].slot;
+        },
+        backEnabled: function() {
+          return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
+        },
+        nextEnabled: function() {
+          return this.currentStep != this.steps.length - 1;
+        },
+        isSlot0: function() {
+          return this.currentSlot == 'page0';
+        },
+        isSlot6: function() {
+          return this.currentSlot == 'page6';
+        },
+        nextButtonText: function() {
+          if (this.currentStep == 0) {
+            return 'Get started';
+          } else if (this.currentStep == this.steps.length - 2) {
+            return 'Submit application';
+          } else {
+            return 'Next';
+          }
         }
       },
-      goBack () {
-        window.scrollTo(0, 0);
-        if (this.currentStep > 0) {
-          this.currentStep--;
+      methods: {
+        goNext: function() {
+          window.scrollTo(0, 0);
+          if (this.currentStep < this.steps.length-1) {
+            this.currentStep++;
+          }
+        },
+        goBack: function() {
+          window.scrollTo(0, 0);
+          if (this.currentStep > 0) {
+            this.currentStep--;
+          }
         }
-      }
-    },
+      },
     });
 
     Vue.component('apply', {
       template: '#apply',
-      data() {
+      data: function() {
         return {
           personal: {
             name: null,
@@ -157,7 +157,7 @@
         };
       },
       methods: {
-        validateRequiredFields(currentStep) {
+        validateRequiredFields: function(currentStep) {
           {# if (currentStep == 1) {
             return this.validateJsonObjForNulls(this.personal, ["linkedinProfile", "otherProfSite"]);
           } else if (currentStep == 2) {
@@ -170,7 +170,7 @@
 
           return false;
         },
-        validateAllEducationFields() {
+        validateAllEducationFields: function() {
           if (this.reasonForFunding == "undergraduate") {
             return this.validateJsonObjForNulls(this.undergraduate, ["majorMinor"]);
           } else if (this.reasonForFunding == "graduate") {
@@ -181,7 +181,7 @@
             return false;
           }
         },
-        validateJsonObjForNulls(field, ignoredFields = []) {
+        validateJsonObjForNulls: function(field, ignoredFields = []) {
           for (var f in field) {
             if (field[f] == null && ignoredFields.indexOf(f) == -1) {
               return true;

@@ -11,7 +11,7 @@
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: $font-size-base;
   color: $white;
-  outline: 0;
+  cursor: pointer;
 
   &:hover {
     box-shadow: $button-shadow-hover $white;

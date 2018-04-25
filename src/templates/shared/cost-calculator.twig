@@ -1,0 +1,133 @@
+{% verbatim %}
+  <div id="calculator" class="calculator-container">
+    <transition name="fade">
+      <div class="calculator" v-if="loaded">
+        <header class="intro">
+          <h1>Understanding the Numbers</h1>
+          <p class="large-text max-width-paragraph">
+            This calculator is an estimate of your income share rate and is not final. 
+            Your final Income Share rate will be disclosed before you sign.
+          </p>
+        </header>
+        <div class="isa-loan-comparison">
+          <div class="compare-item">
+            <div class="monthly-figure-container">
+              <div class="monthly-figure --outline">
+                <h2>MentorWorks ISA</h2>
+                <div class="number">{{ isa.rate }}%</div>
+                <p class="large-text">of your income</p>
+              </div>
+              <div class="monthly-figure-backdrop --shadow"></div>
+            </div>
+            <p class="large-text">
+              Total payment caps at
+              <b>{{ isa.totalCap | formatCurrency(2) }}</b>
+              and never accumulates interest.
+            </p>
+            <p class="large-text">Monthly payment caps at
+              <b>{{ isa.monthlyCap | formatCurrency(2) }}</b>
+            </p>
+            <p class="large-text">
+              Your obligation ends after
+              <b>{{ isa.obligation }} years</b>, regardless of how much you’ve paid back.
+            </p>
+          </div>
+          <div class="compare-item">
+            <div class="monthly-figure-container">
+              <div class="monthly-figure --shadow">
+                <h2>Student Loans</h2>
+                <div class="number">{{ loan.payment | formatCurrency(0) }}</div>
+                <p class="large-text">monthly payment ({{ loan.rate }} interest)</p>
+              </div>
+              <div class="monthly-figure-backdrop --outline"></div>
+            </div>
+            <p class="large-text">
+              Total payment is a minimum of
+              <b>{{ loan.totalMinimum | formatCurrency(2) }}</b>. Unpaid interest will accumulate and add to total payments due.
+            </p>
+            <p class="large-text">
+              There is
+              <b>no cap</b>
+              on payments; these payments can increase if you accrue unpaid interest. Payment duration can also be indefinite if payments are not made.
+            </p>
+          </div>
+        </div>
+        <div class="interactive-payments-wrapper">
+          <h2>Monthly ISA Payment Calculator</h2>
+          <p>Graph shows expected salary based on field of study. ISA Payments end after 108 months.</p>
+          <div class="interactive-legend">
+            <div class="legend-item">
+              <div class="isa-color"></div>
+              ISA Monthly Payments
+            </div>
+            <div class="legend-item">
+              <div class="salary-color"></div>           
+              Annual Salary   
+            </div>
+          </div>
+          <div class="interactive-chart-wrapper">
+            <interactive-payments></interactive-payments>
+            <div class="interactive-tooltip" v-show="interactive.showTooltip">
+              <div>Annual Salary: {{ interactive.hoverSalary }}</div>
+              <div>Monthly ISA Payment: {{ interactive.hoverPayment }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="additional-graphs">
+          <div class="additional-graph">
+            <div class="defer-payments-wrapper">
+              <h3>Deferring Payments</h3>
+              <div class="defer-payments-chart-wrapper">
+                <defer-payments :height="300"></defer-payments>
+              </div>
+              <p>
+                If your salary is below
+                <b>{{ isa.incomeThreshold | formatCurrency(0) }}</b>, you will not be obliged to 
+                make payments, and there is no accrued interest.
+              </p>
+            </div>
+          </div>
+          <div class="additional-graph">
+            <div class="monthly-cap-wrapper">
+              <h3>Monthly Cap</h3>
+              <div class="monthly-cap-chart-wrapper">
+                <monthly-cap :height="300"></monthly-cap>
+              </div>
+              <p>
+                No matter how much you end up making, your 
+                monthly payments will never exceed <b>{{ isa.monthlyCap | formatCurrency(2) }}</b>.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <h2>Prepayment: ISA vs Loan</h2>
+        <p>
+          If you’d like to pay your ISA back early, here’s how much you’d pay by the end of the year to be obligation free.
+        </p>
+        <div class="prepayment-wrapper">
+          <prepayment></prepayment>
+        </div> -->
+        <div class="cta-container">
+          <a herf="/for-students#calculate-isa" class="button --ghost recalc">Recalculate</a>
+          <h2>Ready to join?</h2>
+          <p class="large-text">
+            Apply to get funded today. We’ll walk you through what a MentorWorks income share agreement looks like for you.
+          </p>
+          <a herf="/apply" class="button --ghost">Apply</a>
+        </div>
+      </div>
+    </transition>
+  </div>
+  <div class="above-sock-disclaimer">
+    <h4>References</h4>
+    <p>
+      Wolff, H., and K. Moser, 2009, Effects of Networking on Career Success: A Longitudinal Study, Journal of Applied Psychology,
+      94, 196-206.
+    </p>
+    <p>
+      Allen, T. D., L. T. Eby, M. L. Poteet, E. Lentz, and L. Lima, 2004, Career Benefits Associated with Mentoring for Proteges:
+      A Meta-Analysis, 89, 127-136.
+    </p>
+  </div>
+{% endverbatim %}
+<script src="{{site.theme.link}}/js/calculator.js"></script>
