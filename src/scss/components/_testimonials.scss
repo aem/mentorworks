@@ -4,7 +4,8 @@
 
     .testimonials-slider-entry-content-container {
       max-width: 600px;
-      padding-left: $spacing-xl;
+      padding-right: $spacing-xl;
+      margin: 0 auto;
 
       @include tablet() {
         max-width: 450px;
@@ -20,6 +21,11 @@
       width: 60px;
       height: 52px;
       position: absolute;
+      left: $spacing-xl * 2;
+
+      @media screen and (max-width: 1200px) {
+        left: $spacing-xl;
+      }
 
       @include tablet() {
         position: static;

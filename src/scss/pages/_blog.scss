@@ -2,16 +2,20 @@
   display: flex;
   justify-content: space-between;
 
+  @include phone() {
+    display: block;
+  }
+
   .tease {
-    text-decoration: none;
     color: $digital-black;
     position: relative;
     width: calc(33.333% - #{$spacing-medium});
+    margin-bottom: $spacing-medium;
 
     .ribbon {
       position: absolute;
       top: $spacing-small;
-      left: -($spacing-small);
+      left: -($spacing-base);
       color: $white;
       padding: $spacing-xxxs $spacing-base;
       font-family: $font-family-headers;
@@ -41,5 +45,21 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+
+    @include tablet() {
+      width: 50%;
+
+      &:last-child {
+        display: none;
+      }
+    }
   }
+}
+
+.alm-btn-wrap {
+  text-align: center;
+}
+
+.alm-load-more-btn.done {
+  display: none;
 }

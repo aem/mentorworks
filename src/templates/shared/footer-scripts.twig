@@ -1,200 +1,201 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{site.theme.link}}/js/main.js"></script>
 
-<script type="text/javascript">
-  Vue.component('apply_form', {
-  template: "#apply_form",
-  props: {
-    steps: {},
-    validateRequiredFields: {}
-  },
-  data () {
-    return {
-      currentStep: 0
-    };
-  },
-  computed: {
-    progressBarWidth() {
-      var stepSize = 100 / this.steps.length;
-      var currentStepStart = stepSize * this.currentStep;
-      var currentStepMiddle = currentStepStart + (stepSize / 2);
-      if (this.currentStep == this.steps.length - 1) {
-        return '100%';
-      }
-      else {
-        return 'calc(' + currentStepMiddle + '%)';
-      }
+{% if is_apply_page %}
+  <script type="text/javascript">
+    Vue.component('apply_form', {
+    template: "#apply_form",
+    props: {
+      steps: {},
+      validateRequiredFields: {}
     },
-    currentSlot() {
-      return this.steps[this.currentStep].slot;
-    },
-    backEnabled() {
-      return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
-    },
-    nextEnabled() {
-      return this.currentStep != this.steps.length - 1;
-    },
-    isSlot0() {
-      return this.currentSlot == 'page0';
-    },
-    isSlot6() {
-      return this.currentSlot == 'page6';
-    },
-    nextButtonText() {
-      if (this.currentStep == 0) {
-        return 'Get started';
-      } else if (this.currentStep == this.steps.length - 2) {
-        return 'Submit application';
-      } else {
-        return 'Next';
-      }
-    }
-  },
-  methods: {
-    goNext () {
-      window.scrollTo(0, 0);
-      if (this.currentStep < this.steps.length-1) {
-        this.currentStep++;
-      }
-    },
-    goBack () {
-      window.scrollTo(0, 0);
-      if (this.currentStep > 0) {
-        this.currentStep--;
-      }
-    }
-  },
-  });
-
-  Vue.component('apply', {
-    template: '#apply',
-    data() {
+    data () {
       return {
-        personal: {
-          name: null,
-          phone: null,
-          linkedinProfile: null,
-          authorized: null,
-          email: null,
-          methodOfContact: null,
-          otherProfSite: null
-        },
-        referral: null,
-        fundingAmount: null,
-        reasonForFunding: null,
-        undergraduate: {
-          name: null,
-          date: null,
-          gpa: null,
-          majorMinor: null
-        },
-        graduate: {
-          name: null,
-          date: null,
-          gpa: null,
-          majorMinor: null
-        },
-        bootCamp: {
-          name: null,
-          course: null,
-          date: null,
-          length: null
-        },
-        freeResponse: {
-          extracurriculars: null,
-          workExperience: null,
-          lifeDifficulty: null,
-          careerInterests: null
-        },
-        reference0: {
-          name: null,
-          email: null,
-          phone: null,
-          relationship: null
-        },
-        reference1: {
-          name: null,
-          email: null,
-          phone: null,
-          relationship: null
-        },
-        reference2: {
-          name: null,
-          email: null,
-          phone: null,
-          relationship: null
-        },
-        attachments: {
-          resume: null,
-          transcript: null,
-          identificiation: null,
-          financialAid: null
-        },
-        steps: [
-          {
-            slot: 'page0',
-          },
-          {
-            slot: 'page1',
-          },
-          {
-            slot: 'page2',
-          },
-          {
-            slot: 'page3',
-          },
-          {
-            slot: 'page4',
-          },
-          {
-            slot: 'page5',
-          },
-          {
-            slot: 'page6',
-          }
-        ]
+        currentStep: 0
       };
     },
-    methods: {
-      validateRequiredFields(currentStep) {
-        {# if (currentStep == 1) {
-          return this.validateJsonObjForNulls(this.personal, ["linkedinProfile", "otherProfSite"]);
-        } else if (currentStep == 2) {
-          return this.fundingAmount == null || this.validateAllEducationFields();
-        } else if (currentStep == 3) {
-          return this.validateJsonObjForNulls(this.freeResponse);
-        } else if (currentStep == 4) {
-          return this.validateJsonObjForNulls(this.reference0) || this.validateJsonObjForNulls(this.reference1);
-        } #}
-
-        return false;
+    computed: {
+      progressBarWidth() {
+        var stepSize = 100 / this.steps.length;
+        var currentStepStart = stepSize * this.currentStep;
+        var currentStepMiddle = currentStepStart + (stepSize / 2);
+        if (this.currentStep == this.steps.length - 1) {
+          return '100%';
+        }
+        else {
+          return 'calc(' + currentStepMiddle + '%)';
+        }
       },
-      validateAllEducationFields() {
-        if (this.reasonForFunding == "undergraduate") {
-          return this.validateJsonObjForNulls(this.undergraduate);
-        } else if (this.reasonForFunding == "graduate") {
-          return this.validateJsonObjForNulls(this.undergraduate) || this.validateJsonObjForNulls(this.graduate);
-        } else if (this.reasonForFunding == "bootCamp") {
-          return this.validateJsonObjForNulls(this.bootCamp);
+      currentSlot() {
+        return this.steps[this.currentStep].slot;
+      },
+      backEnabled() {
+        return this.currentStep > 1 && this.currentStep != this.steps.length - 1;
+      },
+      nextEnabled() {
+        return this.currentStep != this.steps.length - 1;
+      },
+      isSlot0() {
+        return this.currentSlot == 'page0';
+      },
+      isSlot6() {
+        return this.currentSlot == 'page6';
+      },
+      nextButtonText() {
+        if (this.currentStep == 0) {
+          return 'Get started';
+        } else if (this.currentStep == this.steps.length - 2) {
+          return 'Submit application';
         } else {
+          return 'Next';
+        }
+      }
+    },
+    methods: {
+      goNext () {
+        window.scrollTo(0, 0);
+        if (this.currentStep < this.steps.length-1) {
+          this.currentStep++;
+        }
+      },
+      goBack () {
+        window.scrollTo(0, 0);
+        if (this.currentStep > 0) {
+          this.currentStep--;
+        }
+      }
+    },
+    });
+
+    Vue.component('apply', {
+      template: '#apply',
+      data() {
+        return {
+          personal: {
+            name: null,
+            phone: null,
+            linkedinProfile: null,
+            authorized: null,
+            email: null,
+            methodOfContact: null,
+            otherProfSite: null
+          },
+          referral: null,
+          fundingAmount: null,
+          reasonForFunding: null,
+          undergraduate: {
+            name: null,
+            date: null,
+            gpa: null,
+            majorMinor: null
+          },
+          graduate: {
+            name: null,
+            date: null,
+            gpa: null,
+            majorMinor: null
+          },
+          bootCamp: {
+            name: null,
+            course: null,
+            date: null,
+            length: null
+          },
+          freeResponse: {
+            extracurriculars: null,
+            workExperience: null,
+            lifeDifficulty: null,
+            careerInterests: null
+          },
+          reference0: {
+            name: null,
+            email: null,
+            phone: null,
+            relationship: null
+          },
+          reference1: {
+            name: null,
+            email: null,
+            phone: null,
+            relationship: null
+          },
+          reference2: {
+            name: null,
+            email: null,
+            phone: null,
+            relationship: null
+          },
+          attachments: {
+            resume: null,
+            transcript: null,
+            identificiation: null,
+            financialAid: null
+          },
+          steps: [
+            {
+              slot: 'page0',
+            },
+            {
+              slot: 'page1',
+            },
+            {
+              slot: 'page2',
+            },
+            {
+              slot: 'page3',
+            },
+            {
+              slot: 'page4',
+            },
+            {
+              slot: 'page5',
+            },
+            {
+              slot: 'page6',
+            }
+          ]
+        };
+      },
+      methods: {
+        validateRequiredFields(currentStep) {
+          {# if (currentStep == 1) {
+            return this.validateJsonObjForNulls(this.personal, ["linkedinProfile", "otherProfSite"]);
+          } else if (currentStep == 2) {
+            return this.fundingAmount == null || this.validateAllEducationFields();
+          } else if (currentStep == 3) {
+            return this.validateJsonObjForNulls(this.freeResponse);
+          } else if (currentStep == 4) {
+            return this.validateJsonObjForNulls(this.reference0) || this.validateJsonObjForNulls(this.reference1);
+          } #}
+
+          return false;
+        },
+        validateAllEducationFields() {
+          if (this.reasonForFunding == "undergraduate") {
+            return this.validateJsonObjForNulls(this.undergraduate, ["majorMinor"]);
+          } else if (this.reasonForFunding == "graduate") {
+            return this.validateJsonObjForNulls(this.undergraduate, ["majorMinor"]) || this.validateJsonObjForNulls(this.graduate, ["majorMinor"]);
+          } else if (this.reasonForFunding == "bootCamp") {
+            return this.validateJsonObjForNulls(this.bootCamp, ["majorMinor"]);
+          } else {
+            return false;
+          }
+        },
+        validateJsonObjForNulls(field, ignoredFields = []) {
+          for (var f in field) {
+            if (field[f] == null && ignoredFields.indexOf(f) == -1) {
+              return true;
+            }
+          }
           return false;
         }
       },
-      validateJsonObjForNulls(field, ignoredFields = []) {
-        for (var f in field) {
-          if (field[f] == null && ignoredFields.indexOf(f) == -1) {
-            return true;
-          }
-        }
-        return false;
-      }
-    },
-  });
+    });
 
-  var app = new Vue({
-    el: '#apply-form',
-    template: `<apply steps="${this.steps}"></apply>`,
-    delimiters: ['${', '}']
-  });
-</script>
+    var app = new Vue({
+      el: '#apply-form',
+      template: `<apply steps="${this.steps}"></apply>`,
+      delimiters: ['${', '}']
+    });
+  </script>
+{% endif %}

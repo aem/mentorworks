@@ -1,0 +1,21 @@
+{% set list = component.mw_stylized_number_list %}
+{% set num_of_entries = list.mw_stylized_number_list_entries|length %}
+{% set divider_count = num_of_entries == 5 ? 4 : 3 %}
+
+<div class="section">
+  <div class="container">
+    <h2>{{list.mw_stylized_number_list_section_headline}}</h2>
+    <p class="large-text max-width-paragraph">{{list.mw_stylized_number_list_section_copy}}</p>
+    <div class="form-column-container stylized-number-list-container">
+      {% for entry in list.mw_stylized_number_list_entries %}
+        <div class="stylized-number-list-entry">
+          <img class="number-icon" src="{{site.theme.link}}/svg/numbers/{{loop.index}}.svg">
+          <div>
+            <h3>{{entry.mw_stylized_number_list_entry_headline}}</h3>
+            <p>{{entry.mw_stylized_number_list_entry_copy}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

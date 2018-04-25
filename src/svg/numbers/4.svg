@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 82 82">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#71808B" fill-opacity=".1" d="M56.36 51.645h5.889v4.511H56.36v5.332l4.776.82V66H45.843v-3.691l4.775-.82v-5.333h-19.16v-3.252l18.809-29.56h6.093v28.3zm-18.75 0h13.008V31.576l-.176-.058-.586 1.552L37.61 51.645z"/>
+        <path fill="#FFF" stroke="#419F8E" d="M49.36 47.645h5.889v4.511H49.36v5.332l4.776.82V62H38.843v-3.691l4.775-.82v-5.333h-19.16v-3.252l18.809-29.56h6.093v28.3zm-18.75 0h13.008V27.576l-.176-.058-.586 1.552L30.61 47.645z" opacity=".5"/>
+        <g stroke="#419F8E" stroke-opacity=".5" stroke-width="2" transform="translate(1 1)">
+            <circle cx="40" cy="40" r="40"/>
+        </g>
+    </g>
+</svg>

@@ -2,9 +2,13 @@
   .faq-section-header {
     border: $border-size-base solid $ocean-green;
     margin-bottom: $spacing-xl;
-    padding-top: $spacing-base;
-    padding-bottom: $spacing-base;
+    padding: $spacing-base;
     margin: 0 $spacing-xl $spacing-large $spacing-xl;
+
+    @include phone() {
+      margin-left: $spacing-base;
+      margin-right: $spacing-base;
+    }
 
     .faq-section-header-copy {
       font-size: $font-size-xxxl;
@@ -14,6 +18,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 100%;
     }
   }
 

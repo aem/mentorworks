@@ -23,6 +23,9 @@
             {% include 'tease-post.twig' %}
           {% endfor %}
         </div>
+        <div class="see-more-posts-btn">
+          {{"[ajax_load_more id='4244057744' transition_container_classes='posts-grid' container_type='div' post_type='post' posts_per_page='3' category='#{category|replace(' ', '-')|lower}' offset='3' scroll='false' button_label='Show More']"|shortcodes}}
+        </div>
       </div>
     {% endfor %}
   </div>

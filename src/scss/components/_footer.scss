@@ -3,11 +3,20 @@
   background: $slate-gray;
   color: $white;
 
+  @include phone() {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+  }
+
   .footer-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 0 $spacing-medium 0;
+
+    @include tablet() {
+      display: block;
+    }
 
     .footer-logo {
       display: flex;
@@ -22,12 +31,21 @@
 
     .footer-nav {
       display: flex;
+      flex-wrap: wrap;
 
       .nav-link {
         margin: $spacing-base;
         flex: 1 0;
-        text-decoration: none;
         color: $white;
+
+        @include tablet() {
+          margin: $spacing-xxs $spacing-base 0 0;
+          flex: 1 0 25%;
+        }
+      }
+
+      @include tablet() {
+        margin-top: $spacing-base;
       }
     }
 
@@ -38,6 +56,10 @@
         width: $footer-social-media-icon-size;
         height: $footer-social-media-icon-size;
         margin-left: $spacing-xxs;
+
+        @include tablet() {
+          margin: $spacing-medium $spacing-xxs 0 0;
+        }
       }
     }
   }
@@ -52,8 +74,11 @@
     justify-content: space-between;
     font-size: $font-size-xxs;
 
+    @include tablet() {
+      display: block;
+    }
+
     .scout-byline {
-      text-decoration: none;
       color: $white;
 
       .heart {

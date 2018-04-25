@@ -1,5 +1,6 @@
 .image-row-layout {
   .images {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
 
@@ -7,12 +8,17 @@
       width: 33.333%;
       padding: $spacing-small $spacing-small $spacing-small 0;
 
+      img {
+        max-width: 184px;
+      }
+
       @include tablet() {
         width: 50%;
       }
 
       @include phone() {
-        width: auto;
+        width: 100%;
+        text-align: center;
       }
     }
   }

@@ -17,6 +17,10 @@
   .copy {
     width: 50%;
     padding: $spacing-base;
+
+    @include phone() {
+      width: 100%;
+    }
   }
 
   &.image-right {
