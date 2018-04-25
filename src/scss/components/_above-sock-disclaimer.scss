@@ -1,4 +1,10 @@
 .above-sock-disclaimer {
   background-color: $lightest-slate-gray;
-  padding: $spacing-medium $spacing-xl;
+  @include poly-fluid-sizing('padding', (
+    320px: $spacing-base,
+    768px: $spacing-medium,
+    1280px: $spacing-xl
+  ));
+  padding-top: $spacing-medium !important;
+  padding-bottom: $spacing-medium !important;
 }
